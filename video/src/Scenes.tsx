@@ -1,70 +1,17 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
-import {Person, PersonProps} from './Person';
-import {INK, ME, Pop, Sting, Flash, Floor, Title, Street, Room} from './lib';
+import {Person} from './Person';
+import {INK, ME, MOM, Pop, Sting, Floor, Title, Room} from './lib';
 
 // ---------- elenco ----------
-const LEO = {skin: '#8d5524', hair: 'spiky' as const, hairColor: '#1e1e1e', shirt: '#4b7bec', pants: '#2d3436'};
-const BIA = {skin: '#e0ac69', hair: 'long' as const, hairColor: '#2d3436', shirt: '#a55eea', pants: '#34495e'};
-const BAKER = {skin: '#ffdbac', hair: 'bald' as const, mustache: true, shirt: '#f5f6fa', apron: true, hat: 'cap' as const, hatColor: '#f5f6fa'};
-const GIRL = {skin: '#f2c29b', hair: 'bun' as const, hairColor: '#e15f41', shirt: '#fd79a8', pants: '#574b90'};
-const BOSS = {skin: '#c68642', hair: 'short' as const, hairColor: '#7f8c8d', suit: true, tie: '#eb3b5a'};
-const ANCHOR = {skin: '#ffdbac', hair: 'short' as const, hairColor: '#4b3621', suit: true, tie: '#3867d6'};
+const DAD = {skin: '#f2c29b', hair: 'short' as const, hairColor: '#636e72', mustache: true, shirt: '#778ca3', pants: '#2d3436'};
+const ROSA = {skin: '#8d5524', hair: 'bun' as const, hairColor: '#1e1e1e', shirt: '#e15f41', pants: '#574b90'};
+const WATER = '#4aa3df';
 
-const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
+const ease = (t: number) => 1 - Math.pow(1 - t, 3);
 
-// ---------- cadeado na boca ----------
-const Padlock: React.FC<{open?: boolean; size: number; color?: string}> = ({open, size, color}) => {
-  const c = color ?? (open ? '#20bf6b' : '#ff4757');
-  return (
-    <svg viewBox="0 0 100 110" width={size} height={size * 1.1} style={{overflow: 'visible'}}>
-      <path d={open ? 'M28,48 L28,26 Q28,4 50,4 Q72,4 72,26 L72,30' : 'M28,48 L28,30 Q28,8 50,8 Q72,8 72,30 L72,48'} fill="none" stroke={INK} strokeWidth={16} strokeLinecap="round" transform={open ? 'translate(0,-14) rotate(-18 72 30)' : undefined} />
-      <path d={open ? 'M28,48 L28,26 Q28,4 50,4 Q72,4 72,26 L72,30' : 'M28,48 L28,30 Q28,8 50,8 Q72,8 72,30 L72,48'} fill="none" stroke="#d1d8e0" strokeWidth={7} strokeLinecap="round" transform={open ? 'translate(0,-14) rotate(-18 72 30)' : undefined} />
-      <rect x={12} y={44} width={76} height={60} rx={12} fill={c} stroke={INK} strokeWidth={7} />
-      <circle cx={50} cy={68} r={8} fill={INK} />
-      <rect x={46} y={70} width={8} height={18} rx={3} fill={INK} />
-    </svg>
-  );
-};
-
-// posiciona um cadeado sobre a boca de um Person (mesma conta do Person.tsx)
-const MouthLock: React.FC<{x: number; y: number; scale: number; at?: number; open?: boolean; openAt?: number; shake?: boolean; size?: number}> = ({x, y, scale, at = 0, open, openAt, shake, size = 70}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 10, stiffness: 180}});
-  const isOpen = open || (openAt !== undefined && frame >= openAt);
-  const op = openAt !== undefined ? spring({frame: frame - openAt, fps, config: {damping: 8, stiffness: 200}}) : 1;
-  const bobY = Math.sin((frame + x) / 9) * 3;
-  const H = 360 * scale;
-  const s = size * scale * 0.55;
-  const sh = shake ? Math.sin(frame * 2.1) * 6 : 0;
-  return (
-    <div style={{position: 'absolute', left: x - s / 2 + sh, top: y - H + bobY + 142 * scale - s * 0.6, transform: `scale(${p * (isOpen && openAt !== undefined ? 0.8 + 0.2 * op + (1 - op) * 0.4 : 1)})`, transformOrigin: '50% 60%'}}>
-      <Padlock open={isOpen} size={s} />
-    </div>
-  );
-};
-
-// ---------- balão de fala ----------
-const Bubble: React.FC<{x: number; y: number; text: string; at: number; w?: number; size?: number; color?: string; tail?: 'left' | 'right' | 'center'}> = ({x, y, text, at, w = 520, size = 58, color = '#fff', tail = 'center'}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 11, stiffness: 200}});
-  const tx = tail === 'left' ? w * 0.22 : tail === 'right' ? w * 0.78 : w / 2;
-  return (
-    <div style={{position: 'absolute', left: x - tx, top: y, width: w, transform: `scale(${p})`, transformOrigin: `${tx}px 100%`}}>
-      <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, background: color, border: `8px solid ${INK}`, borderRadius: 40, padding: '22px 30px', fontFamily: 'Inter', fontWeight: 900, fontSize: size, lineHeight: 1.08, color: INK, textAlign: 'center', boxShadow: `0 10px 0 ${INK}`}}>
-        {text}
-        <div style={{position: 'absolute', left: tx - 22, bottom: -42, width: 0, height: 0, borderLeft: '22px solid transparent', borderRight: '22px solid transparent', borderTop: `40px solid ${INK}`}} />
-        <div style={{position: 'absolute', left: tx - 13, bottom: -26, width: 0, height: 0, borderLeft: '13px solid transparent', borderRight: '13px solid transparent', borderTop: `26px solid ${color}`}} />
-      </div>
-    </div>
-  );
-};
-
+// ---------- peças ----------
 const Stamp: React.FC<{x: number; y: number; text: string; at: number; color?: string; size?: number; rot?: number}> = ({x, y, text, at, color = '#ff4757', size = 54, rot = -8}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -77,422 +24,426 @@ const Stamp: React.FC<{x: number; y: number; text: string; at: number; color?: s
   );
 };
 
-const Shake: React.FC<{from: number; to: number; amp?: number; children: React.ReactNode}> = ({from, to, amp = 10, children}) => {
-  const frame = useCurrentFrame();
-  const on = frame >= from && frame <= to;
-  const d = on ? amp * Math.exp(-(frame - from) / 8) : 0;
-  return <AbsoluteFill style={{transform: `translate(${Math.sin(frame * 2.7) * d}px, ${Math.cos(frame * 3.1) * d}px)`}}>{children}</AbsoluteFill>;
-};
+const DayBadge: React.FC<{n: string}> = ({n}) => <Stamp x={540} y={200} text={n} at={0} color="#2f3542" size={84} rot={-4} />;
 
-// ---------- cenas ----------
-const Hook: React.FC = () => {
-  const people: [number, PersonProps][] = [
-    [150, {x: 150, y: 1150, scale: 1.05, ...GIRL}],
-    [370, {x: 370, y: 1110, scale: 0.95, ...BAKER}],
-    [710, {x: 710, y: 1110, scale: 0.95, ...BOSS}],
-    [930, {x: 930, y: 1150, scale: 1.05, ...LEO}],
-  ];
-  return (
-    <AbsoluteFill>
-      <Street />
-      {people.map(([x, p], i) => (
-        <React.Fragment key={i}>
-          <Person {...p} emotion="shocked" lookX={x < 540 ? 1 : -1} />
-          <MouthLock x={p.x} y={p.y} scale={p.scale ?? 1} at={55 + i * 6} />
-        </React.Fragment>
-      ))}
-      <Pop at={55} /><Pop at={67} />
-      <Person {...ME} x={540} y={1260} scale={1.6} emotion="shocked" lookY={-0.5} />
-      <MouthLock x={540} y={1260} scale={1.6} at={100} openAt={128} />
-      <Pop at={128} />
-      <Title text="NINGUÉM MENTE" color="#fed330" top={330} size={110} at={45} />
-    </AbsoluteFill>
-  );
-};
-
-const News: React.FC = () => {
-  const frame = useCurrentFrame();
-  const clock = frame >= 92 ? '24:00:00' : '';
-  return (
-    <AbsoluteFill>
-      <Room wall="#dfe6e9" floor="#b2bec3" />
-      <Shake from={160} to={182} amp={8}>
-        {/* TV */}
-        <div style={{position: 'absolute', left: 70, top: 260, width: 940, height: 760, background: INK, borderRadius: 40}} />
-        <div style={{position: 'absolute', left: 100, top: 290, width: 880, height: 700, background: '#0c2461', borderRadius: 24, overflow: 'hidden'}}>
-          <div style={{position: 'absolute', left: 0, right: 0, top: 0, height: 700, background: 'radial-gradient(circle at 50% 40%, #1e3799 0%, #0c2461 70%)'}} />
-          <Person {...ANCHOR} x={440} y={860} scale={1.9} emotion={frame > 158 ? 'scared' : 'neutral'} talking={frame > 10 && frame < 150} bob={false} />
-          <MouthLock x={440} y={860} scale={1.9} at={158} shake />
-          <div style={{position: 'absolute', left: 0, right: 0, top: 540, height: 160, background: '#eb3b5a', borderTop: `8px solid ${INK}`}}>
-            <div style={{position: 'absolute', left: 0, top: 0, height: 52, width: 260, background: '#fed330', fontFamily: 'Inter', fontWeight: 900, fontSize: 40, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>URGENTE</div>
-            <div style={{position: 'absolute', left: 30, right: 30, top: 62, fontFamily: 'Inter', fontWeight: 900, fontSize: 54, color: '#fff', whiteSpace: 'nowrap'}}>NINGUÉM CONSEGUE MENTIR</div>
-          </div>
-          {clock ? (
-            <div style={{position: 'absolute', right: 30, top: 30, background: '#fff', border: `6px solid ${INK}`, borderRadius: 16, padding: '6px 18px', fontFamily: 'DejaVu Sans Mono', fontWeight: 700, fontSize: 52, color: '#eb3b5a', transform: `scale(${spring({frame: frame - 92, fps: 30, config: {damping: 10}})})`}}>{clock}</div>
-          ) : null}
-        </div>
-        <div style={{position: 'absolute', left: 470, top: 1020, width: 140, height: 60, background: INK}} />
-      </Shake>
-      <Pop at={92} />
-      <Sting at={158} volume={0.35} />
-    </AbsoluteFill>
-  );
-};
-
-const Bakery: React.FC = () => {
-  const frame = useCurrentFrame();
-  const strain = frame > 60 && frame < 112;
-  return (
-    <AbsoluteFill>
-      <Room wall="#ffeaa7" floor="#cd6133" />
-      <div style={{position: 'absolute', left: 120, top: 180, width: 840, height: 120, background: '#e58e26', border: `8px solid ${INK}`, borderRadius: 20, fontFamily: 'Inter', fontWeight: 900, fontSize: 72, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', WebkitTextStroke: `6px ${INK}`, paintOrder: 'stroke fill'}}>PÃO FRESQUINHO</div>
-      {/* prateleira de pães */}
-      {[0, 1, 2, 3, 4].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 120 + i * 170, top: 400, width: 140, height: 70, borderRadius: 40, background: '#e1b12c', border: `6px solid ${INK}`}} />
-      ))}
-      <div style={{position: 'absolute', left: 80, top: 480, width: 920, height: 16, background: INK}} />
-      <div style={{position: 'absolute', left: 0, top: 0, right: 0, bottom: 0, transform: strain ? `translateX(${Math.sin(frame * 2.4) * 5}px)` : undefined}}>
-        <Person {...BAKER} x={700} y={1060} scale={1.5} emotion={strain ? 'worried' : frame >= 112 ? 'sad' : 'neutral'} lookX={-1} talking={frame >= 112 && frame < 140} />
-      </div>
-      {strain ? <div style={{position: 'absolute', left: 820, top: 560, fontSize: 70}}><svg viewBox="0 0 40 50" width={44} height={56}><path d="M20,2 Q36,30 20,46 Q4,30 20,2 Z" fill="#74b9ff" stroke={INK} strokeWidth={4} /></svg></div> : null}
-      {/* balcão */}
-      <div style={{position: 'absolute', left: 40, top: 960, width: 1000, height: 230, background: '#b33939', border: `10px solid ${INK}`, borderRadius: 24}} />
-      <div style={{position: 'absolute', left: 40, top: 940, width: 1000, height: 50, background: '#f5f6fa', border: `10px solid ${INK}`, borderRadius: 24}} />
-      <Person {...ME} x={260} y={1330} scale={1.6} emotion={frame >= 112 ? 'shocked' : 'neutral'} lookX={1} lookY={-0.4} talking={frame > 4 && frame < 50} />
-      <Bubble x={700} y={520} text="É DE ANTEONTEM." at={112} w={560} size={60} tail="right" />
-      <Pop at={112} />
-    </AbsoluteFill>
-  );
-};
-
-const Bus: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const hit = spring({frame: frame - 14, fps, config: {damping: 8}});
-  return (
-    <AbsoluteFill style={{background: '#dcdde1'}}>
-      {/* janelas com rua passando */}
-      {[0, 1, 2].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 60 + i * 330, top: 260, width: 300, height: 380, background: '#7ed6df', border: `9px solid ${INK}`, borderRadius: 24, overflow: 'hidden'}}>
-          {[0, 1, 2, 3].map((j) => (
-            <div key={j} style={{position: 'absolute', left: ((j * 220 - frame * 14 - i * 330) % 880 + 880) % 880 - 200, top: 150 + (j % 2) * 40, width: 150, height: 300, background: ['#f8c291', '#82ccdd', '#b8e994', '#e58e26'][j], border: `6px solid ${INK}`}} />
-          ))}
-        </div>
-      ))}
-      <div style={{position: 'absolute', left: 0, right: 0, top: 170, height: 18, background: '#a4b0be', borderBottom: `6px solid ${INK}`}} />
-      {[220, 540, 860].map((x, i) => (
-        <div key={i} style={{position: 'absolute', left: x, top: 180, width: 12, height: 160 + Math.sin(frame / 8 + i) * 6, background: INK}} />
-      ))}
-      <Floor color="#636e72" y={1180} />
-      <Person {...GIRL} x={700} y={1310} scale={1.7} emotion={frame >= 108 ? 'smirk' : frame >= 72 ? 'happy' : 'neutral'} lookX={-1} talking={(frame >= 72 && frame < 100) || (frame >= 108 && frame < 140)} />
-      <Person {...ME} x={300} y={1320} scale={1.7} emotion={frame > 14 ? (frame >= 108 ? 'shocked' : 'worried') : 'neutral'} lookX={1} />
-      {frame > 14 && frame < 60 ? (
-        <svg viewBox="0 0 100 100" width={180} height={180} style={{position: 'absolute', left: 380, top: 1180, transform: `scale(${hit}) rotate(${frame * 3}deg)`}}>
-          <path d="M50,0 L60,35 L98,30 L68,55 L85,95 L50,72 L15,95 L32,55 L2,30 L40,35 Z" fill="#fed330" stroke={INK} strokeWidth={6} strokeLinejoin="round" />
-        </svg>
-      ) : null}
-      <Pop at={14} />
-      {frame < 108 ? <Bubble x={700} y={560} text="DESCULPA!" at={72} w={420} size={60} tail="right" /> : null}
-      <Bubble x={640} y={680} text="…FOI DE PROPÓSITO." at={108} w={600} size={52} color="#ffeaa7" tail="right" />
-      <Pop at={108} />
-    </AbsoluteFill>
-  );
-};
-
-const Test: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill>
-      <Room wall="#a29bfe" floor="#6c5ce7" />
-      {/* régua na parede */}
-      <div style={{position: 'absolute', left: 760, top: 240, width: 120, height: 940, background: '#fed330', border: `8px solid ${INK}`, borderRadius: 12}}>
-        {Array.from({length: 20}).map((_, i) => (
-          <div key={i} style={{position: 'absolute', left: 0, top: i * 47, width: i % 2 ? 40 : 70, height: 6, background: INK}} />
-        ))}
-      </div>
-      <div style={{position: 'absolute', left: 900, top: 530, fontFamily: 'Inter', fontWeight: 900, fontSize: 46, color: '#fff', WebkitTextStroke: `6px ${INK}`, paintOrder: 'stroke fill'}}>1,72</div>
-      <div style={{position: 'absolute', left: 620, top: 560, width: 270, height: 8, background: '#eb3b5a', borderRadius: 4}} />
-      <Person {...ME} x={460} y={1300} scale={1.75} emotion={frame >= 108 ? 'smirk' : frame >= 92 ? 'shocked' : 'happy'} lookX={frame >= 108 ? 0 : 0.4} talking={frame > 30 && frame < 88} />
-      <MouthLock x={460} y={1300} scale={1.75} at={92} open />
-      <Bubble x={420} y={260} text="EU TENHO 2 METROS!" at={34} w={600} size={58} tail="left" />
-      <Pop at={92} />
-      {frame >= 108 ? <Stamp x={190} y={520} text="FÁCIL" at={108} color="#20bf6b" size={60} rot={-10} /> : null}
-    </AbsoluteFill>
-  );
-};
-
-const Office: React.FC<{children?: React.ReactNode}> = ({children}) => (
-  <AbsoluteFill>
-    <Room wall="#c7ecee" floor="#535c68" />
-    <div style={{position: 'absolute', left: 80, top: 200, width: 360, height: 260, background: '#dff9fb', border: `8px solid ${INK}`, borderRadius: 16}}>
-      <div style={{position: 'absolute', left: 170, top: 0, bottom: 0, width: 8, background: INK}} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 120, height: 8, background: INK}} />
-    </div>
-    <div style={{position: 'absolute', left: 820, top: 260, width: 120, height: 160, borderRadius: '50% 50% 10px 10px', background: '#26de81', border: `7px solid ${INK}`}} />
-    {children}
-  </AbsoluteFill>
-);
-
-const Interview: React.FC = () => {
-  const frame = useCurrentFrame();
-  const cands: [number, string, string, number][] = [
-    [190, 'PREGUIÇA', '#fd9644', 106],
-    [400, 'ATRASO', '#45aaf2', 126],
-    [610, 'FOFOCA', '#a55eea', 147],
-  ];
-  return (
-    <Office>
-      {cands.map(([x, label, shirt, at], i) => (
-        <React.Fragment key={i}>
-          <Person x={x} y={1120} scale={1.05} skin={['#ffdbac', '#8d5524', '#e0ac69'][i]} hair={(['spiky', 'long', 'bun'] as const)[i]} hairColor={['#d35400', '#2d3436', '#6d214f'][i]} shirt={shirt} emotion={frame >= at ? 'sad' : 'worried'} />
-          <Stamp x={x} y={700} text={label} at={at} size={36} rot={i % 2 ? 6 : -6} />
-          <Pop at={at} />
-        </React.Fragment>
-      ))}
-      <Person {...ME} x={880} y={1280} scale={1.5} emotion={frame >= 180 ? 'smirk' : 'neutral'} lookX={-1} talking={frame >= 180 && frame < 210} />
-      <Bubble x={820} y={640} text="SOU PERFECCIONISTA." at={180} w={560} size={50} tail="right" />
-      <Pop at={180} />
-    </Office>
-  );
-};
-
-const Hired: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <Office>
-      {Array.from({length: 26}).map((_, i) => (
-        <div key={i} style={{position: 'absolute', left: (i * 97) % 1080, top: -60 + ((frame * (9 + (i % 5) * 2) + i * 71) % 1300), width: 26, height: 40, background: ['#fed330', '#ff4757', '#26de81', '#45aaf2'][i % 4], border: `4px solid ${INK}`, transform: `rotate(${frame * 9 + i * 40}deg)`}} />
-      ))}
-      <Person {...BOSS} x={300} y={1240} scale={1.6} emotion="happy" lookX={1} />
-      <Person {...ME} x={780} y={1260} scale={1.7} emotion={frame >= 62 ? 'smirk' : 'happy'} lookX={frame >= 62 ? 0 : -1} lookY={frame >= 62 ? 0.2 : 0} />
-      <Stamp x={540} y={330} text="CONTRATADO!" at={4} color="#20bf6b" size={92} rot={-6} />
-      <Sting at={4} volume={0.2} />
-    </Office>
-  );
-};
-
-const PersonIcon: React.FC<{c: string; size: number}> = ({c, size}) => (
-  <svg viewBox="0 0 100 120" width={size} height={size * 1.2}>
-    <circle cx={50} cy={30} r={22} fill={c} stroke={INK} strokeWidth={7} />
-    <path d="M14,116 Q14,62 50,60 Q86,62 86,116 Z" fill={c} stroke={INK} strokeWidth={7} strokeLinejoin="round" />
-  </svg>
-);
-
-const Fact: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const n = interpolate(frame, [125, 165], [0, 1.65], clamp);
-  const hi = spring({frame: frame - 252, fps, config: {damping: 10}});
-  return (
-    <AbsoluteFill style={{background: '#2f3542'}}>
-      <Title text="QUEM MENTE MAIS?" color="#fed330" top={150} size={90} />
-      {frame >= 115 ? (
-        <>
-          <div style={{position: 'absolute', top: 270, left: 0, right: 0, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 180, color: '#fff', WebkitTextStroke: `12px ${INK}`, paintOrder: 'stroke fill'}}>{n.toFixed(2).replace('.', ',')}</div>
-          {frame < 252 ? <div style={{position: 'absolute', top: 500, left: 0, right: 0, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 52, color: '#dfe4ea'}}>MENTIRAS POR DIA (MÉDIA)</div> : null}
-        </>
-      ) : (
-        <div style={{position: 'absolute', top: 360, left: 0, right: 0, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 64, color: '#dfe4ea', opacity: interpolate(frame, [50, 62], [0, 1], clamp)}}>ESTUDO COM 1.000 ADULTOS</div>
-      )}
-      <div style={{position: 'absolute', left: 190, top: 650, width: 700, display: 'flex', flexWrap: 'wrap', gap: 22, justifyContent: 'center'}}>
-        {Array.from({length: 20}).map((_, i) => {
-          const show = frame > 175 + i * 2;
-          const red = i === 7 && frame >= 252;
-          return (
-            <div key={i} style={{opacity: show ? (frame >= 252 && !red ? 0.35 : 1) : 0, transform: red ? `scale(${1 + hi * 0.5})` : undefined, zIndex: red ? 2 : 1}}>
-              <PersonIcon c={red ? '#ff4757' : '#dfe4ea'} size={100} />
-            </div>
-          );
-        })}
-      </div>
-      <Stamp x={540} y={540} text="5% = QUASE METADE DAS MENTIRAS" at={258} color="#ff4757" size={46} rot={-3} />
-      <Pop at={252} />
-      <div style={{position: 'absolute', top: 1540, left: 60, right: 60, textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 32, color: '#a4b0be'}}>Fonte: Serota, Levine &amp; Boster (2010), Human Communication Research</div>
-    </AbsoluteFill>
-  );
-};
-
-const Power: React.FC = () => {
-  const frame = useCurrentFrame();
-  const crowd: [number, number, number][] = [[120, 1080, 0], [320, 1020, 1], [760, 1020, 2], [960, 1080, 3]];
-  return (
-    <AbsoluteFill style={{background: '#192a56'}}>
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse at 50% 55%, rgba(254,211,48,0.55) 0%, rgba(25,42,86,0) 45%)'}} />
-      {crowd.map(([x, y, i]) => (
-        <React.Fragment key={i}>
-          <Person x={x} y={y} scale={0.9} skin={['#8d5524', '#ffdbac', '#c68642', '#e0ac69'][i]} shirt={['#45aaf2', '#fd9644', '#a55eea', '#26de81'][i]} hair={i % 2 ? 'long' : 'short'} hairColor="#2d3436" emotion={frame >= 95 + i * 8 ? 'happy' : 'neutral'} lookX={x < 540 ? 1 : -1} dim={0.15} />
-          <MouthLock x={x} y={y} scale={0.9} at={0} />
-          {frame >= 95 + i * 8 ? <Stamp x={x} y={y - 380} text="✓" at={95 + i * 8} color="#20bf6b" size={56} rot={0} /> : null}
-          <Pop at={95 + i * 8} />
-        </React.Fragment>
-      ))}
-      <Person {...ME} x={540} y={1280} scale={1.8} emotion="smirk" />
-      <MouthLock x={540} y={1280} scale={1.8} at={0} open />
-      <Stamp x={540} y={300} text="VOCÊ = 5%" at={40} color="#fed330" size={100} rot={-4} />
-    </AbsoluteFill>
-  );
-};
-
-const DinerBg: React.FC<{frame: number}> = ({frame}) => (
-  <AbsoluteFill style={{background: '#2c2c54'}}>
-    <div style={{position: 'absolute', left: 60, top: 220, width: 960, height: 520, background: '#1e2a4a', border: `10px solid ${INK}`, borderRadius: 20}}>
-      <div style={{position: 'absolute', left: 860, top: 40, width: 70, height: 70, borderRadius: 35, background: '#f5f6fa', border: `5px solid ${INK}`}} />
-      {[0, 1, 2].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 60 + i * 280, top: 260, width: 200, height: 260, background: '#27324f', border: `6px solid ${INK}`}} />
-      ))}
-    </div>
-    <div style={{position: 'absolute', left: 300, top: 110, width: 480, height: 110, borderRadius: 30, border: '10px solid #ff4d6d', boxShadow: `0 0 ${frame % 50 < 44 ? 40 : 0}px #ff4d6d`, fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#ffccd5', display: 'flex', alignItems: 'center', justifyContent: 'center', textShadow: '0 0 20px #ff4d6d', opacity: frame % 50 < 44 ? 1 : 0.6}}>LANCHES</div>
-    <Floor color="#40407a" y={1180} />
-  </AbsoluteFill>
-);
-
-const Diner: React.FC = () => {
-  const frame = useCurrentFrame();
-  const lx = interpolate(frame, [50, 85], [1350, 780], {...clamp, easing: ease});
-  return (
-    <AbsoluteFill>
-      <DinerBg frame={frame} />
-      <Person {...ME} x={300} y={1220} scale={1.6} emotion={frame > 85 ? 'worried' : 'happy'} lookX={frame > 60 ? 1 : 0} />
-      <Person {...LEO} x={lx} y={1220} scale={1.6} emotion="worried" lookX={-1} />
-      <div style={{position: 'absolute', left: 80, top: 1060, width: 920, height: 70, background: '#d1d8e0', border: `10px solid ${INK}`, borderRadius: 16}} />
-      <div style={{position: 'absolute', left: 230, top: 990, width: 70, height: 80, background: '#ff4757', border: `7px solid ${INK}`, borderRadius: '8px 8px 16px 16px'}} />
-      <div style={{position: 'absolute', left: 400, top: 1010, width: 130, height: 60, background: '#e1b12c', border: `7px solid ${INK}`, borderRadius: '60px 60px 12px 12px'}} />
-    </AbsoluteFill>
-  );
-};
-
-const CloseNight: React.FC<{children: React.ReactNode; tint?: string}> = ({children, tint = '#3c4f7d'}) => (
-  <AbsoluteFill style={{background: '#1e2a4a'}}>
-    <AbsoluteFill style={{background: `radial-gradient(circle at 50% 40%, ${tint} 0%, #1e2a4a 60%)`}} />
-    {children}
-  </AbsoluteFill>
-);
-
-const Heart: React.FC<{size: number; label?: string}> = ({size, label}) => (
-  <div style={{position: 'relative', width: size, height: size * 0.9}}>
-    <svg viewBox="0 0 60 54" width={size} height={size * 0.9}><path d="M30,52 C-10,25 5,0 30,15 C55,0 70,25 30,52 Z" fill="#ff4757" stroke={INK} strokeWidth={4} /></svg>
-    {label ? <div style={{position: 'absolute', left: 0, right: 0, top: size * 0.22, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: size * 0.26, color: '#fff'}}>{label}</div> : null}
-  </div>
-);
-
-const Ask: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const h = spring({frame: frame - 40, fps, config: {damping: 9}});
-  return (
-    <CloseNight tint="#574b90">
-      <Person {...LEO} x={540} y={2050} scale={4.2} emotion="worried" talking={frame > 3 && frame < 124} lookX={0.2} bob={false} />
-      {frame >= 40 ? (
-        <div style={{position: 'absolute', left: 760, top: 230 + Math.sin(frame / 7) * 10, transform: `scale(${h}) rotate(10deg)`}}>
-          <Heart size={240} label="BIA" />
-        </div>
-      ) : null}
-      <Pop at={40} />
-    </CloseNight>
-  );
-};
-
-const Memory: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill style={{filter: 'sepia(0.55) saturate(1.2)'}}>
-      <Room wall="#f6e58d" floor="#cc8e35" />
-      <div style={{position: 'absolute', left: 120, top: 300, width: 840, height: 380, background: '#2d6a4f', border: `14px solid #8d6e63`, borderRadius: 12}}>
-        <div style={{position: 'absolute', left: 40, top: 40, fontFamily: 'DejaVu Serif', fontStyle: 'italic', fontSize: 58, color: '#f5f6fa'}}>Bem-vindos!</div>
-      </div>
-      <Title text="1º DIA DE AULA" color="#fff" top={140} size={84} />
-      <Person {...BIA} x={760} y={1250} scale={1.4} emotion="happy" lookX={-1} />
-      <Person {...ME} x={300} y={1260} scale={1.45} emotion="happy" lookX={1} />
-      {[0, 1, 2].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 280 + i * 60, top: 640 - ((frame * 3 + i * 30) % 160), opacity: 1 - ((frame * 3 + i * 30) % 160) / 160}}>
-          <Heart size={70} />
-        </div>
-      ))}
-      <AbsoluteFill style={{background: 'radial-gradient(circle at 50% 50%, rgba(0,0,0,0) 45%, rgba(60,40,20,0.5) 90%)'}} />
-    </AbsoluteFill>
-  );
-};
-
-const Panel: React.FC<{left: number; at: number; title: string; color: string; children: React.ReactNode}> = ({left, at, title, color, children}) => {
+const Bubble: React.FC<{x: number; y: number; text: string; at: number; w?: number; size?: number; tail?: 'left' | 'right' | 'center'}> = ({x, y, text, at, w = 520, size = 58, tail = 'center'}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 13}});
+  const p = spring({frame: frame - at, fps, config: {damping: 11, stiffness: 200}});
+  const tx = tail === 'left' ? w * 0.22 : tail === 'right' ? w * 0.78 : w / 2;
   return (
-    <div style={{position: 'absolute', left, top: 430, width: 500, height: 760, background: color, border: `10px solid ${INK}`, borderRadius: 30, overflow: 'hidden', transform: `translateY(${(1 - p) * 300}px)`, opacity: p}}>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 24, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 64, color: '#fff', WebkitTextStroke: `8px ${INK}`, paintOrder: 'stroke fill'}}>{title}</div>
-      {children}
+    <div style={{position: 'absolute', left: x - tx, top: y, width: w, transform: `scale(${p})`, transformOrigin: `${tx}px 100%`}}>
+      <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, background: '#fff', border: `8px solid ${INK}`, borderRadius: 40, padding: '22px 30px', fontFamily: 'Inter', fontWeight: 900, fontSize: size, lineHeight: 1.08, color: INK, textAlign: 'center', boxShadow: `0 10px 0 ${INK}`}}>
+        {text}
+        <div style={{position: 'absolute', left: tx - 22, bottom: -42, width: 0, height: 0, borderLeft: '22px solid transparent', borderRight: '22px solid transparent', borderTop: `40px solid ${INK}`}} />
+        <div style={{position: 'absolute', left: tx - 13, bottom: -26, width: 0, height: 0, borderLeft: '13px solid transparent', borderRight: '13px solid transparent', borderTop: '26px solid #fff'}} />
+      </div>
     </div>
   );
 };
 
-const Dilemma: React.FC = () => {
+const Faucet: React.FC<{x: number; y: number; s?: number}> = ({x, y, s = 1}) => (
+  <svg viewBox="0 0 220 200" width={220 * s} height={200 * s} style={{position: 'absolute', left: x, top: y, overflow: 'visible'}}>
+    <rect x={0} y={20} width={60} height={60} rx={10} fill="#d1d8e0" stroke={INK} strokeWidth={8} />
+    <path d="M60,32 L160,32 Q200,32 200,72 L200,110 L160,110 L160,80 Q160,70 150,70 L60,70 Z" fill="#d1d8e0" stroke={INK} strokeWidth={8} strokeLinejoin="round" />
+    <rect x={92} y={0} width={30} height={34} rx={6} fill="#ff4757" stroke={INK} strokeWidth={7} />
+    <rect x={70} y={-12} width={74} height={18} rx={8} fill="#ff4757" stroke={INK} strokeWidth={7} />
+  </svg>
+);
+
+const Drop: React.FC<{x: number; y: number; s?: number; color?: string}> = ({x, y, s = 1, color = WATER}) => (
+  <svg viewBox="0 0 40 52" width={40 * s} height={52 * s} style={{position: 'absolute', left: x - 20 * s, top: y}}>
+    <path d="M20,2 Q38,30 20,48 Q2,30 20,2 Z" fill={color} stroke={INK} strokeWidth={4} />
+  </svg>
+);
+
+const Bucket: React.FC<{x: number; y: number; s?: number; fill?: number}> = ({x, y, s = 1, fill = 0}) => (
+  <svg viewBox="0 0 120 130" width={120 * s} height={130 * s} style={{position: 'absolute', left: x - 60 * s, top: y - 130 * s, overflow: 'visible'}}>
+    <path d="M24,22 Q60,-20 96,22" fill="none" stroke={INK} strokeWidth={7} />
+    <clipPath id={`b${Math.round(x)}${Math.round(y)}`}><path d="M12,24 L108,24 L96,124 L24,124 Z" /></clipPath>
+    <path d="M12,24 L108,24 L96,124 L24,124 Z" fill="#dfe4ea" />
+    <rect x={0} y={124 - 100 * fill} width={120} height={100} fill={WATER} clipPath={`url(#b${Math.round(x)}${Math.round(y)})`} />
+    <path d="M12,24 L108,24 L96,124 L24,124 Z" fill="none" stroke={INK} strokeWidth={7} strokeLinejoin="round" />
+  </svg>
+);
+
+const Baby: React.FC<{x: number; y: number; s?: number}> = ({x, y, s = 1}) => (
+  <svg viewBox="0 0 120 90" width={120 * s} height={90 * s} style={{position: 'absolute', left: x - 60 * s, top: y - 45 * s, overflow: 'visible'}}>
+    <ellipse cx={66} cy={56} rx={52} ry={30} fill="#fab1a0" stroke={INK} strokeWidth={6} />
+    <circle cx={30} cy={40} r={26} fill="#8d5524" stroke={INK} strokeWidth={6} />
+    <path d="M20,38 Q24,34 28,38 M34,38 Q38,34 42,38" fill="none" stroke={INK} strokeWidth={4} strokeLinecap="round" />
+  </svg>
+);
+
+// caixa d'água com régua
+const Tank: React.FC<{x: number; y: number; level: number; s?: number; label?: boolean}> = ({x, y, level, s = 1, label = true}) => (
+  <div style={{position: 'absolute', left: x, top: y, width: 420 * s, height: 420 * s}}>
+    <div style={{position: 'absolute', left: 0, top: 40 * s, width: 420 * s, height: 360 * s, background: '#1e90ff', border: `${10 * s}px solid ${INK}`, borderRadius: `${40 * s}px ${40 * s}px ${60 * s}px ${60 * s}px`, overflow: 'hidden'}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 50 * s, height: 14 * s, background: '#0c63c9'}} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 150 * s, height: 14 * s, background: '#0c63c9'}} />
+    </div>
+    <div style={{position: 'absolute', left: 40 * s, top: 0, width: 340 * s, height: 70 * s, background: '#0c63c9', border: `${10 * s}px solid ${INK}`, borderRadius: 30 * s}} />
+    {/* régua */}
+    <div style={{position: 'absolute', left: 440 * s, top: 60 * s, width: 70 * s, height: 320 * s, background: '#fff', border: `${8 * s}px solid ${INK}`, borderRadius: 18 * s, overflow: 'hidden'}}>
+      <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: `${level * 100}%`, background: level > 0.5 ? '#20bf6b' : level > 0.2 ? '#f7b731' : '#ff4757'}} />
+    </div>
+    {label ? (
+      <div style={{position: 'absolute', left: 380 * s, top: 400 * s, fontFamily: 'Inter', fontWeight: 900, fontSize: 52 * s, color: '#fff', WebkitTextStroke: `${7 * s}px ${INK}`, paintOrder: 'stroke fill', whiteSpace: 'nowrap'}}>{Math.round(level * 1000).toLocaleString('pt-BR')} L</div>
+    ) : null}
+  </div>
+);
+
+const Kitchen: React.FC<{night?: boolean}> = ({night}) => (
+  <AbsoluteFill>
+    <Room wall={night ? '#3d3d6b' : '#ffeaa7'} floor={night ? '#2c2c54' : '#cc8e35'} />
+    <div style={{position: 'absolute', left: 620, top: 260, width: 340, height: 300, background: night ? '#1e2a4a' : '#7ed6df', border: `9px solid ${INK}`, borderRadius: 14}}>
+      <div style={{position: 'absolute', left: 156, top: 0, bottom: 0, width: 9, background: INK}} />
+      {night ? <div style={{position: 'absolute', left: 220, top: 40, width: 60, height: 60, borderRadius: 30, background: '#f5f6fa', border: `5px solid ${INK}`}} /> : null}
+    </div>
+    <div style={{position: 'absolute', left: 60, top: 300, width: 460, height: 160, background: night ? '#57577a' : '#f5f6fa', border: `9px solid ${INK}`, borderRadius: 14}} />
+  </AbsoluteFill>
+);
+
+// ---------- cenas ----------
+const Hook: React.FC = () => {
   const frame = useCurrentFrame();
+  const flowing = frame < 66;
   return (
-    <AbsoluteFill style={{background: '#2f3640'}}>
-      <Title text="SÓ VOCÊ PODE ESCOLHER" color="#fed330" top={150} size={78} />
-      {frame < 96 ? (
-        <>
-          <Person {...ME} x={540} y={1250} scale={1.8} emotion="worried" />
-          <MouthLock x={540} y={1250} scale={1.8} at={0} open />
-        </>
-      ) : null}
-      <Panel left={30} at={96} title="VERDADE" color="#4b6584">
-        <Person {...ME} x={150} y={700} scale={1.1} emotion="sad" lookX={1} />
-        <Person {...LEO} x={370 + Math.min(60, Math.max(0, frame - 110) * 1.5)} y={700} scale={1.1} emotion="sad" flip lookX={1} />
-      </Panel>
-      <Panel left={550} at={158} title="MENTIRA" color="#20bf6b">
-        <Person {...ME} x={160} y={700} scale={1.1} emotion="smirk" lookX={1} />
-        <Person {...LEO} x={350} y={700} scale={1.1} emotion="happy" lookX={-1} />
-      </Panel>
-      <Pop at={96} /><Pop at={158} />
+    <AbsoluteFill>
+      <Room wall="#c7ecee" floor="#95afc0" />
+      <div style={{position: 'absolute', left: 380, top: 760, width: 620, height: 140, background: '#dfe4ea', border: `10px solid ${INK}`, borderRadius: 30}} />
+      <Faucet x={380} y={340} s={1.6} />
+      {flowing ? [0, 1, 2].map((i) => <Drop key={i} x={655} y={530 + ((frame * 14 + i * 70) % 220)} s={1.4} />) : null}
+      {!flowing && frame < 100 ? <Drop x={655} y={520 + Math.min(20, (frame - 66) * 2)} s={1.0 - Math.min(0.6, (frame - 66) / 50)} /> : null}
+      <Person {...ME} x={240} y={1230} scale={1.4} emotion={frame >= 66 ? 'shocked' : 'neutral'} lookX={1} lookY={-0.8} />
+      <Stamp x={700} y={1020} text="NUNCA MAIS" at={112} color="#ff4757" size={70} rot={-6} />
+      <Pop at={66} />
+      <Sting at={112} volume={0.45} />
     </AbsoluteFill>
   );
 };
 
-const Lie: React.FC = () => {
+const Shower: React.FC = () => {
   const frame = useCurrentFrame();
-  const dark = interpolate(frame, [30, 60], [0.3, 0.75], clamp);
+  const stop = frame >= 92;
   return (
-    <CloseNight tint="#2c3e50">
-      <Person {...ME} x={540} y={2050} scale={4.2} emotion={frame > 70 ? 'sad' : 'neutral'} talking={frame > 36 && frame < 82} lookX={-0.1} bob={false} />
-      <AbsoluteFill style={{background: `radial-gradient(circle at 50% 45%, rgba(0,0,0,0) 30%, rgba(0,0,0,${dark}) 80%)`}} />
-      <Sting at={38} volume={0.7} />
-    </CloseNight>
+    <AbsoluteFill>
+      <Room wall="#81ecec" floor="#00cec9" />
+      {/* azulejos */}
+      {Array.from({length: 40}).map((_, i) => (
+        <div key={i} style={{position: 'absolute', left: (i % 8) * 140, top: Math.floor(i / 8) * 140 + 160, width: 136, height: 136, border: '3px solid rgba(27,27,47,0.12)'}} />
+      ))}
+      <div style={{position: 'absolute', left: 520, top: 180, width: 30, height: 180, background: '#d1d8e0', border: `7px solid ${INK}`}} />
+      <div style={{position: 'absolute', left: 440, top: 330, width: 190, height: 60, background: '#d1d8e0', border: `8px solid ${INK}`, borderRadius: '50% 50% 20px 20px'}} />
+      {!stop ? Array.from({length: 9}).map((_, i) => (
+        <div key={i} style={{position: 'absolute', left: 460 + i * 18, top: 400 + ((frame * 30 + i * 37) % 240), width: 8, height: 50, background: WATER, borderRadius: 4}} />
+      )) : null}
+      <Person {...ME} x={540} y={1330} scale={1.9} emotion={stop ? 'shocked' : 'happy'} lookY={stop ? -1 : 0} />
+      {/* espuma na cabeça */}
+      {[[440, 600, 70], [520, 570, 80], [610, 590, 72], [480, 545, 50], [580, 540, 54]].map(([x, y, r], i) => (
+        <div key={i} style={{position: 'absolute', left: x - r / 2, top: y - r / 2 + Math.sin((frame + i * 9) / 7) * 3, width: r, height: r, borderRadius: r, background: '#fff', border: `5px solid ${INK}`}} />
+      ))}
+      {/* cortina */}
+      <div style={{position: 'absolute', left: 0, right: 0, top: 960, height: 260, background: '#fd79a8', borderTop: `10px solid ${INK}`, backgroundImage: 'repeating-linear-gradient(90deg, rgba(0,0,0,0) 0 70px, rgba(27,27,47,0.18) 70px 78px)'}} />
+      <Sting at={92} volume={0.4} />
+    </AbsoluteFill>
   );
 };
 
-const Twist: React.FC = () => {
+const Group: React.FC = () => {
   const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const vib = frame >= 40 && frame < 80 ? Math.sin(frame * 3) * 10 : 0;
-  const glow = interpolate(frame, [40, 60], [0, 1], clamp);
-  const clock = frame < 10 ? '23:59' : '00:00';
-  const msgs: [string, number][] = [['eu sei que você mentiu.', 108], ['eu também conseguia.', 148]];
+  const msgs = ['Alguém tem água??', 'Aqui tb nada 😩', 'Ligaram pra companhia?', 'Bloco B seco', 'Até na padaria acabou', 'Gente e agora???'];
+  const count = Math.min(40, Math.floor(interpolate(frame, [5, 90], [1, 40], clamp)));
+  const places: [string, number, number][] = [['PRÉDIO', 112, 300], ['BAIRRO', 138, 540], ['CIDADE', 162, 780]];
   return (
-    <AbsoluteFill style={{background: '#0f1123'}}>
-      <AbsoluteFill style={{background: `radial-gradient(circle at 65% 40%, rgba(116,185,255,${0.35 * glow}) 0%, rgba(15,17,35,0) 55%)`}} />
-      <div style={{position: 'absolute', left: 90, top: 150, background: '#000', border: `8px solid ${INK}`, borderRadius: 18, padding: '10px 28px', fontFamily: 'DejaVu Sans Mono', fontWeight: 700, fontSize: 90, color: '#ff4757', textShadow: '0 0 20px #ff4757'}}>{clock}</div>
-      <Person {...ME} x={280} y={1560} scale={2.3} emotion={frame >= 148 ? 'scared' : frame >= 108 ? 'shocked' : 'worried'} lookX={1} lookY={0.3} dim={0.35 - 0.25 * glow} bob={false} />
-      {/* celular */}
-      <div style={{position: 'absolute', left: 560 + vib, top: 330, width: 470, height: 640, background: INK, borderRadius: 50, transform: `rotate(${4 + vib * 0.3}deg)`}}>
-        <div style={{position: 'absolute', left: 22, right: 22, top: 30, bottom: 30, background: '#dfe6e9', borderRadius: 34, overflow: 'hidden'}}>
-          <div style={{height: 100, background: '#a55eea', display: 'flex', alignItems: 'center', paddingLeft: 30, gap: 18, borderBottom: `6px solid ${INK}`}}>
-            <div style={{width: 60, height: 60, borderRadius: 30, background: '#e0ac69', border: `5px solid ${INK}`}} />
-            <div style={{fontFamily: 'Inter', fontWeight: 900, fontSize: 48, color: '#fff'}}>Bia</div>
+    <AbsoluteFill style={{background: '#30336b'}}>
+      <div style={{position: 'absolute', left: 190, top: 160, width: 700, height: 760, background: INK, borderRadius: 60}}>
+        <div style={{position: 'absolute', left: 24, right: 24, top: 30, bottom: 30, background: '#ece5dd', borderRadius: 40, overflow: 'hidden'}}>
+          <div style={{height: 110, background: '#128c7e', display: 'flex', alignItems: 'center', padding: '0 30px', gap: 20, borderBottom: `6px solid ${INK}`}}>
+            <div style={{width: 64, height: 64, borderRadius: 32, background: '#fed330', border: `5px solid ${INK}`}} />
+            <div style={{fontFamily: 'Inter', fontWeight: 900, fontSize: 44, color: '#fff'}}>Condomínio</div>
+            <div style={{marginLeft: 'auto', minWidth: 70, height: 70, borderRadius: 35, background: '#ff4757', border: `5px solid ${INK}`, fontFamily: 'Inter', fontWeight: 900, fontSize: 38, color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{count}</div>
           </div>
-          {msgs.map(([t, at], i) => {
+          {msgs.map((m, i) => {
+            const at = 6 + i * 13;
             if (frame < at) return null;
-            const p = spring({frame: frame - at, fps, config: {damping: 12}});
+            const p = spring({frame: frame - at, fps: 30, config: {damping: 12}});
             return (
-              <div key={i} style={{position: 'absolute', left: 24, top: 140 + i * 200, maxWidth: 370, background: '#fff', border: `6px solid ${INK}`, borderRadius: '30px 30px 30px 6px', padding: '18px 24px', fontFamily: 'Inter', fontWeight: 800, fontSize: 44, color: INK, transform: `scale(${p})`, transformOrigin: '0% 100%'}}>{t}</div>
+              <div key={i} style={{margin: '14px 24px', maxWidth: 520, background: '#fff', border: `5px solid ${INK}`, borderRadius: '24px 24px 24px 6px', padding: '10px 20px', fontFamily: 'Inter', fontWeight: 800, fontSize: 36, color: INK, transform: `scale(${p})`, transformOrigin: '0 100%'}}>{m}</div>
             );
           })}
         </div>
       </div>
-      <Pop at={108} />
-      <Sting at={148} volume={0.75} />
-      <Flash at={148} len={6} />
+      {places.map(([t, at, x], i) => (
+        <React.Fragment key={i}>
+          <Stamp x={x} y={1050} text={t} at={at} color="#4b6584" size={46} rot={i % 2 ? 4 : -4} />
+          {frame >= at + 4 ? <div style={{position: 'absolute', left: x - 120, top: 1046, width: 240, height: 8, background: '#ff4757', opacity: 0.85, transform: 'rotate(-8deg)'}} /> : null}
+          <Pop at={at} />
+        </React.Fragment>
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+const Market: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Room wall="#f8efba" floor="#d1ccc0" />
+      {/* prateleira vazia */}
+      {[0, 1, 2].map((r) => (
+        <div key={r} style={{position: 'absolute', left: 60, top: 330 + r * 150, width: 960, height: 22, background: '#b33939', border: `6px solid ${INK}`}} />
+      ))}
+      <div style={{position: 'absolute', left: 500, top: 395, width: 64, height: 120, background: WATER, border: `7px solid ${INK}`, borderRadius: '20px 20px 12px 12px', opacity: 0.95}}>
+        <div style={{position: 'absolute', left: 18, top: -30, width: 20, height: 26, background: '#2f3542', border: `5px solid ${INK}`}} />
+      </div>
+      <Stamp x={700} y={420} text="R$ 50,00" at={130} color="#ff4757" size={60} rot={6} />
+      <Pop at={130} />
+      {/* fila */}
+      {Array.from({length: 6}).map((_, i) => (
+        <Person key={i} x={120 + i * 160} y={1180 - (i % 2) * 10} scale={0.95} skin={['#8d5524', '#ffdbac', '#c68642', '#e0ac69', '#f2c29b', '#8d5524'][i]} shirt={['#45aaf2', '#fd9644', '#a55eea', '#26de81', '#fc5c65', '#fed330'][i]} hair={(['short', 'long', 'bun', 'spiky', 'long', 'bald'] as const)[i]} hairColor="#2d3436" emotion="worried" lookX={-1} />
+      ))}
+      <Person {...ME} x={900} y={1330} scale={1.5} emotion={frame >= 130 ? 'shocked' : 'sad'} lookX={-1} lookY={-0.4} />
+      <DayBadge n="DIA 2" />
+    </AbsoluteFill>
+  );
+};
+
+const Card: React.FC<{x: number; at: number; label: string; children: React.ReactNode}> = ({x, at, label, children}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  if (frame < at) return null;
+  const p = spring({frame: frame - at, fps, config: {damping: 12}});
+  return (
+    <div style={{position: 'absolute', left: x, top: 380, width: 300, height: 360, background: '#fff', border: `9px solid ${INK}`, borderRadius: 30, transform: `scale(${p}) rotate(${(x % 3) - 1}deg)`}}>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 30, height: 200, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>{children}</div>
+      <div style={{position: 'absolute', left: 0, right: 0, bottom: 26, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 40, color: INK}}>{label}</div>
+      <svg viewBox="0 0 100 100" width={300} height={300} style={{position: 'absolute', left: 0, top: 20, opacity: frame > at + 10 ? 0.9 : 0}}>
+        <path d="M18,18 L82,82 M82,18 L18,82" stroke="#ff4757" strokeWidth={10} strokeLinecap="round" />
+      </svg>
+    </div>
+  );
+};
+
+const Chores: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Room wall="#dff9fb" floor="#7ed6df" />
+      <DayBadge n="DIA 3" />
+      <Card x={40} at={88} label="ESCOVAR">
+        <svg viewBox="0 0 160 60" width={200} height={80}><rect x={4} y={22} width={150} height={20} rx={10} fill="#45aaf2" stroke={INK} strokeWidth={6} /><rect x={110} y={4} width={40} height={22} rx={4} fill="#fff" stroke={INK} strokeWidth={5} /></svg>
+      </Card>
+      <Card x={390} at={110} label="DESCARGA">
+        <svg viewBox="0 0 120 140" width={150} height={175}><rect x={20} y={4} width={80} height={50} rx={8} fill="#fff" stroke={INK} strokeWidth={6} /><path d="M10,60 L110,60 Q110,110 60,110 Q10,110 10,60 Z" fill="#fff" stroke={INK} strokeWidth={6} /><rect x={40} y={108} width={40} height={28} fill="#fff" stroke={INK} strokeWidth={6} /></svg>
+      </Card>
+      <Card x={740} at={138} label="CAFÉ">
+        <svg viewBox="0 0 140 120" width={170} height={145}><path d="M14,30 L100,30 L92,110 L22,110 Z" fill="#fff" stroke={INK} strokeWidth={6} strokeLinejoin="round" /><path d="M100,48 Q132,48 128,74 Q124,96 96,92" fill="none" stroke={INK} strokeWidth={6} /><path d="M40,4 Q50,14 40,24 M64,4 Q74,14 64,24" fill="none" stroke="#a4b0be" strokeWidth={5} /></svg>
+      </Card>
+      <Pop at={88} /><Pop at={110} /><Pop at={138} />
+      <Person {...ME} x={540} y={1290} scale={1.5} emotion={frame >= 138 ? 'shocked' : 'sad'} />
+    </AbsoluteFill>
+  );
+};
+
+const Roof: React.FC<{night?: boolean; children: React.ReactNode}> = ({night, children}) => (
+  <AbsoluteFill style={{background: night ? '#1e2a4a' : '#74b9ff'}}>
+    {night ? Array.from({length: 18}).map((_, i) => <div key={i} style={{position: 'absolute', left: (i * 173) % 1040, top: 120 + ((i * 97) % 500), width: 8, height: 8, borderRadius: 4, background: '#f5f6fa'}} />) : (
+      <div style={{position: 'absolute', left: 120, top: 330, width: 200, height: 80, borderRadius: 40, background: '#fff', border: `6px solid ${INK}`}} />
+    )}
+    {/* prédios ao fundo */}
+    {[0, 1, 2, 3, 4].map((i) => (
+      <div key={i} style={{position: 'absolute', left: i * 230 - 20, top: 820 + (i % 2) * 60, width: 210, height: 600, background: night ? '#27324f' : '#a4b0be', border: `6px solid ${INK}`}} />
+    ))}
+    <Floor color={night ? '#57606f' : '#b2bec3'} y={1180} />
+    {children}
+  </AbsoluteFill>
+);
+
+const TankScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const level = interpolate(frame, [118, 140], [0, 1], {...clamp, easing: ease});
+  return (
+    <Roof>
+      <Tank x={330} y={560} level={frame >= 100 ? level : 0} s={1.15} label={frame >= 100} />
+      <Person {...ME} x={190} y={1330} scale={1.5} emotion={frame >= 118 ? 'happy' : 'neutral'} lookX={1} lookY={-0.6} />
+      <Title text="O SEGREDO DO VÔ" color="#fed330" top={170} size={84} at={6} />
+      <Pop at={100} /><Pop at={118} />
+    </Roof>
+  );
+};
+
+const Fact: React.FC = () => {
+  const frame = useCurrentFrame();
+  const pct = interpolate(frame, [60, 165], [100, 3], {...clamp, easing: ease});
+  const pumps = frame >= 280;
+  const H = 520;
+  return (
+    <AbsoluteFill style={{background: '#2f3542'}}>
+      <Title text="CANTAREIRA, 2014" color="#fed330" top={140} size={84} />
+      {/* represa */}
+      <div style={{position: 'absolute', left: 90, top: 380, width: 900, height: H, background: '#cc8e35', border: `10px solid ${INK}`, borderRadius: '0 0 120px 120px', overflow: 'hidden'}}>
+        <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: `${Math.max(pct, 0) * 0.82 + 12}%`, background: WATER, borderTop: `8px solid #1e6fa8`}} />
+        {/* faixa do volume morto */}
+        <div style={{position: 'absolute', left: 0, right: 0, bottom: 0, height: '12%', background: pumps ? '#0c63c9' : 'rgba(12,99,201,0.6)'}} />
+        <div style={{position: 'absolute', left: 0, right: 0, bottom: '12%', height: 0, borderTop: '6px dashed #fff'}} />
+      </div>
+      {/* comporta */}
+      <div style={{position: 'absolute', left: 860, top: 380 + H * 0.2, width: 50, height: H * 0.68 - 20, background: '#57606f', border: `7px solid ${INK}`}} />
+      <div style={{position: 'absolute', top: 470, left: 0, right: 0, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 200, color: '#fff', WebkitTextStroke: `12px ${INK}`, paintOrder: 'stroke fill'}}>{Math.round(pct)}%</div>
+      {pumps ? (
+        <>
+          <Stamp x={540} y={1010} text="VOLUME MORTO" at={280} color="#0c63c9" size={64} rot={-3} />
+          {[260, 820].map((x, i) => (
+            <div key={i} style={{position: 'absolute', left: x - 30, top: 760 - ((frame - 280) * 6 % 120), width: 60, height: 60, borderRadius: 30, background: '#fff', border: `5px solid ${INK}`, opacity: 0.85}} />
+          ))}
+        </>
+      ) : null}
+      <Pop at={280} />
+      <Sting at={160} volume={0.35} />
+      <div style={{position: 'absolute', top: 1530, left: 60, right: 60, textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 32, color: '#a4b0be'}}>Fonte: Sabesp, via Exame (maio e outubro de 2014)</div>
+    </AbsoluteFill>
+  );
+};
+
+const Rule: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Kitchen night />
+      <DayBadge n="DIA 5" />
+      <Person {...MOM} x={190} y={1180} scale={1.25} emotion="worried" lookX={1} />
+      <Person {...DAD} x={540} y={1230} scale={1.55} emotion={frame > 40 ? 'worried' : 'neutral'} talking={frame > 6 && frame < 125} lookX={0.4} />
+      <Person {...ME} x={890} y={1210} scale={1.35} emotion="worried" lookX={-1} />
+      <Stamp x={540} y={420} text="SEGREDO" at={78} color="#2f3542" size={70} rot={-6} />
+      <Pop at={78} />
+    </AbsoluteFill>
+  );
+};
+
+const DoorFrame: React.FC<{open: number; children?: React.ReactNode; shake?: number}> = ({open, children, shake = 0}) => (
+  <AbsoluteFill style={{background: '#3d3d6b'}}>
+    <Floor color="#2c2c54" y={1180} />
+    <div style={{position: 'absolute', left: 230, top: 360, width: 620, height: 830, background: '#57606f', border: `12px solid ${INK}`}}>
+      {children}
+    </div>
+    <div style={{position: 'absolute', left: 242 + shake, top: 372, width: 596 * (1 - open * 0.85), height: 806, background: '#b33939', borderRight: `10px solid ${INK}`, transformOrigin: '0 50%'}}>
+      <div style={{position: 'absolute', right: 40, top: 400, width: 40, height: 40, borderRadius: 20, background: '#fed330', border: `6px solid ${INK}`, opacity: open < 0.5 ? 1 : 0}} />
+      <div style={{position: 'absolute', left: 60, right: 60, top: 80, height: 260, border: `8px solid ${INK}`, borderRadius: 12, opacity: open < 0.5 ? 0.4 : 0}} />
+    </div>
+  </AbsoluteFill>
+);
+
+const Door: React.FC = () => {
+  const frame = useCurrentFrame();
+  const knock = frame >= 18 && frame < 48 ? Math.sin(frame * 3) * 6 : 0;
+  const open = interpolate(frame, [62, 80], [0, 1], {...clamp, easing: ease});
+  return (
+    <AbsoluteFill>
+      <DoorFrame open={open} shake={knock}>
+        <Person {...ROSA} x={310} y={810} scale={1.55} emotion="worried" />
+        <Baby x={340} y={610} s={1.3} />
+      </DoorFrame>
+      <Pop at={20} /><Pop at={30} /><Pop at={40} />
+      <Person {...ME} x={130} y={1400} scale={1.4} emotion={frame > 70 ? 'shocked' : 'neutral'} lookX={1} />
+    </AbsoluteFill>
+  );
+};
+
+const Ask: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill style={{background: '#3d3d6b'}}>
+      <AbsoluteFill style={{background: 'radial-gradient(circle at 50% 40%, #6c5ce7 0%, #3d3d6b 60%)'}} />
+      <Person {...ROSA} x={540} y={2000} scale={3.8} emotion="worried" talking={frame > 3 && frame < 92} lookX={-0.2} bob={false} />
+      <Baby x={860} y={1180} s={2.0} />
+      {frame >= 72 ? (
+        <div style={{position: 'absolute', left: 820, top: 300 + Math.sin(frame / 6) * 8, transform: `scale(${spring({frame: frame - 72, fps: 30, config: {damping: 9}})}) rotate(12deg)`}}>
+          <svg viewBox="0 0 60 130" width={110} height={240}><rect x={14} y={4} width={32} height={26} rx={10} fill="#fab1a0" stroke={INK} strokeWidth={5} /><rect x={6} y={30} width={48} height={12} rx={4} fill="#a4b0be" stroke={INK} strokeWidth={5} /><rect x={8} y={42} width={44} height={84} rx={14} fill="#fff" stroke={INK} strokeWidth={5} /></svg>
+        </div>
+      ) : null}
+      <Pop at={72} />
+    </AbsoluteFill>
+  );
+};
+
+const MathScene: React.FC = () => {
+  const frame = useCurrentFrame();
+  const lost = frame >= 98;
+  return (
+    <AbsoluteFill style={{background: '#2f3542'}}>
+      <Title text="1.000 LITROS" color="#fff" top={160} size={100} />
+      <Title text="≈ 10 DIAS" color="#fed330" top={290} size={90} at={40} />
+      <div style={{position: 'absolute', left: 90, top: 540, width: 900, display: 'flex', flexWrap: 'wrap', gap: 20, justifyContent: 'center'}}>
+        {Array.from({length: 10}).map((_, i) => {
+          const show = frame > 40 + i * 4;
+          const red = lost && i === 9;
+          return (
+            <div key={i} style={{width: 156, height: 156, borderRadius: 24, background: red ? '#ff4757' : WATER, border: `8px solid ${INK}`, opacity: show ? 1 : 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 60, color: '#fff', transform: red ? `translateY(${Math.min(40, (frame - 98) * 3)}px) rotate(${Math.min(12, frame - 98)}deg)` : undefined}}>
+              {red ? '−1' : i + 1}
+            </div>
+          );
+        })}
+      </div>
+      {lost ? <Bucket x={540} y={1180} s={1.2} fill={0.8} /> : null}
+      <Pop at={98} />
+    </AbsoluteFill>
+  );
+};
+
+const Dad: React.FC = () => {
+  const frame = useCurrentFrame();
+  const shakeHead = frame > 8 && frame < 50 ? Math.sin(frame / 3) : 0;
+  return (
+    <AbsoluteFill>
+      <Kitchen night />
+      <Person {...DAD} x={340} y={1260} scale={1.7} emotion="sad" lookX={shakeHead} />
+      <Person {...MOM} x={780} y={1240} scale={1.55} emotion="sad" lookY={1} lookX={-0.3} />
+    </AbsoluteFill>
+  );
+};
+
+const Fill: React.FC = () => {
+  const frame = useCurrentFrame();
+  const f = interpolate(frame, [40, 100], [0.05, 1], clamp);
+  const level = interpolate(frame, [40, 100], [1, 0.9], clamp);
+  return (
+    <Roof night>
+      <Tank x={360} y={560} level={level} s={1.1} />
+      {frame >= 40 && frame < 102 ? <div style={{position: 'absolute', left: 452, top: 950, width: 22, height: 170, background: WATER, border: `4px solid ${INK}`, borderRadius: 8}} /> : null}
+      <Bucket x={462} y={1195} s={1.3} fill={f} />
+      <Person {...ME} x={190} y={1330} scale={1.5} emotion={frame >= 100 ? 'happy' : 'worried'} lookX={1} lookY={0.4} />
+    </Roof>
+  );
+};
+
+const Line: React.FC = () => {
+  const frame = useCurrentFrame();
+  const reveal = interpolate(frame, [60, 120], [1.6, 1], {...clamp, easing: ease});
+  return (
+    <AbsoluteFill style={{background: '#74b9ff'}}>
+      <AbsoluteFill style={{transform: `scale(${reveal})`, transformOrigin: '20% 70%'}}>
+        <div style={{position: 'absolute', left: 0, right: 0, top: 820, bottom: 0, background: '#a4b0be', borderTop: `8px solid ${INK}`}} />
+        {/* esquina */}
+        <div style={{position: 'absolute', left: 860, top: 380, width: 200, height: 460, background: '#e58e26', border: `7px solid ${INK}`}} />
+        <div style={{position: 'absolute', left: 900, top: 420, width: 120, height: 60, background: '#fed330', border: `5px solid ${INK}`, fontFamily: 'Inter', fontWeight: 900, fontSize: 30, color: INK, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>ESQUINA</div>
+        {Array.from({length: 9}).map((_, i) => {
+          const s = 1.15 - i * 0.08;
+          const x = 260 + i * 80;
+          const y = 1180 - i * 34;
+          return (
+            <React.Fragment key={i}>
+              <Person x={x} y={y} scale={s} skin={['#8d5524', '#ffdbac', '#c68642', '#e0ac69', '#f2c29b'][i % 5]} shirt={['#45aaf2', '#fd9644', '#a55eea', '#26de81', '#fc5c65', '#fed330'][i % 6]} hair={(['short', 'long', 'bun', 'spiky', 'bald'] as const)[i % 5]} hairColor="#2d3436" emotion="neutral" lookX={-1} />
+              <Bucket x={x + 70 * s} y={y - 70 * s} s={0.55 * s} />
+            </React.Fragment>
+          );
+        }).reverse()}
+        {/* porta aberta + Caio */}
+        <div style={{position: 'absolute', left: -20, top: 420, width: 180, height: 800, background: '#57606f', border: `10px solid ${INK}`}} />
+        <Person {...ME} x={110} y={1320} scale={1.5} emotion={frame >= 66 ? 'shocked' : 'neutral'} lookX={1} />
+      </AbsoluteFill>
+      <Sting at={66} volume={0.6} />
     </AbsoluteFill>
   );
 };
@@ -501,18 +452,19 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ MENTIRIA PRA NÃO PERDER SEU MELHOR AMIGO?" color="#fff" top={130} size={72} />
-      <div style={{position: 'absolute', left: 120, top: 500, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
-      <div style={{position: 'absolute', left: 580, top: 500, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
+      <Title text="VOCÊ DIVIDIRIA A ÁGUA DA SUA FAMÍLIA?" color="#fff" top={140} size={78} />
+      <div style={{position: 'absolute', left: 120, top: 470, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
+      <div style={{position: 'absolute', left: 580, top: 470, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={320} y={1200} scale={1.5} emotion="worried" lookX={1} />
-      <Person {...LEO} x={640} y={1200} scale={1.5} emotion="happy" lookX={-1} />
-      <Stamp x={900} y={900} text="PARTE 2?" at={20} color="#fed330" size={48} rot={8} />
+      <Bucket x={470} y={1190} s={0.9} fill={0.9} />
+      <Person {...ROSA} x={680} y={1200} scale={1.5} emotion="happy" lookX={-1} />
+      <Stamp x={890} y={1010} text="PARTE 2?" at={20} color="#fed330" size={48} rot={8} />
       <div style={{position: 'absolute', left: 140, right: 140, top: 1470, height: 110, borderRadius: 55, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 56, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
     </AbsoluteFill>
   );
 };
 
 export const SCENES: Record<string, React.FC> = {
-  hook: Hook, news: News, bakery: Bakery, bus: Bus, test: Test, interview: Interview, hired: Hired, fact: Fact,
-  power: Power, diner: Diner, ask: Ask, memory: Memory, dilemma: Dilemma, lie: Lie, twist: Twist, cta: Cta,
+  hook: Hook, shower: Shower, group: Group, market: Market, chores: Chores, tank: TankScene, fact: Fact, rule: Rule,
+  door: Door, ask: Ask, math: MathScene, dad: Dad, fill: Fill, line: Line, cta: Cta,
 };

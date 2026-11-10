@@ -104,7 +104,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Sim (Dia 1 / Dia 7).
 
 ### 9. E se a torneira da sua casa secasse pra sempre?
-- **Status:** pendente
+- **Status:** usado (ep04)
 - **Referência:** "If The World Has No Water (How do we live?!)" — im_siowei — https://www.youtube.com/watch?v=QYjrxSHTDAA — 24,6 mi views — 2023
 - **Saturação BR:** moderado — TikTok tem versões científicas globais (até 28,6 mil curtidas); o ângulo doméstico brasileiro está livre.
 - **Esqueleto:** recurso básico some → escassez → egoísmo vs. partilha.
