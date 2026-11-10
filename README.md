@@ -25,4 +25,6 @@ Precisa de Node 22+, Python 3, ffmpeg e Chrome/Chromium.
 
 Para conferir quadros antes do render: `cd video && npx remotion still src/index.ts Episodio teste.png --frame=120`.
 
+Para conferir todas as cenas de uma vez (2 quadros por cena, um só bundle, ~1 min): `cd video && node stills.mjs out/stills` (precisa do `public/manifest.json` gerado pela narração).
+
 Foto de perfil: composição `Avatar` (`npx remotion still src/index.ts Avatar perfil.png`).
