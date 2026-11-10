@@ -7,3 +7,5 @@ video/stills/
 *.mp4
 *.wav
 __pycache__/
+models
+video/node_modules

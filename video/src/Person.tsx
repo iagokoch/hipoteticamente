@@ -27,7 +27,7 @@ export type PersonProps = {
   talking?: boolean;
   bob?: boolean;
   flip?: boolean;
-  tag?: {value: number | null; at?: number; size?: number; hidden?: boolean; glitch?: boolean};
+  tag?: {value: number | null; at?: number; size?: number; hidden?: boolean; glitch?: boolean; from?: number; color?: string; dur?: number};
   enterAt?: number;
   dim?: number;
 };
@@ -38,25 +38,25 @@ export const brl = (v: number) =>
   (v < 0 ? '-' : '') +
   new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(Math.abs(v)).replace(/ /g, ' ');
 
-export const BalanceTag: React.FC<{value: number | null; at: number; size: number; glitch?: boolean}> = ({value, at, size, glitch}) => {
+export const BalanceTag: React.FC<{value: number | null; at: number; size: number; glitch?: boolean; from?: number; color?: string; dur?: number}> = ({value, at, size, glitch, from = 0, color, dur = 22}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const p = spring({frame: frame - at, fps, config: {damping: 11, stiffness: 160}});
-  const count = interpolate(frame - at, [0, 22], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const p = from !== 0 ? 1 : spring({frame: frame - at, fps, config: {damping: 11, stiffness: 160}});
+  const count = interpolate(frame - at, [0, dur], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const eased = 1 - Math.pow(1 - count, 3);
   let text = '???';
   let bg = '#5b5b7a';
   if (value !== null) {
-    const shown = Math.round(value * eased * 100) / 100;
+    const shown = Math.round((from + (value - from) * eased) * 100) / 100;
     text = brl(shown);
-    bg = value < 0 ? '#ff4757' : value < 1000 ? '#f6b93b' : '#20bf6b';
+    bg = color ?? (shown < 0 ? '#ff4757' : shown < 1000 ? '#f6b93b' : '#20bf6b');
   }
   if (glitch) {
     text = frame % 10 < 5 ? 'R$ ---' : '';
     bg = '#2f3542';
   }
   const shake = value !== null && value < 0 && count >= 1 ? Math.sin(frame * 1.7) * 3 : 0;
-  if (frame < at) return null;
+  if (frame < at && from === 0) return null;
   return (
     <div
       style={{
@@ -144,7 +144,7 @@ export const Person: React.FC<PersonProps> = (props) => {
     >
       {tag && !tag.hidden ? (
         <div style={{position: 'absolute', left: '50%', top: H * 0.02, width: 0, height: 0}}>
-          <BalanceTag value={tag.value} at={tag.at ?? enterAt + 8} size={(tag.size ?? 44) * Math.max(0.7, scale)} glitch={tag.glitch} />
+          <BalanceTag value={tag.value} at={tag.at ?? enterAt + 8} size={(tag.size ?? 44) * Math.max(0.7, scale)} glitch={tag.glitch} from={tag.from} color={tag.color} dur={tag.dur} />
         </div>
       ) : null}
       <svg viewBox="0 0 200 360" width={W} height={H} style={{overflow: 'visible', transform: flip ? 'scaleX(-1)' : undefined}}>

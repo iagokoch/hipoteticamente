@@ -1,0 +1,24 @@
+{
+  "title": "E se você visse o saldo bancário de todo mundo? Parte 2",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {"id": "s01", "visual": "recap", "text": "Na parte um, você acordou vendo o saldo de todo mundo. E o número da sua mãe era o mais vermelho da mesa."},
+    {"id": "s02", "visual": "pretend", "text": "Você escolheu fingir. Elogiou a comida, riu da piada do tio, e foi embora como se nada tivesse acontecido."},
+    {"id": "s03", "visual": "weeks", "text": "Só que toda semana você volta... e o número dela só desce."},
+    {"id": "s04", "visual": "notebook", "text": "Até que, procurando o controle da TV, você acha o caderninho dela."},
+    {"id": "s05", "visual": "page", "text": "Faculdade do filho. Parcela dezenove de quarenta e oito."},
+    {"id": "s06", "visual": "guilt", "text": "A dívida... era por sua causa."},
+    {"id": "s07", "visual": "fact", "text": "E ela não tá sozinha. Segundo a CNC, mais de oito em cada dez famílias brasileiras têm alguma dívida."},
+    {"id": "s08", "visual": "busstop", "text": "Naquela noite, no ponto de ônibus, alguém senta do seu lado. O homem de terno. Sem número nenhum."},
+    {"id": "s09", "visual": "offer", "text": "Ele já sabe da sua mãe. Quem enxerga pode fazer uma troca. Uma só na vida. Você tira o número de alguém, e carrega pra você."},
+    {"id": "s10", "visual": "question", "text": "Você pergunta: e por que em cima de você não tem número nenhum?"},
+    {"id": "s11", "visual": "flashback", "text": "Porque eu fiz a minha troca. Peguei a dívida do meu pai, e paguei até o último centavo. Quando chega a zero, o número some. Eu levei vinte anos."},
+    {"id": "s12", "visual": "hands", "text": "Domingo, no almoço, você segura a mão da sua mãe."},
+    {"id": "s13", "visual": "swap", "text": "O número dela fica verde. E o seu despenca pra quase menos vinte e cinco mil."},
+    {"id": "s14", "visual": "secret", "text": "Ela nunca vai saber. Você continua fingindo. Agora, por amor."},
+    {"id": "s15", "visual": "finale", "text": "O número mais vermelho da rua agora é o seu. Mas pela primeira vez, sua mãe tá sorrindo de verdade."},
+    {"id": "s16", "visual": "cta", "text": "Você carregaria a dívida de quem você ama? Comenta aí."}
+  ]
+}
