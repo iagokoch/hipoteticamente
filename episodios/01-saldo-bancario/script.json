@@ -1,0 +1,22 @@
+{
+  "title": "E se você visse o saldo bancário de todo mundo?",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {"id": "s01", "visual": "hook", "text": "E se você acordasse amanhã... e conseguisse ver o saldo bancário de todo mundo, flutuando em cima da cabeça?"},
+    {"id": "s02", "visual": "mirror", "text": "Seis e meia da manhã. Você se olha no espelho. Quarenta e sete reais e trinta e dois centavos. Tá, isso você já sabia."},
+    {"id": "s03", "visual": "street", "text": "Na rua, o primeiro susto. O entregador de bicicleta tem mais dinheiro guardado que muito empresário."},
+    {"id": "s04", "visual": "boss", "text": "Seu chefe, aquele do carro importado? Menos doze mil reais. No vermelho."},
+    {"id": "s05", "visual": "pastel", "text": "E o tiozinho do pastel da esquina? Trezentos e oitenta mil. Quietinho, sem contar pra ninguém."},
+    {"id": "s06", "visual": "friends", "text": "No começo é divertido. Você descobre quem tem dinheiro de verdade... e quem só finge."},
+    {"id": "s07", "visual": "crowd", "text": "Mas aí você percebe uma coisa. Tem número vermelho em todo lugar."},
+    {"id": "s08", "visual": "fact", "text": "E não é exagero. Segundo a Serasa, mais de oitenta e quatro milhões de brasileiros estão com o nome negativado. Quase metade dos adultos do país."},
+    {"id": "s09", "visual": "sunday", "text": "Domingo, almoço de família. Você olha pra sua mãe... e o número dela é o mais vermelho da mesa."},
+    {"id": "s10", "visual": "mom", "text": "Ela tá sorrindo, servindo comida pra todo mundo. E nunca te contou nada."},
+    {"id": "s11", "visual": "dilemma", "text": "Agora você precisa escolher. Fingir que não viu... ou contar pra ela que você enxerga o saldo de todo mundo."},
+    {"id": "s12", "visual": "stranger", "text": "Só que, na saída, um homem de terno para do outro lado da rua. Em cima da cabeça dele, não aparece número nenhum."},
+    {"id": "s13", "visual": "stranger_close", "text": "Ele olha direto pra você, sorri, e diz: então você também consegue ver."},
+    {"id": "s14", "visual": "cta", "text": "Você contaria pra sua mãe, ou fingiria que não viu? Comenta aí. Parte dois chegando."}
+  ]
+}

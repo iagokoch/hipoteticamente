@@ -1,0 +1,9 @@
+node_modules/
+models/
+video/public/audio/
+video/public/manifest.json
+video/out/
+video/stills/
+*.mp4
+*.wav
+__pycache__/
