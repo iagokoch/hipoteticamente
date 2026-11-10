@@ -16,7 +16,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 ## Top 10 (ordem de potencial)
 
 ### 1. E se, por 24 horas, ninguém no Brasil conseguisse mentir… menos você?
-- **Status:** pendente
+- **Status:** usado (ep03)
 - **Referência:** "If Humans Cannot Lie" — im_siowei — https://www.youtube.com/watch?v=nzmuxIg5ecY — 72,2 mi views — 2024
 - **Saturação BR:** moderado — vários vídeos pequenos recentes no TikTok; o maior tem 45,9 mil curtidas. Nada grande no YouTube PT.
 - **Esqueleto (por que viralizou):** premissa simples e universal; escala do constrangimento pequeno (elogio falso) ao grande (segredos de família); mistura humor e vergonha alheia.

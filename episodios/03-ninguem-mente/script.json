@@ -1,0 +1,24 @@
+{
+  "title": "E se ninguém no Brasil conseguisse mentir… menos você?",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {"id": "s01", "visual": "hook", "text": "E se você acordasse amanhã... e ninguém no Brasil conseguisse mais mentir? Ninguém. Só você."},
+    {"id": "s02", "visual": "news", "text": "Todo jornal só fala disso. Desde a meia-noite, e por vinte e quatro horas, quem tenta mentir... trava."},
+    {"id": "s03", "visual": "bakery", "text": "Na padaria, você pergunta se o pão é de hoje. O padeiro tenta, tenta... É de anteontem."},
+    {"id": "s04", "visual": "bus", "text": "No ônibus, a moça que pisou no seu pé pede desculpa. E completa: foi de propósito."},
+    {"id": "s05", "visual": "test", "text": "Aí você testa. Fala bem alto: eu tenho dois metros de altura. E sai. Fácil."},
+    {"id": "s06", "visual": "interview", "text": "Na entrevista de emprego, cada candidato confessou o pior defeito. Preguiça. Atraso. Fofoca. Você diz: sou perfeccionista."},
+    {"id": "s07", "visual": "hired", "text": "Contratado na hora. Afinal, hoje ninguém mente... né?"},
+    {"id": "s08", "visual": "fact", "text": "E o mais doido: mentir nem é tão comum. Num estudo com mil adultos, a média foi de uma mentira e meia por dia. E quase metade das mentiras vinha de só cinco por cento das pessoas."},
+    {"id": "s09", "visual": "power", "text": "Hoje, você é esses cinco por cento. Sozinho. E todo mundo acredita em tudo que você diz."},
+    {"id": "s10", "visual": "diner", "text": "À noite, na lanchonete, o Léo, seu melhor amigo desde a quinta série, chega sério."},
+    {"id": "s11", "visual": "ask", "text": "Ele pergunta: você gosta da Bia? Porque amanhã eu vou me declarar pra ela."},
+    {"id": "s12", "visual": "memory", "text": "A verdade? Você gosta dela desde o primeiro dia de aula."},
+    {"id": "s13", "visual": "dilemma", "text": "Você é a única pessoa do país que pode escolher. A verdade, e perder seu melhor amigo. Ou a mentira."},
+    {"id": "s14", "visual": "lie", "text": "Você olha nos olhos dele e diz: não. Nunca gostei."},
+    {"id": "s15", "visual": "twist", "text": "Meia-noite. O efeito acaba. Seu celular vibra. É a Bia: eu sei que você mentiu. Eu também conseguia."},
+    {"id": "s16", "visual": "cta", "text": "Você mentiria pra não perder seu melhor amigo? Comenta aí. Parte dois?"}
+  ]
+}
