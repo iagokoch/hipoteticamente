@@ -9,6 +9,7 @@ Temas modelados de vídeos "What if / If…" que já viralizaram lá fora. Model
 
 Já usado pelo canal: Ep. 01–02 "E se você visse o saldo bancário de todo mundo?" (números flutuando sobre a cabeça das pessoas).
 Ep. 03 = tema #1 (ninguém mente, cadeado na boca); Ep. 04 = tema #9 (torneira seca, contagem de dias); Ep. 05 = tema #3 (tudo por R$ 1: etiqueta de preço, cronômetro de 24 h e visor de caixa em LED; vitrine de eletro, concessionária, loja de roupa).
+Ep. 06 = Parte 2 do ep. 04 (tema #9), caminho em que o Caio não divide a água: vizinhança descobre a caixa, clima muda no condomínio, a caixa do vô racha e o Caio pede ajuda à dona Rosa; fato novo da Cidade do Cabo, 2018.
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.
 
@@ -105,7 +106,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Sim (Dia 1 / Dia 7).
 
 ### 9. E se a torneira da sua casa secasse pra sempre?
-- **Status:** usado (ep04)
+- **Status:** usado (ep04 = Parte 1; **Parte 2 = ep06**, feita em 11/11/2026)
 - **Referência:** "If The World Has No Water (How do we live?!)" — im_siowei — https://www.youtube.com/watch?v=QYjrxSHTDAA — 24,6 mi views — 2023
 - **Saturação BR:** moderado — TikTok tem versões científicas globais (até 28,6 mil curtidas); o ângulo doméstico brasileiro está livre.
 - **Esqueleto:** recurso básico some → escassez → egoísmo vs. partilha.
@@ -113,7 +114,8 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Contexto BR:** caixa d'água, balde, rodízio, carro-pipa, vizinho lavando calçada.
 - **Virada própria:** a família de Caio tem a caixa d'água cheia; a vizinha com bebê não. Pergunta: "Você dividiria?"
 - **Fato real (verificado):** em maio de 2014, a Sabesp passou a captar o "volume morto" do Sistema Cantareira pela primeira vez na história, na pior crise hídrica de São Paulo.
-- **Série?** Talvez.
+- **Série?** Sim — Parte 2 feita (ep06, `episodios/06-torneira-seca-parte2`), no caminho que a maioria dos comentários escolheu: o Caio **não** dividiu. Escalada: vizinhança descobre a caixa → clima muda no condomínio → reserva acaba antes do esperado (a caixa do vô racha, dia 9 em vez de dia 15) e o Caio pede ajuda à dona Rosa, que entrega um balde cheio. Fecha sem gancho de Parte 3 (pergunta: "Se fosse a dona Rosa, você abriria a porta?").
+- **Fato real da Parte 2 (verificado 11/11/2026):** em janeiro de 2018, a prefeitura da Cidade do Cabo disse que 60% dos moradores gastavam mais que o limite de 87 litros por pessoa por dia e cortou o limite para 50 litros a partir de 1º de fevereiro, por causa do "Day Zero" (Engineering News, Cape Times/IOL, News24, SAnews, 18–19/01/2018).
 
 ### 10. E se você pudesse ler todos os grupos de WhatsApp que falam de você?
 - **Status:** pendente

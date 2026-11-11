@@ -1,0 +1,21 @@
+{
+  "title": "E se você não dividisse a água? (Parte 2)",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {"id": "s01", "visual": "vote", "text": "Vocês votaram: a maioria não dividiria. Dona Rosa pede o balde... e você diz não."},
+    {"id": "s02", "visual": "closed", "text": "Ela não insiste. Abaixa a cabeça, e a porta se fecha. Você acha que acabou."},
+    {"id": "s03", "visual": "roof", "text": "No dia seguinte, um vizinho sobe na laje pra pegar sinal... e dá de cara com a caixa d'água. Cheia."},
+    {"id": "s04", "visual": "group", "text": "A foto cai no grupo do condomínio. Em um minuto, o prédio inteiro sabe."},
+    {"id": "s05", "visual": "climate", "text": "Dia sete. O elevador fica mudo quando você entra. No corredor, só cochicho."},
+    {"id": "s06", "visual": "fact", "text": "Na vida real, não é muito diferente. Na Cidade do Cabo, em dois mil e dezoito, seis em cada dez moradores gastavam mais que o limite de oitenta e sete litros por dia. A cidade cortou pra cinquenta."},
+    {"id": "s07", "visual": "plan", "text": "Dia oito. Seu pai nem liga pro bilhete. Faz a conta no papel: sobram sete dias de água."},
+    {"id": "s08", "visual": "crack", "text": "Madrugada do dia nove. Um estalo. A caixa do seu avô rachou no fundo, e a água que sobrava virou poça."},
+    {"id": "s09", "visual": "counter", "text": "Pelas contas do seu pai, dava até o dia quinze. Acabou no nove."},
+    {"id": "s10", "visual": "refuse", "text": "Seu pai diz que não vai pedir nada pra quem a gente mandou embora. Sua mãe só põe o balde na sua mão."},
+    {"id": "s11", "visual": "walk", "text": "Você atravessa o corredor com o balde vazio. Todo mundo olha. Você bate na porta da dona Rosa."},
+    {"id": "s12", "visual": "answer", "text": "A porta abre. Ela olha pro seu balde vazio e não diz nada. Só te entrega o dela, cheio. Igualzinho ao que ela te pediu."},
+    {"id": "s13", "visual": "cta", "text": "Agora é com você: se fosse a dona Rosa, você teria aberto a porta? Comenta aí."}
+  ]
+}

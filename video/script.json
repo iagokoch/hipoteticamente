@@ -1,22 +1,21 @@
 {
-  "title": "E se, por 24 horas, tudo no Brasil custasse um real?",
+  "title": "E se você não dividisse a água? (Parte 2)",
   "voice": "pm_alex",
   "speed": 1.08,
   "pitch": 0.89,
   "scenes": [
-    {"id": "s01", "visual": "hook", "text": "Meia-noite. Na vitrine, a TV de quatro mil reais troca de etiqueta: um real."},
-    {"id": "s02", "visual": "news", "text": "O celular apita. Por vinte e quatro horas, tudo no Brasil custa um real. Tudo."},
-    {"id": "s03", "visual": "queue", "text": "Dez minutos depois, a fila dá a volta no quarteirão. Você já tá no caixa."},
-    {"id": "s04", "visual": "cart", "text": "A TV, um real. O notebook, um real. O tênis, um real. O Pix só faz plim."},
-    {"id": "s05", "visual": "dealer", "text": "Na concessionária, o carro zero também. Um real. Você sai rindo sozinho."},
-    {"id": "s06", "visual": "fact", "text": "Na última Black Friday, o e-commerce faturou quatro vírgula sete seis bilhões num dia. Cada pedido saiu por uns quinhentos e cinquenta reais. Hoje, por um."},
-    {"id": "s07", "visual": "chain", "text": "Só que quem fez essa TV também recebeu um real. O caminhoneiro, um real. A loja, um real."},
-    {"id": "s08", "visual": "momstore", "text": "Aí sua mãe liga. A lojinha de roupa que ela levou dez anos pra montar tá com fila até a calçada."},
-    {"id": "s09", "visual": "stock", "text": "Camiseta, um real. Calça, um real. Ela pagou três mil reais no estoque. Vai fechar o dia com duzentos."},
-    {"id": "s10", "visual": "dilemma", "text": "Você tem um carro, uma TV e um notebook por um real. Ficar com tudo, ou pagar o que vale?"},
-    {"id": "s11", "visual": "pay", "text": "Você entra na fila da sua mãe. Pega uma camiseta de um real... e manda um Pix de trinta."},
-    {"id": "s12", "visual": "line", "text": "O cara de trás vê. Faz igual. A fila inteira começa a pagar o preço justo."},
-    {"id": "s13", "visual": "twist", "text": "Meia-noite. Os preços voltam. Mas o aluguel e o fornecedor dela vencem amanhã. A preço cheio."},
-    {"id": "s14", "visual": "cta", "text": "O que você compraria primeiro? E você pagaria o preço justo? Comenta aí. Parte dois?"}
+    {"id": "s01", "visual": "vote", "text": "Vocês votaram: a maioria não dividiria. Dona Rosa pede o balde... e você diz não."},
+    {"id": "s02", "visual": "closed", "text": "Ela não insiste. Abaixa a cabeça, e a porta se fecha. Você acha que acabou."},
+    {"id": "s03", "visual": "roof", "text": "No dia seguinte, um vizinho sobe na laje pra pegar sinal... e dá de cara com a caixa d'água. Cheia."},
+    {"id": "s04", "visual": "group", "text": "A foto cai no grupo do condomínio. Em um minuto, o prédio inteiro sabe."},
+    {"id": "s05", "visual": "climate", "text": "Dia sete. O elevador fica mudo quando você entra. No corredor, só cochicho."},
+    {"id": "s06", "visual": "fact", "text": "Na vida real, não é muito diferente. Na Cidade do Cabo, em dois mil e dezoito, seis em cada dez moradores gastavam mais que o limite de oitenta e sete litros por dia. A cidade cortou pra cinquenta."},
+    {"id": "s07", "visual": "plan", "text": "Dia oito. Seu pai nem liga pro bilhete. Faz a conta no papel: sobram sete dias de água."},
+    {"id": "s08", "visual": "crack", "text": "Madrugada do dia nove. Um estalo. A caixa do seu avô rachou no fundo, e a água que sobrava virou poça."},
+    {"id": "s09", "visual": "counter", "text": "Pelas contas do seu pai, dava até o dia quinze. Acabou no nove."},
+    {"id": "s10", "visual": "refuse", "text": "Seu pai diz que não vai pedir nada pra quem a gente mandou embora. Sua mãe só põe o balde na sua mão."},
+    {"id": "s11", "visual": "walk", "text": "Você atravessa o corredor com o balde vazio. Todo mundo olha. Você bate na porta da dona Rosa."},
+    {"id": "s12", "visual": "answer", "text": "A porta abre. Ela olha pro seu balde vazio e não diz nada. Só te entrega o dela, cheio. Igualzinho ao que ela te pediu."},
+    {"id": "s13", "visual": "cta", "text": "Agora é com você: se fosse a dona Rosa, você teria aberto a porta? Comenta aí."}
   ]
 }
