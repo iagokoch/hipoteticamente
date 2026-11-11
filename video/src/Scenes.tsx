@@ -5,7 +5,7 @@ import {INK, ME, MOM, Pop, Sting, Floor, Title, Room, Street} from './lib';
 
 // Ep. 07 — "E se você ouvisse o pensamento de todo mundo?" (tema #15)
 // Regra nova (11/11/2026): fato real curto como âncora (cena 2), resto escala para o absurdo,
-// e termina com 3 caminhos (A/B/C) para os comentários escolherem a Parte 2.
+// e termina com pergunta de sim ou não; o absurdo solto fica para a Parte 2 em diante.
 
 // ---------- elenco ----------
 const DRIVER = {skin: '#e0ac69', hair: 'short' as const, hairColor: '#2d3436', hat: 'cap' as const, hatColor: '#0984e3', mustache: true, shirt: '#74b9ff', pants: '#2d3436'};
@@ -148,30 +148,6 @@ const Dog: React.FC<{x: number; y: number; s?: number; wag?: number; flip?: bool
       <circle cx={56} cy={53} r={4} fill={INK} />
       <path d="M26,88 Q36,100 48,88" fill="#ff7675" stroke={INK} strokeWidth={4} />
     </svg>
-  );
-};
-
-const Letter: React.FC<{letter: string; color: string; at?: number; x?: number; y?: number}> = ({letter, color, at = 0, x = 90, y = 330}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const p = spring({frame: frame - at, fps, config: {damping: 10, stiffness: 220}});
-  if (frame < at) return null;
-  return (
-    <div style={{position: 'absolute', left: x, top: y, width: 190, height: 190, borderRadius: 95, background: color, border: `10px solid ${INK}`, boxShadow: `0 12px 0 ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 130, color: '#fff', transform: `scale(${p})`}}>
-      {letter}
-    </div>
-  );
-};
-
-const Label: React.FC<{text: string; at: number; top?: number}> = ({text, at, top = 350}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 14}});
-  return (
-    <div style={{position: 'absolute', left: 310, right: 70, top, fontFamily: 'Inter', fontWeight: 900, fontSize: 58, lineHeight: 1.08, color: '#fff', WebkitTextStroke: `9px ${INK}`, paintOrder: 'stroke fill', opacity: p, transform: `translateX(${(1 - p) * 60}px)`}}>
-      {text}
-    </div>
   );
 };
 
@@ -485,89 +461,53 @@ const Midnight: React.FC = () => {
   );
 };
 
-// s12 — opção A: todo mundo ouve os seus pensamentos
-const VoteA: React.FC = () => {
+// s12 — pergunta final: sim ou não?
+const YesNo: React.FC<{at: number; pulse?: boolean; top?: number}> = ({at, pulse, top = 520}) => {
+  const frame = useCurrentFrame();
+  const p1 = spring({frame: frame - at, fps: 30, config: {damping: 10, stiffness: 220}});
+  const p2 = spring({frame: frame - at - 8, fps: 30, config: {damping: 10, stiffness: 220}});
+  const k = pulse ? 1 + Math.sin(frame / 5) * 0.04 : 1;
+  const base = {position: 'absolute' as const, top, width: 380, height: 150, borderRadius: 44, border: `9px solid ${INK}`, boxShadow: `0 10px 0 ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 84, color: '#fff'};
+  return (
+    <>
+      {frame >= at ? <div style={{...base, left: 110, background: '#20bf6b', transform: `scale(${p1 * k})`}}>SIM</div> : null}
+      {frame >= at + 8 ? <div style={{...base, left: 590, background: '#ff4757', transform: `scale(${p2 * k})`}}>NÃO</div> : null}
+    </>
+  );
+};
+
+const Ask: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="PARTE 2: VOCÊ ESCOLHE" color="#fff" top={110} size={70} at={0} />
-      <Letter letter="A" color="#20bf6b" at={44} />
-      <Label text="TODO MUNDO OUVE OS SEUS PENSAMENTOS" at={50} />
-      <Person {...ME} x={540} y={1270} scale={1.55} emotion="shocked" lookY={-0.5} />
-      <Think x={540} y={600} at={70} w={560} size={52} text="QUE FOME..." tail="center" />
-      {[170, 360, 720, 910].map((x, i) => frame >= 80 + i * 6 ? (
-        <Dummy key={x} x={x} y={1020 + (i % 2) * 40} s={1.3} color={['#fab1a0', '#ffeaa7', '#81ecec', '#dfe4ea'][i]} />
-      ) : null)}
-      {[170, 360, 720, 910].map((x, i) => frame >= 90 + i * 6 ? <Bubble key={x} x={x} y={820 + (i % 2) * 40} text="HÃ?" at={90 + i * 6} w={150} size={42} tail="center" /> : null)}
-      <Pop at={44} /><Pop at={70} />
+      <Title text="VOCÊ TOPARIA OUVIR O PENSAMENTO DE TODO MUNDO?" color="#fff" top={110} size={62} at={4} />
+      <YesNo at={80} top={400} />
+      <Person {...ME} x={330} y={1360} scale={1.5} emotion={frame >= 84 ? 'smirk' : 'worried'} lookX={1} />
+      <Think x={330} y={650} at={40} w={440} size={46} text="SERÁ QUE VALE A PENA?" tail="center" />
+      {[700, 830, 960].map((x, i) => frame >= 56 + i * 8 ? <Dummy key={x} x={x} y={1190 + (i % 2) * 30} s={1.5} color={['#fab1a0', '#ffeaa7', '#81ecec'][i]} /> : null)}
+      {[700, 830, 960].map((x, i) => <Think key={x} x={x} y={1000 + (i % 2) * 30} at={64 + i * 8} w={120} size={50} text="…" tail="center" />)}
+      <Pop at={4} /><Pop at={40} /><Pop at={80} /><Pop at={88} />
     </AbsoluteFill>
   );
 };
 
-// s13 — opção B: o cachorro do vizinho dá ordens
-const VoteB: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="PARTE 2: VOCÊ ESCOLHE" color="#fff" top={110} size={70} at={0} />
-      <Letter letter="B" color="#0984e3" at={22} />
-      <Label text="O CACHORRO DO VIZINHO DÁ ORDENS" at={28} />
-      <Dog x={310} y={1300} s={1.7} wag={0.6} />
-      <Person {...ME} x={830} y={1310} scale={1.5} emotion={frame >= 86 ? 'sad' : 'worried'} lookX={-1} />
-      {frame < 84 ? <Bubble x={310} y={720} text="SENTA." at={52} w={380} size={76} tail="center" /> : null}
-      {frame >= 84 ? <Bubble x={310} y={720} text="AGORA ROLA." at={84} w={520} size={64} tail="center" /> : null}
-      <Pop at={22} /><Pop at={52} /><Pop at={84} />
-    </AbsoluteFill>
-  );
-};
-
-// s14 — opção C: alto-falante da praça + pergunta final
+// s13 — chamada para os comentários + @
 const Cta: React.FC = () => {
   const frame = useCurrentFrame();
-  const btn = (letter: string, color: string, label: string, x: number, at: number) => {
-    const p = spring({frame: frame - at, fps: 30, config: {damping: 10, stiffness: 220}});
-    return frame >= at ? (
-      <div style={{position: 'absolute', left: x, top: 760, width: 290, height: 230, borderRadius: 36, background: color, border: `9px solid ${INK}`, boxShadow: `0 10px 0 ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, color: '#fff', transform: `scale(${p})`}}>
-        <div style={{fontSize: 110, lineHeight: 1}}>{letter}</div>
-        <div style={{fontSize: 30, textAlign: 'center', padding: '0 12px', lineHeight: 1.05}}>{label}</div>
-      </div>
-    ) : null;
-  };
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="PARTE 2: VOCÊ ESCOLHE" color="#fff" top={110} size={70} at={0} />
-      {frame < 110 ? (
-        <>
-          <Letter letter="C" color="#e84118" at={14} />
-          <Label text="O ALTO-FALANTE DA PRAÇA" at={20} />
-          {/* poste e alto-falante */}
-          <div style={{position: 'absolute', left: 150, top: 640, width: 28, height: 560, background: '#b2bec3', border: `6px solid ${INK}`}} />
-          <svg viewBox="0 0 220 160" width={330} height={240} style={{position: 'absolute', left: 90, top: 560}}>
-            <path d="M20,50 L110,20 L110,140 L20,110 Z" fill="#fed330" stroke={INK} strokeWidth={7} strokeLinejoin="round" />
-            <path d="M110,20 Q200,30 200,80 Q200,130 110,140 Z" fill="#f0932b" stroke={INK} strokeWidth={7} strokeLinejoin="round" />
-          </svg>
-          {[0, 1, 2].map((i) => <div key={i} style={{position: 'absolute', left: 420 + i * 60, top: 640 + i * 6, width: 60, height: 140 - i * 20, border: `8px solid ${INK}`, borderLeft: 'none', borderRadius: '0 80px 80px 0', opacity: 0.35 + 0.65 * ((frame + i * 6) % 24 < 12 ? 1 : 0.4)}} />)}
-          {['ALGUÉM VIU MEU PIX?', 'QUE FOME...', 'QUEM É O CAIO?'].map((t, i) => frame >= 36 + i * 22 ? <Bubble key={t} x={640} y={700 + i * 140} text={t} at={36 + i * 22} w={470} size={40} tail="left" /> : null)}
-          <Dummy x={880} y={1060} s={1.4} color="#fab1a0" />
-          <Person {...ME} x={420} y={1300} scale={1.5} emotion="shocked" lookX={-1} />
-        </>
-      ) : (
-        <>
-          <Title text="QUAL VOCÊ ESCOLHE?" color="#fed330" top={300} size={90} at={110} />
-          {btn('A', '#20bf6b', 'ELES OUVEM VOCÊ', 40, 124)}
-          {btn('B', '#0984e3', 'O CACHORRO MANDA', 395, 134)}
-          {btn('C', '#e84118', 'O ALTO-FALANTE', 750, 144)}
-          <Stamp x={540} y={1070} text="COMENTA A, B OU C" at={156} color="#fed330" size={54} rot={-3} />
-          <Person {...ME} x={540} y={1500} scale={1.2} emotion="happy" lookY={-0.4} />
-        </>
-      )}
-      <div style={{position: 'absolute', left: 140, right: 140, top: 1560, height: 100, borderRadius: 50, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 52, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`, opacity: frame >= 110 ? 1 : 0}}>@hipoteticamente.br</div>
-      <Pop at={14} /><Pop at={124} /><Pop at={134} /><Pop at={144} /><Pop at={156} />
+      <Title text="COMENTA SIM OU NÃO" color="#fed330" top={150} size={84} at={2} />
+      <YesNo at={10} pulse />
+      <Person {...ME} x={540} y={1380} scale={1.45} emotion="happy" lookY={-0.4} />
+      <Stamp x={540} y={790} text="A PARTE 2 VAI SER MAIS MALUCA" at={64} color="#6c5ce7" size={44} rot={-3} />
+      <div style={{position: 'absolute', left: 140, right: 140, top: 1560, height: 100, borderRadius: 50, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 52, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
+      <Pop at={10} /><Pop at={18} /><Pop at={64} />
+      <Sting at={64} volume={0.3} />
     </AbsoluteFill>
   );
 };
 
 export const SCENES: Record<string, React.FC> = {
   bus: Bus, fact: Fact, busmath: BusMath, driver: Driver, jingle: Jingle, office: Office, dog: DogScene,
-  pigeons: Pigeons, downtown: Downtown, mom: Mom, midnight: Midnight, vote_a: VoteA, vote_b: VoteB, cta: Cta,
+  pigeons: Pigeons, downtown: Downtown, mom: Mom, midnight: Midnight, ask: Ask, cta: Cta,
 };

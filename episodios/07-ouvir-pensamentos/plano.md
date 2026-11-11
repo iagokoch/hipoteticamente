@@ -1,13 +1,13 @@
 # Ep. 07 — "E se você ouvisse o pensamento de todo mundo?" (tema #15)
 
-Primeiro episódio com a **regra nova (11/11/2026)**: fato real curto como âncora (cena 2, ~5 s), o resto escala para o humor e o absurdo, e o final pede ao público que escolha a Parte 2 (A, B ou C).
+Primeiro episódio com a **regra nova (11/11/2026)**: fato real curto como âncora (cena 2, ~5 s), o resto escala para o humor e o absurdo, e o final é uma pergunta de sim ou não (como nos ep. 03–06). O absurdo solto, com continuações bem malucas, começa na Parte 2.
 
 **Elenco:** Caio, motorista (boné azul), tiozão careca de bigode, moça de cabelo longo, rapaz de cabelo vermelho, chefe de terno, mãe (avental), senhor de chapéu, cachorro do vizinho, 3 pombos. Todos originais.
 **Mecânica visual:** nuvens de pensamento roxas com texto e pictogramas (diferente dos números sobre a cabeça do ep. 01–02 e dos contadores dos ep. 04–06).
-**Escalada:** pessoas (ônibus, trabalho, mãe) → animais (cachorro, pombos) → cidade inteira (centro) → silêncio e piada final do pombo.
+**Escalada:** pessoas (ônibus, trabalho, mãe) → animais (cachorro, pombos) → cidade inteira (centro) → silêncio e piada final do pombo → pergunta sim/não.
 **Fato real (verificado 11/11/2026):** estimativa de ~6.200 pensamentos por dia por pessoa, medida por fMRI ("thought worms"). Tseng & Poppenk, *Nature Communications*, 2020 (Queen's University). Na tela: "Fonte: Tseng & Poppenk, Nature Communications (2020) — estimativa por ressonância magnética". A conta 40 × 6.200 = 248.000 é nossa e aparece como piada.
 **Cuidado:** o número popular de "60 mil pensamentos por dia" não tem pesquisa por trás, por isso não foi usado.
-**Duração:** 73,7 s de fala (Kokoro pm_alex, speed 1,08, pitch 0,89) → 2.379 quadros = 79,3 s a 30 fps.
+**Duração:** 67,3 s de fala (Kokoro pm_alex, speed 1,08, pitch 0,89) → 2.179 quadros = 72,6 s a 30 fps.
 
 | Cena | Dur. | Cenário | Personagens / expressões | SFX | Palavra-chave → o que aparece |
 |---|---|---|---|---|---|
@@ -22,8 +22,7 @@ Primeiro episódio com a **regra nova (11/11/2026)**: fato real curto como ânco
 | s09 downtown | 7,3 s | centro da cidade | Caio tapa os ouvidos; multidão | pop, sting | "milhões" → 30 chips de pensamento tremendo; "não adianta" → carimbo vermelho |
 | s10 mom | 6,5 s | cozinha | mãe sorri, Caio | pop, sting | "você comeu?" → balão; "onze coisas" → nuvem com 10 itens, um a cada 5 quadros; "a décima primeira é você" → chip amarelo O CAIO TÁ PÁLIDO |
 | s11 midnight | 6,2 s | quarto à noite | Caio sentado na cama | pop, sting baixo | carimbos 00:00 e SILÊNCIO; "pombo pegou o sanduíche" → nuvem com pombo e sanduíche |
-| s12 vote_a | 4,3 s | fundo azul | Caio e 4 bonecos "HÃ?" | pop | letra A + TODO MUNDO OUVE OS SEUS PENSAMENTOS |
-| s13 vote_b | 4,0 s | fundo azul | cachorro, Caio preocupado | pop | letra B; balões SENTA. → AGORA ROLA. |
-| s14 cta | 5,7 s + cauda | fundo azul | alto-falante, Caio | pop | letra C + balões; depois QUAL VOCÊ ESCOLHE?, botões A/B/C, COMENTA A, B OU C, @hipoteticamente.br |
+| s12 ask | 4,3 s | fundo azul | Caio preocupado → malandro; 3 bonecos com "…" | pop | título VOCÊ TOPARIA OUVIR O PENSAMENTO DE TODO MUNDO?; botões SIM e NÃO; nuvem SERÁ QUE VALE A PENA? |
+| s13 cta | 3,4 s + cauda | fundo azul | Caio feliz | pop, sting | COMENTA SIM OU NÃO, botões pulsando, carimbo A PARTE 2 VAI SER MAIS MALUCA, @hipoteticamente.br |
 
-**Parte 2:** segue o caminho mais votado nos comentários (A, B ou C). Conferir a voz antes de postar (Claude não ouve áudio).
+**Parte 2:** não depende de votação. Segue o caminho mais votado entre sim e não e viaja no humor e no absurdo (ideias soltas, bem engraçadas e fora da realidade). Conferir a voz antes de postar (Claude não ouve áudio).

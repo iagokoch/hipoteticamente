@@ -61,18 +61,13 @@
     },
     {
       "id": "s12",
-      "visual": "vote_a",
-      "text": "Parte dois: você escolhe. A: todo mundo passa a ouvir os seus pensamentos."
+      "visual": "ask",
+      "text": "Agora é com você: você toparia ouvir o pensamento de todo mundo por um dia?"
     },
     {
       "id": "s13",
-      "visual": "vote_b",
-      "text": "B: o cachorro do vizinho descobre que você ouve, e começa a dar ordens."
-    },
-    {
-      "id": "s14",
       "visual": "cta",
-      "text": "C: os pensamentos da cidade saem no alto-falante da praça. Qual você escolhe? Comenta A, B ou C."
+      "text": "Comenta sim ou não. A Parte dois vai ser bem mais maluca."
     }
   ]
 }

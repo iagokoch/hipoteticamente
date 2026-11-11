@@ -11,11 +11,11 @@ Já usado pelo canal: Ep. 01–02 "E se você visse o saldo bancário de todo mu
 Ep. 03 = tema #1 (ninguém mente, cadeado na boca); Ep. 04 = tema #9 (torneira seca, contagem de dias); Ep. 05 = tema #3 (tudo por R$ 1: etiqueta de preço, cronômetro de 24 h e visor de caixa em LED; vitrine de eletro, concessionária, loja de roupa).
 Ep. 06 = Parte 2 do ep. 04 (tema #9), caminho em que o Caio não divide a água: vizinhança descobre a caixa, clima muda no condomínio, a caixa do vô racha e o Caio pede ajuda à dona Rosa; fato novo da Cidade do Cabo, 2018.
 
-Ep. 07 = tema #15 (ouvir o pensamento de todo mundo): primeiro episódio com a regra nova (fato curto de âncora, escalada absurda, final com opções A/B/C para os comentários escolherem a Parte 2). Fato: ~6.200 pensamentos por dia (Tseng & Poppenk, Nature Communications, 2020).
+Ep. 07 = tema #15 (ouvir o pensamento de todo mundo): primeiro episódio com a regra nova (fato curto de âncora, escalada absurda, final com pergunta de sim ou não; a Parte 2 em diante viaja no absurdo). Fato: ~6.200 pensamentos por dia (Tseng & Poppenk, Nature Communications, 2020).
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo, o fato real curto na tela e a história que avança conforme os comentários.
 
-**Regra de formato (a partir de 11/11/2026):** o fato real vira âncora curta (~5 s, verificado, com fonte na tela) logo depois do gancho. O resto da Parte 1 escala para o humor e o absurdo, e termina com pergunta de 2–3 caminhos absurdos para os comentários escolherem. A Parte seguinte segue o caminho mais votado. Antes dessa data (ep. 01–06) o fato ocupava ~10 s no meio do vídeo.
+**Regra de formato (a partir de 11/11/2026):** o fato real vira âncora curta (~5 s, verificado, com fonte na tela) logo depois do gancho. O resto da Parte 1 escala para o humor e o absurdo e termina com uma pergunta de sim ou não para os comentários, como nos ep. 03–06. A partir da Parte 2 as continuações viajam no absurdo, bem engraçadas e fora da realidade, seguindo o lado mais votado. Antes dessa data (ep. 01–06) o fato ocupava ~10 s no meio do vídeo.
 
 ---
 
@@ -173,11 +173,11 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Não.
 
 ### 15. E se você pudesse ouvir o pensamento de todo mundo por um dia?
-- **Status:** usado (ep07; Parte 2 = caminho mais votado entre A, B e C)
+- **Status:** usado (ep07; Parte 2 = lado mais votado entre sim e não)
 - **Referência:** "If Teachers Could Hear Our Thoughts Part - 2" — FilterCopy — https://www.youtube.com/watch?v=aJ_pGVPwtpY — 14,0 mi views — 2023 (live-action)
 - **Saturação BR:** em alta (TikTok até 30,6 mil curtidas em 01/11; muitos vídeos novos).
 - **Fato real (verificado 11/11/2026):** estimativa de cerca de 6.200 pensamentos por dia por pessoa, medida por fMRI (Tseng & Poppenk, *Nature Communications*, 2020, Queen's University). Não usar o número popular de 60 mil, que não tem pesquisa por trás.
-- **Opções da Parte 2 (votação nos comentários):** A) todo mundo passa a ouvir os pensamentos do Caio; B) o cachorro do vizinho descobre que ele ouve e começa a dar ordens; C) os pensamentos da cidade saem no alto-falante da praça.
+- **Pergunta final do ep07:** "Você toparia ouvir o pensamento de todo mundo por um dia?" (sim ou não).
 - **Série?** Sim.
 
 ### 16. E se você pudesse ler mentes?
