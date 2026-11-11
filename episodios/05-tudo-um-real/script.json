@@ -1,0 +1,22 @@
+{
+  "title": "E se, por 24 horas, tudo no Brasil custasse um real?",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {"id": "s01", "visual": "hook", "text": "Meia-noite. Na vitrine, a TV de quatro mil reais troca de etiqueta: um real."},
+    {"id": "s02", "visual": "news", "text": "O celular apita. Por vinte e quatro horas, tudo no Brasil custa um real. Tudo."},
+    {"id": "s03", "visual": "queue", "text": "Dez minutos depois, a fila dá a volta no quarteirão. Você já tá no caixa."},
+    {"id": "s04", "visual": "cart", "text": "A TV, um real. O notebook, um real. O tênis, um real. O Pix só faz plim."},
+    {"id": "s05", "visual": "dealer", "text": "Na concessionária, o carro zero também. Um real. Você sai rindo sozinho."},
+    {"id": "s06", "visual": "fact", "text": "Na última Black Friday, o e-commerce faturou quatro vírgula sete seis bilhões num dia. Cada pedido saiu por uns quinhentos e cinquenta reais. Hoje, por um."},
+    {"id": "s07", "visual": "chain", "text": "Só que quem fez essa TV também recebeu um real. O caminhoneiro, um real. A loja, um real."},
+    {"id": "s08", "visual": "momstore", "text": "Aí sua mãe liga. A lojinha de roupa que ela levou dez anos pra montar tá com fila até a calçada."},
+    {"id": "s09", "visual": "stock", "text": "Camiseta, um real. Calça, um real. Ela pagou três mil reais no estoque. Vai fechar o dia com duzentos."},
+    {"id": "s10", "visual": "dilemma", "text": "Você tem um carro, uma TV e um notebook por um real. Ficar com tudo, ou pagar o que vale?"},
+    {"id": "s11", "visual": "pay", "text": "Você entra na fila da sua mãe. Pega uma camiseta de um real... e manda um Pix de trinta."},
+    {"id": "s12", "visual": "line", "text": "O cara de trás vê. Faz igual. A fila inteira começa a pagar o preço justo."},
+    {"id": "s13", "visual": "twist", "text": "Meia-noite. Os preços voltam. Mas o aluguel e o fornecedor dela vencem amanhã. A preço cheio."},
+    {"id": "s14", "visual": "cta", "text": "O que você compraria primeiro? E você pagaria o preço justo? Comenta aí. Parte dois?"}
+  ]
+}

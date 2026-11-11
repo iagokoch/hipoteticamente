@@ -1,23 +1,22 @@
 {
-  "title": "E se a torneira da sua casa secasse pra sempre?",
+  "title": "E se, por 24 horas, tudo no Brasil custasse um real?",
   "voice": "pm_alex",
   "speed": 1.08,
   "pitch": 0.89,
   "scenes": [
-    {"id": "s01", "visual": "hook", "text": "E se você abrisse a torneira amanhã... e não saísse nada? Nem amanhã. Nem nunca mais."},
-    {"id": "s02", "visual": "shower", "text": "Sete da manhã. Você tá todo ensaboado no chuveiro... e a água para."},
-    {"id": "s03", "visual": "group", "text": "No grupo do condomínio, quarenta mensagens. Ninguém tem água. Nem o prédio, nem o bairro, nem a cidade."},
-    {"id": "s04", "visual": "market", "text": "Dia dois. O mercado vira fila de show. A última garrafa de água tá custando cinquenta reais."},
-    {"id": "s05", "visual": "chores", "text": "Dia três. Você descobre que tudo precisa de água. Escovar os dentes. Dar descarga. Fazer o café."},
-    {"id": "s06", "visual": "tank", "text": "Mas a sua casa tem um segredo. A caixa d'água que o seu avô instalou. Mil litros. Cheia."},
-    {"id": "s07", "visual": "fact", "text": "E isso já chegou perto de acontecer. Em dois mil e catorze, o Cantareira, que abastece São Paulo, chegou a três por cento. Pela primeira vez na história, bombearam o volume morto: a água do fundo da represa."},
-    {"id": "s08", "visual": "rule", "text": "Dia cinco. Seu pai faz uma regra: ninguém pode saber da caixa d'água."},
-    {"id": "s09", "visual": "door", "text": "À noite, batem na porta. É a dona Rosa, a vizinha do lado, com a bebê no colo."},
-    {"id": "s10", "visual": "ask", "text": "Ela não pede muito. Só um balde. Pra fazer a mamadeira."},
-    {"id": "s11", "visual": "math", "text": "Mil litros dão pra sua família uns dez dias. Cada balde que sai é um dia a menos pra vocês."},
-    {"id": "s12", "visual": "dad", "text": "Seu pai balança a cabeça. Não. Sua mãe olha pro chão."},
-    {"id": "s13", "visual": "fill", "text": "Você pega o balde, sobe até a caixa d'água... e enche até a boca."},
-    {"id": "s14", "visual": "line", "text": "Na manhã seguinte, você abre a porta. Tem uma fila até a esquina. Todo mundo com um balde."},
-    {"id": "s15", "visual": "cta", "text": "Você dividiria a água da sua família? Comenta aí. Parte dois?"}
+    {"id": "s01", "visual": "hook", "text": "Meia-noite. Na vitrine, a TV de quatro mil reais troca de etiqueta: um real."},
+    {"id": "s02", "visual": "news", "text": "O celular apita. Por vinte e quatro horas, tudo no Brasil custa um real. Tudo."},
+    {"id": "s03", "visual": "queue", "text": "Dez minutos depois, a fila dá a volta no quarteirão. Você já tá no caixa."},
+    {"id": "s04", "visual": "cart", "text": "A TV, um real. O notebook, um real. O tênis, um real. O Pix só faz plim."},
+    {"id": "s05", "visual": "dealer", "text": "Na concessionária, o carro zero também. Um real. Você sai rindo sozinho."},
+    {"id": "s06", "visual": "fact", "text": "Na última Black Friday, o e-commerce faturou quatro vírgula sete seis bilhões num dia. Cada pedido saiu por uns quinhentos e cinquenta reais. Hoje, por um."},
+    {"id": "s07", "visual": "chain", "text": "Só que quem fez essa TV também recebeu um real. O caminhoneiro, um real. A loja, um real."},
+    {"id": "s08", "visual": "momstore", "text": "Aí sua mãe liga. A lojinha de roupa que ela levou dez anos pra montar tá com fila até a calçada."},
+    {"id": "s09", "visual": "stock", "text": "Camiseta, um real. Calça, um real. Ela pagou três mil reais no estoque. Vai fechar o dia com duzentos."},
+    {"id": "s10", "visual": "dilemma", "text": "Você tem um carro, uma TV e um notebook por um real. Ficar com tudo, ou pagar o que vale?"},
+    {"id": "s11", "visual": "pay", "text": "Você entra na fila da sua mãe. Pega uma camiseta de um real... e manda um Pix de trinta."},
+    {"id": "s12", "visual": "line", "text": "O cara de trás vê. Faz igual. A fila inteira começa a pagar o preço justo."},
+    {"id": "s13", "visual": "twist", "text": "Meia-noite. Os preços voltam. Mas o aluguel e o fornecedor dela vencem amanhã. A preço cheio."},
+    {"id": "s14", "visual": "cta", "text": "O que você compraria primeiro? E você pagaria o preço justo? Comenta aí. Parte dois?"}
   ]
 }

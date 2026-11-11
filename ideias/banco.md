@@ -8,6 +8,7 @@ Temas modelados de vídeos "What if / If…" que já viralizaram lá fora. Model
 - **Fato real:** `verificado` = fonte conferida em 10/11/2026; `verificar` = conferir antes do roteiro.
 
 Já usado pelo canal: Ep. 01–02 "E se você visse o saldo bancário de todo mundo?" (números flutuando sobre a cabeça das pessoas).
+Ep. 03 = tema #1 (ninguém mente, cadeado na boca); Ep. 04 = tema #9 (torneira seca, contagem de dias); Ep. 05 = tema #3 (tudo por R$ 1: etiqueta de preço, cronômetro de 24 h e visor de caixa em LED; vitrine de eletro, concessionária, loja de roupa).
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.
 
@@ -38,7 +39,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Sim — Parte 2: o amigo descobre de onde vem o azar.
 
 ### 3. E se, por 24 horas, tudo no Brasil custasse R$ 1?
-- **Status:** pendente — **publicar antes da Black Friday (27/11/2026)**
+- **Status:** usado (ep05) — publicar antes da Black Friday (27/11/2026)
 - **Referência:** "If iPhones = $1 for 24 hours!" — im_siowei — https://www.youtube.com/watch?v=Ccl_NyzzQys — 21,0 mi views — 2024 (usar só a versão genérica, sem marca)
 - **Saturação BR:** livre — só vídeos de lojas e 2 vídeos "E se" com menos de 30 curtidas.
 - **Esqueleto:** desejo de consumo → caos de fila → consequência econômica; ganância coletiva.
