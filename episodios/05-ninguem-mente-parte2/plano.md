@@ -17,6 +17,6 @@ Continua da última cena do Ep. 03 (Bia: "eu também conseguia"). Mesmos persona
 | s11 leo | 3,6 s | close Léo | "eu acreditei porque queria acreditar" |
 | s12 hands | 3,6 s | lanchonete | Bia segura a mão do Caio: "eu gosto dele" |
 | s13 text | 6,6 s | lanchonete → quarto | Léo sai; flash; mensagem "você me deve um jogo" |
-| s14 cta | 5,5 s | fundo azul | pergunta, SIM/NÃO, @hipoteticamente.br (sem Parte 3) |
+| s14 cta | 5,5 s | fundo azul | pergunta "Você perdoaria um melhor amigo que mentiu pra você?", SIM/NÃO, @hipoteticamente.br (sem Parte 3) |
 
 Total ~79 s. Voz pm_alex, 1,08, 0,89.

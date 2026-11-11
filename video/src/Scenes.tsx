@@ -479,7 +479,7 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ CONTARIA A VERDADE, MESMO PODENDO PERDER SEU MELHOR AMIGO?" color="#fff" top={110} size={62} />
+      <Title text="VOCÊ PERDOARIA UM MELHOR AMIGO QUE MENTIU PRA VOCÊ?" color="#fff" top={110} size={62} />
       <div style={{position: 'absolute', left: 120, top: 560, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
       <div style={{position: 'absolute', left: 580, top: 560, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={250} y={1230} scale={1.35} emotion="worried" lookX={1} />
