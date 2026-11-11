@@ -16,7 +16,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 ## Top 10 (ordem de potencial)
 
 ### 1. E se, por 24 horas, ninguém no Brasil conseguisse mentir… menos você?
-- **Status:** usado (ep03)
+- **Status:** usado (ep03 · Parte 2 = ep05, 11/11/2026)
 - **Referência:** "If Humans Cannot Lie" — im_siowei — https://www.youtube.com/watch?v=nzmuxIg5ecY — 72,2 mi views — 2024
 - **Saturação BR:** moderado — vários vídeos pequenos recentes no TikTok; o maior tem 45,9 mil curtidas. Nada grande no YouTube PT.
 - **Esqueleto (por que viralizou):** premissa simples e universal; escala do constrangimento pequeno (elogio falso) ao grande (segredos de família); mistura humor e vergonha alheia.
@@ -24,7 +24,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Contexto BR:** almoço de domingo, grupo da família, entrevista de emprego, vendedor de loja.
 - **Virada própria:** Caio é o único que ainda consegue mentir. No fim, alguém da família pergunta algo cuja verdade machucaria outra pessoa → ele mente para proteger. Pergunta: "Você mentiria pra proteger alguém?"
 - **Fato real (verificado):** em média, as pessoas contam 1,65 mentira por dia, mas a maioria das mentiras vem de uma minoria de "mentirosos prolíficos" (Serota, Levine & Boster, 2010, *Human Communication Research*).
-- **Série?** Sim — Parte 2: as mentiras voltam e todo mundo lembra do que disse.
+- **Série?** Parte 2 feita (ep05): Bia também mentiu, Caio conta a verdade ao Léo. Sem gancho de Parte 3.
 
 ### 2. E se você tivesse sorte em tudo… mas cada vitória sua virasse o azar de alguém perto?
 - **Status:** pendente
