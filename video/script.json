@@ -1,21 +1,73 @@
 {
-  "title": "E se você não dividisse a água? (Parte 2)",
+  "title": "E se você ouvisse o pensamento de todo mundo?",
   "voice": "pm_alex",
   "speed": 1.08,
   "pitch": 0.89,
   "scenes": [
-    {"id": "s01", "visual": "vote", "text": "Vocês votaram: a maioria não dividiria. Dona Rosa pede o balde... e você diz não."},
-    {"id": "s02", "visual": "closed", "text": "Ela não insiste. Abaixa a cabeça, e a porta se fecha. Você acha que acabou."},
-    {"id": "s03", "visual": "roof", "text": "No dia seguinte, um vizinho sobe na laje pra pegar sinal... e dá de cara com a caixa d'água. Cheia."},
-    {"id": "s04", "visual": "group", "text": "A foto cai no grupo do condomínio. Em um minuto, o prédio inteiro sabe."},
-    {"id": "s05", "visual": "climate", "text": "Dia sete. O elevador fica mudo quando você entra. No corredor, só cochicho."},
-    {"id": "s06", "visual": "fact", "text": "Na vida real, não é muito diferente. Na Cidade do Cabo, em dois mil e dezoito, seis em cada dez moradores gastavam mais que o limite de oitenta e sete litros por dia. A cidade cortou pra cinquenta."},
-    {"id": "s07", "visual": "plan", "text": "Dia oito. Seu pai nem liga pro bilhete. Faz a conta no papel: sobram sete dias de água."},
-    {"id": "s08", "visual": "crack", "text": "Madrugada do dia nove. Um estalo. A caixa do seu avô rachou no fundo, e a água que sobrava virou poça."},
-    {"id": "s09", "visual": "counter", "text": "Pelas contas do seu pai, dava até o dia quinze. Acabou no nove."},
-    {"id": "s10", "visual": "refuse", "text": "Seu pai diz que não vai pedir nada pra quem a gente mandou embora. Sua mãe só põe o balde na sua mão."},
-    {"id": "s11", "visual": "walk", "text": "Você atravessa o corredor com o balde vazio. Todo mundo olha. Você bate na porta da dona Rosa."},
-    {"id": "s12", "visual": "answer", "text": "A porta abre. Ela olha pro seu balde vazio e não diz nada. Só te entrega o dela, cheio. Igualzinho ao que ela te pediu."},
-    {"id": "s13", "visual": "cta", "text": "Agora é com você: se fosse a dona Rosa, você teria aberto a porta? Comenta aí."}
+    {
+      "id": "s01",
+      "visual": "bus",
+      "text": "Você entra no ônibus lotado. Ninguém abriu a boca. Mas você escuta tudo."
+    },
+    {
+      "id": "s02",
+      "visual": "fact",
+      "text": "Um estudo da Universidade Queen's estimou seis mil e duzentos pensamentos por dia. Por pessoa."
+    },
+    {
+      "id": "s03",
+      "visual": "busmath",
+      "text": "Quarenta pessoas no ônibus. Duzentos e quarenta e oito mil pensamentos. Todos na sua cabeça."
+    },
+    {
+      "id": "s04",
+      "visual": "driver",
+      "text": "O motorista só pensa em pão de queijo. Só nisso. Faz três pontos seguidos."
+    },
+    {
+      "id": "s05",
+      "visual": "jingle",
+      "text": "O tiozão do fundo repete o jingle de um comercial de colchão. Agora você também."
+    },
+    {
+      "id": "s06",
+      "visual": "office",
+      "text": "No trabalho, seu chefe diz: ótimo trabalho. E pensa: qual é o nome desse menino?"
+    },
+    {
+      "id": "s07",
+      "visual": "dog",
+      "text": "Na volta, o cachorro do vizinho te vê e só pensa uma coisa: ele chegou, ele chegou, ele chegou."
+    },
+    {
+      "id": "s08",
+      "visual": "pigeons",
+      "text": "Na praça, três pombos combinam um plano pra roubar o sanduíche de um senhor. Você avisa. Ninguém entende."
+    },
+    {
+      "id": "s09",
+      "visual": "downtown",
+      "text": "Centro da cidade. Milhões de pensamentos de uma vez. Você tapa os ouvidos. Não adianta: pensamento não entra pelo ouvido."
+    },
+    {
+      "id": "s10",
+      "visual": "mom",
+      "text": "Em casa, sua mãe sorri e pergunta se você comeu. Por dentro, ela pensa em onze coisas. A décima primeira é você."
+    },
+    {
+      "id": "s11",
+      "visual": "midnight",
+      "text": "Meia-noite. O silêncio volta. Você devia estar feliz. Mas só consegue pensar: será que o pombo pegou o sanduíche?"
+    },
+    {
+      "id": "s12",
+      "visual": "ask",
+      "text": "Agora é com você: você toparia ouvir o pensamento de todo mundo por um dia?"
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Comenta sim ou não. A Parte dois vai ser bem mais maluca."
+    }
   ]
 }

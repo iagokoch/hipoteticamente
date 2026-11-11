@@ -1,0 +1,73 @@
+{
+  "title": "E se você ouvisse o pensamento de todo mundo?",
+  "voice": "pm_alex",
+  "speed": 1.08,
+  "pitch": 0.89,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "bus",
+      "text": "Você entra no ônibus lotado. Ninguém abriu a boca. Mas você escuta tudo."
+    },
+    {
+      "id": "s02",
+      "visual": "fact",
+      "text": "Um estudo da Universidade Queen's estimou seis mil e duzentos pensamentos por dia. Por pessoa."
+    },
+    {
+      "id": "s03",
+      "visual": "busmath",
+      "text": "Quarenta pessoas no ônibus. Duzentos e quarenta e oito mil pensamentos. Todos na sua cabeça."
+    },
+    {
+      "id": "s04",
+      "visual": "driver",
+      "text": "O motorista só pensa em pão de queijo. Só nisso. Faz três pontos seguidos."
+    },
+    {
+      "id": "s05",
+      "visual": "jingle",
+      "text": "O tiozão do fundo repete o jingle de um comercial de colchão. Agora você também."
+    },
+    {
+      "id": "s06",
+      "visual": "office",
+      "text": "No trabalho, seu chefe diz: ótimo trabalho. E pensa: qual é o nome desse menino?"
+    },
+    {
+      "id": "s07",
+      "visual": "dog",
+      "text": "Na volta, o cachorro do vizinho te vê e só pensa uma coisa: ele chegou, ele chegou, ele chegou."
+    },
+    {
+      "id": "s08",
+      "visual": "pigeons",
+      "text": "Na praça, três pombos combinam um plano pra roubar o sanduíche de um senhor. Você avisa. Ninguém entende."
+    },
+    {
+      "id": "s09",
+      "visual": "downtown",
+      "text": "Centro da cidade. Milhões de pensamentos de uma vez. Você tapa os ouvidos. Não adianta: pensamento não entra pelo ouvido."
+    },
+    {
+      "id": "s10",
+      "visual": "mom",
+      "text": "Em casa, sua mãe sorri e pergunta se você comeu. Por dentro, ela pensa em onze coisas. A décima primeira é você."
+    },
+    {
+      "id": "s11",
+      "visual": "midnight",
+      "text": "Meia-noite. O silêncio volta. Você devia estar feliz. Mas só consegue pensar: será que o pombo pegou o sanduíche?"
+    },
+    {
+      "id": "s12",
+      "visual": "ask",
+      "text": "Agora é com você: você toparia ouvir o pensamento de todo mundo por um dia?"
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Comenta sim ou não. A Parte dois vai ser bem mais maluca."
+    }
+  ]
+}
