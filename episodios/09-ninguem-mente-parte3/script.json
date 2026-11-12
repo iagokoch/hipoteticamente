@@ -1,73 +1,78 @@
 {
-  "title": "A mentira (Parte 3): a grande final da verdade",
+  "title": "A mentira (Parte 3): na quadra tinha dois Léos",
   "voice": "pm_santa",
   "speed": 1.08,
   "pitch": 1.0,
   "scenes": [
     {
       "id": "s01",
-      "visual": "recap",
-      "text": "Na parte dois, o Léo mandou: amanhã, sete horas, na quadra. Você achou que era um jogo de bola."
+      "visual": "hook",
+      "text": "Sete da manhã. Você chega na quadra e tem dois Léos. Os dois sorriem."
     },
     {
       "id": "s02",
-      "visual": "quadra",
-      "text": "Sete da manhã. A quadra tá lotada, tem até pipoqueiro. A faixa diz: grande final da verdade."
+      "visual": "recap",
+      "text": "Na parte dois, você contou a verdade. Mas as mentiras antigas ainda estavam por aí. E ganharam vida."
     },
     {
       "id": "s03",
-      "visual": "regras",
-      "text": "O Léo pega o microfone: quem me enganar leva o troféu. Quem eu pegar, paga um mico."
+      "visual": "fato",
+      "text": "Estudo de dois mil e dezesseis: a cada mentira, o cérebro sente menos culpa. E a próxima já sai maior."
     },
     {
       "id": "s04",
-      "visual": "fato",
-      "text": "Mentir vem de pequeno. Num experimento, sessenta e quatro por cento das crianças que espiaram o brinquedo proibido mentiram."
+      "visual": "dobra1",
+      "text": "Você pede: Léo de verdade, levanta a mão. Os dois levantam. Aí chegam mais dois. Depois quatro."
     },
     {
       "id": "s05",
-      "visual": "rodada1",
-      "text": "Rodada um: você jura que nunca comeu o último pão de queijo. O juiz é um pombo. Ele apita. Pegou."
+      "visual": "dobra2",
+      "text": "A cada minuto o número dobra. Oito. Dezesseis. Trinta e dois Léos."
     },
     {
       "id": "s06",
-      "visual": "rodada2",
-      "text": "A Bia tenta: eu amo acordar cedo. A sobrancelha do Léo sobe tanto que sai voando."
+      "visual": "tipos",
+      "text": "Tem o Léo que ganhou o troféu. O Léo que nunca chorou. E um Léo que só grita: o pão é de hoje!"
     },
     {
       "id": "s07",
-      "visual": "bairro",
-      "text": "Aí o bairro inteiro entra. O padeiro jura que o pão é de hoje. A tia da pipoca jura que é grátis. Vira campeonato."
+      "visual": "multidao",
+      "text": "Sessenta e quatro Léos. E o de verdade, escondido lá no fundo, fingindo ser um dos falsos."
     },
     {
       "id": "s08",
-      "visual": "final",
-      "text": "Na final, sobram você, a Bia e o Léo. Última pergunta: vocês mentiram pra mim?"
+      "visual": "teste",
+      "text": "Você tem uma ideia. Pergunta: qual a cor do meu moletom? Sessenta e três Léos respondem: laranja."
     },
     {
       "id": "s09",
-      "visual": "veredito",
-      "text": "Você diz que não. Apito. A Bia diz que não. Apito, apito, apito."
+      "visual": "achou",
+      "text": "Só um responde: verde. É ele. Porque o Léo de verdade nunca soube mentir."
     },
     {
       "id": "s10",
-      "visual": "twist",
-      "text": "O Léo sorri e confessa: eu também menti. Eu sabia de tudo desde o primeiro dia."
+      "visual": "exige",
+      "text": "O Léo cruza os braços: só volto a falar contigo quando você pedir desculpa. Pra todos eles."
     },
     {
       "id": "s11",
-      "visual": "vaia",
-      "text": "O campeonato inteiro era pra ver se vocês me contavam. A quadra vaia. Até o pombo vaia."
+      "visual": "desculpas",
+      "text": "Você pede desculpa pro primeiro. Pop, ele some. Pro segundo. Pop. Um por um, sessenta e três vezes."
     },
     {
       "id": "s12",
-      "visual": "mico",
-      "text": "E pra pagar o mico, o Léo dança no meio da quadra com as flores na boca."
+      "visual": "absurdo",
+      "text": "O quadragésimo Léo pede: mais alto. O quinquagésimo pergunta se tem pão de queijo. Você pede desculpa mesmo assim."
     },
     {
       "id": "s13",
+      "visual": "paz",
+      "text": "No fim, só sobra o Léo de verdade. Ele estende a mão e diz: tá bom. Mas na próxima, sem mentira."
+    },
+    {
+      "id": "s14",
       "visual": "cta",
-      "text": "Você jogaria esse jogo pra salvar uma amizade? Comenta sim ou não. A parte quatro vai ser ainda mais maluca."
+      "text": "Você pediria desculpa sessenta e quatro vezes pra salvar uma amizade? Comenta sim ou não. A parte quatro vai ser ainda mais maluca."
     }
   ]
 }

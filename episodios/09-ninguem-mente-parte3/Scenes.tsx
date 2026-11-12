@@ -84,244 +84,264 @@ const Court: React.FC<{banner?: boolean; boo?: boolean}> = ({banner = true, boo}
   );
 };
 
-// ---------- pombo juiz ----------
-const Pigeon: React.FC<{x: number; y: number; scale?: number; blow?: number; sad?: boolean}> = ({x, y, scale = 1, blow = -1, sad}) => {
-  const frame = useCurrentFrame();
-  const blowing = blow >= 0 && frame >= blow && frame < blow + 14;
-  const hop = blowing ? Math.sin((frame - blow) * 1.6) * 8 : Math.sin(frame / 7) * 3;
-  return (
-    <div style={{position: 'absolute', left: x - 120 * scale, top: y - 260 * scale, width: 240 * scale, height: 260 * scale, transform: `translateY(${-hop}px)`}}>
-      <svg viewBox="0 0 240 260" width={240 * scale} height={260 * scale} style={{overflow: 'visible'}}>
-        <rect x={20} y={200} width={200} height={16} rx={8} fill="#fff" stroke={INK} strokeWidth={8} />
-        <rect x={50} y={214} width={14} height={46} fill="#dfe6e9" stroke={INK} strokeWidth={6} />
-        <rect x={176} y={214} width={14} height={46} fill="#dfe6e9" stroke={INK} strokeWidth={6} />
-        <ellipse cx={120} cy={150} rx={78} ry={62} fill="#b2bec3" stroke={INK} strokeWidth={8} />
-        <path d="M70,150 Q120,200 170,150" fill="#dfe6e9" stroke={INK} strokeWidth={6} />
-        <circle cx={150} cy={88} r={42} fill="#b2bec3" stroke={INK} strokeWidth={8} />
-        <path d="M184,86 L226,98 L184,112 Z" fill="#fdcb6e" stroke={INK} strokeWidth={6} strokeLinejoin="round" />
-        <circle cx={160} cy={80} r={12} fill="#fff" stroke={INK} strokeWidth={5} />
-        <circle cx={sad ? 160 : 163} cy={sad ? 86 : 80} r={5} fill={INK} />
-        <rect x={188} y={104} width={34} height={22} rx={11} fill="#dfe6e9" stroke={INK} strokeWidth={5} />
-        <path d="M118,62 L150,36 L158,56" fill="#2d3436" stroke={INK} strokeWidth={5} strokeLinejoin="round" />
-      </svg>
-      {blowing && (
-        <div style={{position: 'absolute', left: 200 * scale, top: 30 * scale, fontFamily: 'Inter', fontWeight: 900, fontSize: 64 * scale, color: '#ff4757', WebkitTextStroke: `8px ${INK}`, paintOrder: 'stroke fill', transform: `rotate(-12deg) scale(${1 + (frame - blow) / 28})`}}>PIII!</div>
-      )}
-    </div>
-  );
+// ---------- multidão de Léos ----------
+const COLS = 8;
+const gridPos = (i: number, n = 64, gap = 100) => {
+  const c = i % COLS;
+  const r = Math.floor(i / COLS);
+  const inRow = Math.min(COLS, n - r * COLS);
+  return {x: 540 + (c - (inRow - 1) / 2) * 125 + (n >= 64 ? (r % 2) * 20 - 10 : 0), y: 560 + r * gap};
 };
+const REAL = 37; // índice do Léo de verdade na multidão
 
-// ---------- cenas ----------
-const Recap: React.FC = () => {
+const Plaza: React.FC = () => (
+  <AbsoluteFill style={{background: '#74b9ff'}}>
+    <div style={{position: 'absolute', left: 0, right: 0, top: 380, bottom: 0, background: '#e58e26', borderTop: `8px solid ${INK}`}}>
+      <div style={{position: 'absolute', left: 60, right: 60, top: 640, height: 8, background: '#fff'}} />
+      <div style={{position: 'absolute', left: 340, top: 440, width: 400, height: 400, borderRadius: 200, border: '8px solid #fff', opacity: 0.6}} />
+    </div>
+  </AbsoluteFill>
+);
+
+type CrowdProps = {count: number | ((i: number) => boolean); scale?: number; gap?: number; vanish?: (i: number) => number; revealAt?: number};
+const Crowd: React.FC<CrowdProps> = ({count, scale = 0.3, gap = 100, vanish, revealAt}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
-  const p = spring({frame: frame - 12, fps, config: {damping: 12}});
   return (
-    <AbsoluteFill style={{background: '#0f1123'}}>
-      <div style={{position: 'absolute', left: 150, top: 180, width: 780, height: 380, background: INK, borderRadius: 50, border: '8px solid #4b4b6e', transform: `scale(${p})`}}>
-        <div style={{position: 'absolute', left: 30, right: 30, top: 30, bottom: 30, background: '#dfe6e9', borderRadius: 30, overflow: 'hidden'}}>
-          <div style={{height: 100, background: '#4b7bec', display: 'flex', alignItems: 'center', paddingLeft: 30, gap: 18, borderBottom: `6px solid ${INK}`}}>
-            <div style={{width: 60, height: 60, borderRadius: 30, background: '#8d5524', border: `5px solid ${INK}`}} />
-            <div style={{fontFamily: 'Inter', fontWeight: 900, fontSize: 48, color: '#fff'}}>Léo</div>
-          </div>
-          <div style={{position: 'absolute', left: 28, top: 135, background: '#fff', border: `6px solid ${INK}`, borderRadius: '30px 30px 30px 6px', padding: '16px 26px', fontFamily: 'Inter', fontWeight: 800, fontSize: 50, color: INK}}>amanhã, 7h, na quadra.</div>
+    <>
+      {Array.from({length: 64}).map((_, i) => {
+        const {x, y} = gridPos(i, typeof count === 'number' ? count : 64, gap);
+        const visible = typeof count === 'number' ? i < count : count(i);
+        if (!visible) return null;
+        const isReal = i === REAL;
+        if (vanish && !isReal) {
+          const v = vanish(i);
+          if (frame >= v) return null;
+        }
+        return (
+          <Person key={i} {...LEO} x={x} y={y} scale={scale} emotion={isReal ? 'worried' : 'smirk'} lookX={isReal ? 0.8 : -0.2} bob />
+        );
+      })}
+      {revealAt !== undefined && frame >= revealAt && (
+        <div style={{position: 'absolute', left: gridPos(REAL).x - 230, top: gridPos(REAL).y - 220, width: 460, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 48, color: INK, background: '#fed330', border: `7px solid ${INK}`, borderRadius: 18, padding: '4px 10px', transform: `scale(${spring({frame: frame - revealAt, fps, config: {damping: 9}})})`}}>
+          O DE VERDADE ▼
         </div>
-      </div>
-      <Person {...ME} x={300} y={1230} scale={1.7} emotion={frame > 60 ? 'smirk' : 'worried'} lookX={1} />
-      <Title text="PARTE 3" color="#fed330" top={20} size={120} at={4} />
-      <Pop at={12} />
-      {frame > 110 && (
-        <div style={{position: 'absolute', left: 520, top: 700, fontSize: 200, transform: `rotate(${Math.sin(frame / 6) * 12}deg)`}}>⚽</div>
       )}
+    </>
+  );
+};
+
+const CountBadge: React.FC<{n: number; label?: string}> = ({n, label = 'LÉOS'}) => (
+  <div style={{position: 'absolute', left: 0, right: 0, top: 150, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 150, color: '#fed330', WebkitTextStroke: `14px ${INK}`, paintOrder: 'stroke fill', lineHeight: 1}}>
+    {n} <span style={{fontSize: 90, color: '#fff'}}>{label}</span>
+  </div>
+);
+
+// ---------- cenas ----------
+const Hook: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Court banner={false} />
+      <Person {...ME} x={540} y={1280} scale={1.5} emotion="shocked" lookX={0} />
+      <Person {...LEO} x={190} y={1230} scale={1.4} emotion="smirk" lookX={1} />
+      <Person {...LEO} x={890} y={1230} scale={1.4} emotion="smirk" lookX={-1} flip />
+      <Title text="NA QUADRA TINHA DOIS LÉOS" color="#fed330" top={150} size={100} at={2} />
+      <Stamp x={900} y={640} text="PARTE 3" at={14} size={52} rot={8} color="#ff4757" />
+      <Pop at={4} /><Sting at={30} volume={0.6} />
     </AbsoluteFill>
   );
 };
 
-const Quadra: React.FC = () => {
+const Recap: React.FC = () => {
   const frame = useCurrentFrame();
+  const lies: [string, number, number, number][] = [['O PÃO É DE HOJE!', 250, 700, 20], ['EU AMO ACORDAR CEDO', 830, 700, 45], ['NUNCA COMI O PÃO DE QUEIJO', 540, 470, 70]];
   return (
     <AbsoluteFill>
-      <Court />
-      <Person {...ME} x={330} y={1260} scale={1.6} emotion="shocked" lookY={-0.4} />
-      <Person {...BIA} x={740} y={1260} scale={1.6} emotion="shocked" lookY={-0.4} />
-      <div style={{position: 'absolute', right: 40, top: 610, fontSize: 110, transform: `translateY(${Math.sin(frame / 5) * 8}px)`}}>🍿</div>
-      <Pop at={20} />
-    </AbsoluteFill>
-  );
-};
-
-const Regras: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill>
-      <Court />
-      <Person {...LEO} x={540} y={1250} scale={1.9} emotion="smirk" talking={frame > 5 && frame < 100} lookX={0} />
-      <div style={{position: 'absolute', left: 690, top: 960, width: 32, height: 90, background: '#2d3436', border: `6px solid ${INK}`, borderRadius: 14, transform: 'rotate(18deg)'}}><div style={{position: 'absolute', left: -6, top: -26, width: 44, height: 44, borderRadius: 22, background: '#636e72', border: `6px solid ${INK}`}} /></div>
-      <div style={{position: 'absolute', left: 120, top: 610, fontSize: 150, transform: `scale(${spring({frame: frame - 70, fps: 30, config: {damping: 8}})})`}}>🏆</div>
-      <Stamp x={820} y={700} text="MICO" at={105} color="#ff4757" size={64} rot={10} />
-      <Pop at={70} /><Pop at={105} />
+      <Court banner={false} />
+      <Person {...ME} x={300} y={1260} scale={1.5} emotion="worried" lookX={1} />
+      <Person {...BIA} x={780} y={1260} scale={1.5} emotion="worried" lookX={-1} />
+      {lies.map(([t, x, y, at], i) => (
+        <Bubble key={i} x={x} y={y - Math.max(0, frame - at - 40) * 3} w={420} size={40} text={t} at={at} color="#dfe6e9" tail="center" />
+      ))}
+      {frame > 120 && [0, 1, 2].map((i) => (
+        <Person key={i} {...LEO} x={[150, 540, 930][i]} y={1080} scale={0.6} emotion="smirk" lookX={0} dim={0.35} />
+      ))}
+      <Pop at={20} /><Pop at={45} /><Pop at={70} /><Sting at={120} volume={0.6} /><Flash at={120} len={5} />
     </AbsoluteFill>
   );
 };
 
 const Fato: React.FC = () => {
   const frame = useCurrentFrame();
-  const n = Math.round(interpolate(frame, [20, 80], [0, 64], clamp));
-  const bar = interpolate(frame, [20, 80], [0, 1], {...clamp, easing: ease});
+  const t = interpolate(frame, [30, 120], [0, 1], {...clamp, easing: ease});
   return (
     <AbsoluteFill style={{background: '#2c2c54'}}>
-      <div style={{position: 'absolute', left: 60, right: 60, top: 150, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 64, color: '#fed330'}}>EXPERIMENTO DO BRINQUEDO PROIBIDO</div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 330, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 280, color: '#fff', WebkitTextStroke: `14px ${INK}`, paintOrder: 'stroke fill'}}>{n}%</div>
-      <div style={{position: 'absolute', left: 90, right: 90, top: 660, textAlign: 'center', fontFamily: 'Inter', fontWeight: 800, fontSize: 56, color: '#dfe6e9', lineHeight: 1.15}}>das crianças que espiaram o brinquedo <span style={{color: '#ff6b6b'}}>mentiram</span> que não espiaram</div>
-      <div style={{position: 'absolute', left: 90, right: 90, top: 940, height: 50, background: '#40407a', border: `7px solid ${INK}`, borderRadius: 25, overflow: 'hidden'}}>
-        <div style={{width: `${bar * 64}%`, height: '100%', background: '#ff6b6b'}} />
+      <div style={{position: 'absolute', left: 60, right: 60, top: 130, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 64, color: '#fed330', lineHeight: 1.05}}>O CÉREBRO SE ACOSTUMA COM A MENTIRA</div>
+      <div style={{position: 'absolute', left: 90, right: 90, top: 380}}>
+        <div style={{fontFamily: 'Inter', fontWeight: 800, fontSize: 48, color: '#dfe6e9', marginBottom: 12}}>CULPA</div>
+        <div style={{height: 70, background: '#40407a', border: `7px solid ${INK}`, borderRadius: 35, overflow: 'hidden'}}><div style={{width: `${100 - t * 80}%`, height: '100%', background: '#20bf6b'}} /></div>
       </div>
-      <div style={{position: 'absolute', left: 60, right: 60, top: 1090, textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 36, color: '#a4b0be'}}>Fonte: Talwar &amp; Lee (2008), Child Development — 150 crianças de 3 a 8 anos</div>
-      <Pop at={20} />
+      <div style={{position: 'absolute', left: 90, right: 90, top: 600}}>
+        <div style={{fontFamily: 'Inter', fontWeight: 800, fontSize: 48, color: '#dfe6e9', marginBottom: 12}}>TAMANHO DA MENTIRA</div>
+        <div style={{height: 70, background: '#40407a', border: `7px solid ${INK}`, borderRadius: 35, overflow: 'hidden'}}><div style={{width: `${15 + t * 85}%`, height: '100%', background: '#ff4757'}} /></div>
+      </div>
+      <div style={{position: 'absolute', left: 60, right: 60, top: 850, textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 36, color: '#a4b0be'}}>Fonte: Garrett et al. (2016), Nature Neuroscience (amígdala, ressonância magnética)</div>
+      <div style={{position: 'absolute', left: 0, right: 0, top: 980, textAlign: 'center', fontSize: 190, transform: `scale(${1 + Math.sin(frame / 8) * 0.04})`}}>🧠</div>
+      <Pop at={30} />
     </AbsoluteFill>
   );
 };
 
-const Rodada1: React.FC = () => {
+const Dobra1: React.FC = () => {
   const frame = useCurrentFrame();
-  const mouth = 1260 - 218 * 1.6;
+  const n = frame < 60 ? 2 : frame < 105 ? 4 : 8;
+  const n2 = frame < 60 ? 2 : frame < 105 ? 4 : 8;
+  return (
+    <AbsoluteFill>
+      <Plaza />
+      <Crowd count={n2} scale={0.55} gap={190} />
+      <CountBadge n={n} />
+      <Person {...ME} x={230} y={1790} scale={0.9} emotion="shocked" lookY={-0.4} />
+      <Bubble x={400} y={1700} w={620} size={46} text="LÉO DE VERDADE, LEVANTA A MÃO!" at={20} tail="left" />
+      <Pop at={20} /><Pop at={60} /><Pop at={105} />
+    </AbsoluteFill>
+  );
+};
+
+const Dobra2: React.FC = () => {
+  const frame = useCurrentFrame();
+  const n = frame < 35 ? 8 : frame < 75 ? 16 : 32;
+  return (
+    <AbsoluteFill>
+      <Plaza />
+      <Crowd count={n} scale={0.4} gap={140} />
+      <CountBadge n={n} />
+      <Person {...ME} x={540} y={1790} scale={0.9} emotion="scared" lookY={-0.4} />
+      <Pop at={35} /><Pop at={75} /><Shake from={75} to={95} amp={8}><AbsoluteFill /></Shake>
+    </AbsoluteFill>
+  );
+};
+
+const Tipos: React.FC = () => {
+  const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
       <Court banner={false} />
-      <Shake from={95} to={125} amp={14}>
-        <Person {...ME} x={300} y={1260} scale={1.7} emotion={frame > 95 ? 'scared' : 'smirk'} talking={frame > 10 && frame < 90} lookX={1} />
-        {[0, 1, 2].map((i) => (
-          <div key={i} style={{position: 'absolute', left: 258 + i * 22, top: mouth + 14 + (i % 2) * 14, width: 14, height: 14, borderRadius: 7, background: '#f6b93b', border: `3px solid ${INK}`}} />
-        ))}
-        <Pigeon x={800} y={1010} scale={1.7} blow={95} />
-      </Shake>
-      <Bubble x={300} y={620} w={620} size={52} text="EU NUNCA COMI O ÚLTIMO PÃO DE QUEIJO" at={12} tail="left" />
-      <Stamp x={540} y={900} text="PEGOU!" at={104} size={110} rot={-6} color="#ff4757" />
-      <Pop at={12} /><Sting at={95} volume={0.7} />
+      <Person {...LEO} x={200} y={1250} scale={1.35} emotion="smirk" lookX={1} />
+      <Person {...LEO} x={540} y={1250} scale={1.35} emotion="happy" lookX={0} />
+      <Person {...LEO} x={880} y={1250} scale={1.35} emotion="shocked" lookX={-1} />
+      <div style={{position: 'absolute', left: 135, top: 880, fontSize: 120, transform: `scale(${spring({frame: frame - 15, fps: 30, config: {damping: 8}})})`}}>🏆</div>
+      <div style={{position: 'absolute', left: 400, top: 470, width: 280, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 46, color: INK, background: '#fff', border: `7px solid ${INK}`, borderRadius: 18, opacity: frame > 40 ? 1 : 0}}>NUNCA CHOREI ✖</div>
+      <Bubble x={880} y={690} w={420} size={44} text="O PÃO É DE HOJE!" at={85} tail="right" />
+      <Pop at={15} /><Pop at={40} /><Pop at={85} />
     </AbsoluteFill>
   );
 };
 
-const Rodada2: React.FC = () => {
+const Multidao: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = Math.max(0, frame - 70);
-  const bx = 800 + t * 6;
-  const by = 735 - t * 9 + (t > 0 ? t * t * 0.01 : 0);
   return (
     <AbsoluteFill>
-      <Court banner={false} />
-      <Person {...BIA} x={300} y={1260} scale={1.7} emotion="smirk" talking={frame > 8 && frame < 60} lookX={1} />
-      <Person {...LEO} x={800} y={1260} scale={1.7} emotion={frame > 70 ? 'shocked' : 'worried'} lookX={-1} />
-      <div style={{position: 'absolute', left: bx - 85, top: by, width: 170, height: 26, borderRadius: 13, background: INK, transform: `rotate(${-8 + t * 10}deg)`, opacity: t > 80 ? 0 : 1}} />
-      <Bubble x={300} y={620} w={560} size={56} text="EU AMO ACORDAR CEDO" at={10} tail="left" />
-      <Stamp x={860} y={500} text="PEGOU!" at={70} size={80} rot={8} color="#ff4757" />
-      <Pop at={10} /><Sting at={70} volume={0.6} />
+      <Plaza />
+      <Crowd count={64} scale={0.3} revealAt={85} />
+      <CountBadge n={64} />
+      <Person {...ME} x={540} y={1790} scale={0.9} emotion="scared" lookY={-0.4} />
+      <Sting at={0} volume={0.7} /><Flash at={0} len={6} /><Pop at={85} />
     </AbsoluteFill>
   );
 };
 
-const Bairro: React.FC = () => {
+const Teste: React.FC = () => {
   const frame = useCurrentFrame();
+  const says: [number, number, number][] = [[200, 700, 40], [700, 640, 50], [420, 900, 60], [880, 860, 64], [160, 1000, 70], [600, 1020, 75], [320, 600, 82], [800, 560, 88]];
   return (
     <AbsoluteFill>
-      <Court banner={false} boo />
-      <Person {...BAKER} x={260} y={1260} scale={1.5} emotion="smirk" talking={frame > 5 && frame < 60} lookX={1} />
-      <Person {...POP} x={820} y={1260} scale={1.5} emotion="smirk" talking={frame > 70 && frame < 120} lookX={-1} />
-      <Bubble x={230} y={650} w={400} size={44} text="O PÃO É DE HOJE!" at={8} tail="left" />
-      <Bubble x={860} y={650} w={400} size={44} text="A PIPOCA É GRÁTIS!" at={72} tail="right" />
-      <Stamp x={260} y={930} text="PEGOU!" at={40} size={70} rot={-8} />
-      <Stamp x={820} y={930} text="PEGOU!" at={104} size={70} rot={8} />
-      <Pigeon x={540} y={1130} scale={1} blow={40} />
-      <Pop at={8} /><Pop at={72} />
-    </AbsoluteFill>
-  );
-};
-
-const Final: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill>
-      <Court />
-      <Person {...ME} x={230} y={1260} scale={1.45} emotion="worried" lookX={1} />
-      <Person {...BIA} x={540} y={1260} scale={1.45} emotion="worried" lookX={0} />
-      <Person {...LEO} x={850} y={1260} scale={1.45} emotion="smirk" talking={frame > 20 && frame < 110} lookX={-1} />
-      <Bubble x={850} y={710} w={560} size={52} text="VOCÊS MENTIRAM PRA MIM?" at={18} tail="right" />
-      <Pop at={18} />
-    </AbsoluteFill>
-  );
-};
-
-const Veredito: React.FC = () => {
-  const frame = useCurrentFrame();
-  const stamps = [60, 85, 100, 112, 124];
-  return (
-    <AbsoluteFill>
-      <Court banner={false} />
-      <Shake from={55} to={130} amp={8}>
-        <Person {...ME} x={240} y={1260} scale={1.5} emotion={frame > 55 ? 'scared' : 'worried'} talking={frame > 8 && frame < 30} lookX={1} />
-        <Person {...BIA} x={840} y={1260} scale={1.5} emotion={frame > 90 ? 'scared' : 'worried'} talking={frame > 70 && frame < 90} lookX={-1} />
-        <Pigeon x={540} y={1050} scale={1.5} blow={frame < 80 ? 55 : 82} />
-      </Shake>
-      <Bubble x={240} y={640} w={300} size={64} text="NÃO." at={8} tail="left" />
-      <Bubble x={840} y={640} w={300} size={64} text="NÃO." at={70} tail="right" />
-      {stamps.map((s, i) => (
-        <Stamp key={i} x={180 + ((i * 230) % 760)} y={250 + (i % 2) * 110} text="PIII!" at={s} size={60 + i * 6} rot={-14 + i * 8} color="#ff4757" />
+      <Plaza />
+      <Crowd count={64} scale={0.3} />
+      <Person {...ME} x={230} y={1790} scale={0.9} emotion="happy" lookY={-0.2} />
+      <Bubble x={420} y={1700} w={640} size={44} text="QUAL A COR DO MEU MOLETOM?" at={10} tail="left" />
+      {says.map(([x, y, at], i) => (
+        <Stamp key={i} x={x} y={y} text="LARANJA!" at={at} size={38} rot={-10 + i * 3} color="#ff9f43" />
       ))}
-      <Sting at={55} volume={0.6} /><Pop at={70} />
+      <Pop at={10} />
     </AbsoluteFill>
   );
 };
 
-const Twist: React.FC = () => {
+const Achou: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const z = spring({frame: frame - 6, fps, config: {damping: 14}});
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <AbsoluteFill style={{background: 'radial-gradient(circle at 50% 45%, rgba(254,211,48,0.35) 0%, rgba(39,60,117,0) 60%)'}} />
-      <Person {...LEO} x={540} y={2020} scale={4.0 + 0.3 * z} emotion="smirk" talking={frame > 12 && frame < 100} lookX={0} bob={false} />
-      <Bubble x={540} y={330} w={800} size={64} text="EU TAMBÉM MENTI." at={14} />
-      <Bubble x={540} y={640} w={800} size={58} text="EU SABIA DE TUDO!" at={80} color="#fed330" />
-      <Sting at={14} volume={0.8} /><Flash at={14} len={6} /><Pop at={80} />
+      <AbsoluteFill style={{background: 'radial-gradient(circle at 50% 45%, rgba(254,211,48,0.4) 0%, rgba(39,60,117,0) 60%)'}} />
+      <Person {...LEO} x={540} y={1250} scale={2.4 * z + 0.01} emotion="happy" talking={frame > 12 && frame < 40} lookX={0} />
+      <Bubble x={540} y={640} w={520} size={96} text="VERDE." at={12} color="#fed330" />
+      <Stamp x={540} y={330} text="ACHOU!" at={50} size={110} rot={-6} color="#20bf6b" />
+      <Pop at={12} /><Sting at={50} volume={0.6} />
     </AbsoluteFill>
   );
 };
 
-const Vaia: React.FC = () => {
+const Exige: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Court banner={false} boo />
-      <Person {...ME} x={230} y={1260} scale={1.45} emotion="shocked" lookX={1} />
-      <Person {...BIA} x={540} y={1260} scale={1.45} emotion="shocked" lookX={1} />
-      <Person {...LEO} x={850} y={1260} scale={1.45} emotion="smirk" lookX={-1} />
-      <Pigeon x={540} y={760} scale={1.1} sad />
-      {['BUUU!', 'UUUH!', 'BUUU!'].map((t, i) => (
-        <Stamp key={i} x={200 + i * 330} y={330 + (i % 2) * 90} text={t} at={40 + i * 22} size={80} rot={-8 + i * 8} color="#6c5ce7" />
-      ))}
-      <Pop at={40} /><Pop at={62} /><Pop at={84} />
+      <Court banner={false} />
+      <Person {...ME} x={260} y={1260} scale={1.6} emotion="worried" lookX={1} />
+      <Person {...LEO} x={800} y={1260} scale={1.7} emotion="sad" talking={frame > 10 && frame < 110} lookX={-1} flip />
+      <Bubble x={780} y={610} w={640} size={46} text="SÓ VOLTO A FALAR QUANDO VOCÊ PEDIR DESCULPA." at={10} tail="right" />
+      <Stamp x={540} y={330} text="PRA TODOS ELES" at={110} size={64} rot={-4} color="#ff4757" />
+      <Pop at={10} /><Sting at={110} volume={0.7} />
     </AbsoluteFill>
   );
 };
 
-const Mico: React.FC = () => {
+const Desculpas: React.FC = () => {
   const frame = useCurrentFrame();
-  const dx = Math.sin(frame / 5) * 120;
-  const rot = Math.sin(frame / 5) * 8;
-  const lx = 540 + dx;
+  const vanish = (i: number) => 20 + i * 4;
+  const left = 63 - Math.max(0, Math.min(63, Math.floor((frame - 20) / 4)));
+  const say = Math.floor(Math.max(0, frame - 10) / 14) % 2 === 0 ? 'DESCULPA!' : 'DESCULPA, LÉO!';
   return (
     <AbsoluteFill>
-      <Court banner={false} boo />
-      <div style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, transform: `rotate(${rot}deg)`, transformOrigin: '540px 1260px'}}>
-        <Person {...LEO} x={lx} y={1260} scale={2.0} emotion="worried" lookX={0} />
-        {[0, 1, 2].map((i) => (
-          <div key={i} style={{position: 'absolute', left: lx - 54 + i * 34, top: 1260 - 218 * 2.0 + 20 + (i % 2) * 10, fontSize: 58}}>🌼</div>
-        ))}
-      </div>
-      <Person {...ME} x={180} y={1300} scale={1.2} emotion="happy" lookX={1} />
-      <Person {...BIA} x={900} y={1300} scale={1.2} emotion="happy" lookX={-1} />
-      <Stamp x={540} y={420} text="MICO!" at={14} size={110} rot={-6} color="#ff4757" />
-      <Pop at={14} />
+      <Plaza />
+      <Crowd count={64} scale={0.3} vanish={vanish} />
+      <CountBadge n={left + 1} />
+      <Person {...ME} x={230} y={1790} scale={0.9} emotion="sad" talking lookY={-0.3} />
+      <Bubble x={560} y={1700} w={560} size={56} text={say} at={4} tail="left" />
+      {Array.from({length: 12}).map((_, k) => <Pop key={k} at={20 + k * 20} />)}
+    </AbsoluteFill>
+  );
+};
+
+const Absurdo: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Court banner={false} />
+      <Person {...LEO} x={180} y={1250} scale={1.35} emotion="worried" talking={frame > 12 && frame < 70} lookX={1} />
+      <Person {...ME} x={540} y={1260} scale={1.5} emotion="sad" talking lookX={0} />
+      <Person {...LEO} x={900} y={1250} scale={1.35} emotion="smirk" talking={frame > 80 && frame < 150} lookX={-1} flip />
+      <Bubble x={170} y={700} w={340} size={50} text="MAIS ALTO!" at={12} tail="left" />
+      <Bubble x={910} y={700} w={400} size={44} text="TEM PÃO DE QUEIJO?" at={80} tail="right" />
+      <Bubble x={540} y={500} w={420} size={50} text="DESCULPA!!!" at={40} color="#fed330" />
+      <Pop at={12} /><Pop at={40} /><Pop at={80} />
+    </AbsoluteFill>
+  );
+};
+
+const Paz: React.FC = () => {
+  const frame = useCurrentFrame();
+  return (
+    <AbsoluteFill>
+      <Court banner={false} />
+      <AbsoluteFill style={{background: 'linear-gradient(180deg, rgba(255,177,66,0.35) 0%, rgba(255,177,66,0) 60%)'}} />
+      <Person {...ME} x={290} y={1260} scale={1.6} emotion="happy" lookX={1} />
+      <Person {...LEO} x={780} y={1260} scale={1.6} emotion="happy" talking={frame > 50 && frame < 140} lookX={-1} flip />
+      <Person {...BIA} x={1010} y={1290} scale={1.1} emotion="happy" lookX={-1} flip />
+      <Bubble x={780} y={620} w={620} size={46} text="TÁ BOM. MAS NA PRÓXIMA, SEM MENTIRA." at={50} tail="right" />
+      <Pop at={50} />
     </AbsoluteFill>
   );
 };
@@ -330,9 +350,9 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ JOGARIA ESSE JOGO PRA SALVAR UMA AMIZADE?" color="#fff" top={130} size={70} />
-      <div style={{position: 'absolute', left: 120, top: 560, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
-      <div style={{position: 'absolute', left: 580, top: 560, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
+      <Title text="VOCÊ PEDIRIA DESCULPA 64 VEZES PRA SALVAR UMA AMIZADE?" color="#fff" top={130} size={64} />
+      <div style={{position: 'absolute', left: 120, top: 580, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
+      <div style={{position: 'absolute', left: 580, top: 580, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={320} y={1200} scale={1.5} emotion="worried" lookX={1} />
       <Person {...LEO} x={640} y={1200} scale={1.5} emotion="smirk" lookX={-1} />
       <Stamp x={900} y={900} text="PARTE 4?" at={20} color="#fed330" size={48} rot={8} />
@@ -342,6 +362,6 @@ const Cta: React.FC = () => {
 };
 
 export const SCENES: Record<string, React.FC> = {
-  recap: Recap, quadra: Quadra, regras: Regras, fato: Fato, rodada1: Rodada1, rodada2: Rodada2, bairro: Bairro,
-  final: Final, veredito: Veredito, twist: Twist, vaia: Vaia, mico: Mico, cta: Cta,
+  hook: Hook, recap: Recap, fato: Fato, dobra1: Dobra1, dobra2: Dobra2, tipos: Tipos, multidao: Multidao,
+  teste: Teste, achou: Achou, exige: Exige, desculpas: Desculpas, absurdo: Absurdo, paz: Paz, cta: Cta,
 };
