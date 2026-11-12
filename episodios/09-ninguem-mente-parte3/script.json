@@ -1,0 +1,73 @@
+{
+  "title": "A mentira (Parte 3): a grande final da verdade",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "recap",
+      "text": "Na parte dois, o Léo mandou: amanhã, sete horas, na quadra. Você achou que era um jogo de bola."
+    },
+    {
+      "id": "s02",
+      "visual": "quadra",
+      "text": "Sete da manhã. A quadra tá lotada, tem até pipoqueiro. A faixa diz: grande final da verdade."
+    },
+    {
+      "id": "s03",
+      "visual": "regras",
+      "text": "O Léo pega o microfone: quem me enganar leva o troféu. Quem eu pegar, paga um mico."
+    },
+    {
+      "id": "s04",
+      "visual": "fato",
+      "text": "Mentir vem de pequeno. Num experimento, sessenta e quatro por cento das crianças que espiaram o brinquedo proibido mentiram."
+    },
+    {
+      "id": "s05",
+      "visual": "rodada1",
+      "text": "Rodada um: você jura que nunca comeu o último pão de queijo. O juiz é um pombo. Ele apita. Pegou."
+    },
+    {
+      "id": "s06",
+      "visual": "rodada2",
+      "text": "A Bia tenta: eu amo acordar cedo. A sobrancelha do Léo sobe tanto que sai voando."
+    },
+    {
+      "id": "s07",
+      "visual": "bairro",
+      "text": "Aí o bairro inteiro entra. O padeiro jura que o pão é de hoje. A tia da pipoca jura que é grátis. Vira campeonato."
+    },
+    {
+      "id": "s08",
+      "visual": "final",
+      "text": "Na final, sobram você, a Bia e o Léo. Última pergunta: vocês mentiram pra mim?"
+    },
+    {
+      "id": "s09",
+      "visual": "veredito",
+      "text": "Você diz que não. Apito. A Bia diz que não. Apito, apito, apito."
+    },
+    {
+      "id": "s10",
+      "visual": "twist",
+      "text": "O Léo sorri e confessa: eu também menti. Eu sabia de tudo desde o primeiro dia."
+    },
+    {
+      "id": "s11",
+      "visual": "vaia",
+      "text": "O campeonato inteiro era pra ver se vocês me contavam. A quadra vaia. Até o pombo vaia."
+    },
+    {
+      "id": "s12",
+      "visual": "mico",
+      "text": "E pra pagar o mico, o Léo dança no meio da quadra com as flores na boca."
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Você jogaria esse jogo pra salvar uma amizade? Comenta sim ou não. A parte quatro vai ser ainda mais maluca."
+    }
+  ]
+}
