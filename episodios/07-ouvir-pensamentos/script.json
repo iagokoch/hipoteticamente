@@ -1,8 +1,8 @@
 {
   "title": "E se você ouvisse o pensamento de todo mundo?",
-  "voice": "pm_alex",
+  "voice": "pm_santa",
   "speed": 1.08,
-  "pitch": 0.89,
+  "pitch": 1.0,
   "scenes": [
     {
       "id": "s01",

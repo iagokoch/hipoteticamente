@@ -7,7 +7,7 @@ Primeiro episódio com a **regra nova (11/11/2026)**: fato real curto como ânco
 **Escalada:** pessoas (ônibus, trabalho, mãe) → animais (cachorro, pombos) → cidade inteira (centro) → silêncio e piada final do pombo → pergunta sim/não.
 **Fato real (verificado 11/11/2026):** estimativa de ~6.200 pensamentos por dia por pessoa, medida por fMRI ("thought worms"). Tseng & Poppenk, *Nature Communications*, 2020 (Queen's University). Na tela: "Fonte: Tseng & Poppenk, Nature Communications (2020) — estimativa por ressonância magnética". A conta 40 × 6.200 = 248.000 é nossa e aparece como piada.
 **Cuidado:** o número popular de "60 mil pensamentos por dia" não tem pesquisa por trás, por isso não foi usado.
-**Duração:** 67,3 s de fala (Kokoro pm_alex, speed 1,08, pitch 0,89) → 2.179 quadros = 72,6 s a 30 fps.
+**Duração:** 68,2 s de fala (Kokoro pm_santa, speed 1,08, pitch 1,0, voz neutra) → vídeo final de 73,6 s a 30 fps.
 
 | Cena | Dur. | Cenário | Personagens / expressões | SFX | Palavra-chave → o que aparece |
 |---|---|---|---|---|---|

@@ -3,7 +3,7 @@
 Kit de produção do canal **Hipoteticamente** (@hipoteticamente.br): vídeos "E se você…?" em animação 2D, narrados em pt-BR, 1080x1920, custo zero.
 
 - **Animação:** [Remotion](https://www.remotion.dev) (React). Personagens e cenários desenhados em SVG/CSS em `video/src/Person.tsx` e `Scenes.tsx`.
-- **Voz:** [Kokoro](https://github.com/thewh1teagle/kokoro-onnx) offline, voz `pm_alex`, speed 1.08, pitch 0.89.
+- **Voz:** [Kokoro](https://github.com/thewh1teagle/kokoro-onnx) offline. Padrão (comédia e episódios leves): `pm_santa`, speed 1.08, pitch 1.0. Episódios dramáticos ou de terror: `pm_alex`, speed 1.08, pitch 0.89 (grave). Cada episódio define a voz no próprio `script.json` (`voice`, `speed`, `pitch`).
 - **Trilha e efeitos:** sintetizados em `tts/` (sem direitos de terceiros).
 - **Volume final:** -14 LUFS.
 
