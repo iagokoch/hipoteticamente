@@ -21,53 +21,48 @@
     },
     {
       "id": "s04",
-      "visual": "fofoca",
-      "text": "A vizinha do quarto andar, a da fofoca, tenta de tudo. Elogia o espelho. Elogia a si mesma. Nem uma gota."
-    },
-    {
-      "id": "s05",
       "visual": "zelador",
       "text": "Já o zelador, que ninguém notava, abre a torneira e sai um chafariz. Ele só conserta tudo e nunca cobra."
     },
     {
-      "id": "s06",
+      "id": "s05",
       "visual": "teste",
       "text": "Sua vez. Você ajuda a dona Rosa com as sacolas. Um fiozinho de água. Foi fácil demais."
     },
     {
-      "id": "s07",
+      "id": "s06",
       "visual": "pista",
       "text": "Aí você entende. A torneira mede quanto custa pra você. Ajudar quem te ama é fácil. O jato vem quando é difícil."
     },
     {
-      "id": "s08",
+      "id": "s07",
       "visual": "ajuda",
       "text": "Você bate na porta de quem te ignorou no corredor. Segura a porta, carrega o carrinho e dá bom dia pro cachorro que sempre late pra você."
     },
     {
-      "id": "s09",
+      "id": "s08",
       "visual": "rio",
       "text": "Sua torneira vira um rio! O prédio inteiro vê, e em cinco minutos o corredor vira fila de gente ajudando o inimigo."
     },
     {
-      "id": "s10",
+      "id": "s09",
       "visual": "absurdo",
       "text": "O síndico empurra o carro do vizinho que ele odeia. A fofoqueira elogia a pessoa que ela mais difama. As torneiras gritam de alegria."
     },
     {
+      "id": "s10",
+      "visual": "secam",
+      "text": "Na noite seguinte, todas as torneiras secam. A gentileza virou show pra encher balde, e a torneira percebeu."
+    },
+    {
       "id": "s11",
-      "visual": "final",
-      "text": "Na manhã seguinte, batem na sua porta. É o vizinho da frente, o que mais te tratou mal. Ele segura um balde cheio."
+      "visual": "rosa",
+      "text": "Você acorda com um barulho. É a dona Rosa, descalça, deixando um balde cheio na porta de cada apartamento. Até na do vizinho que sempre a ignorou. A torneira dela nunca secou: ela nunca ajudou por troco."
     },
     {
       "id": "s12",
-      "visual": "gesto",
-      "text": "Sem graça, ele diz: minha torneira só abre quando eu ajudo alguém. Você foi o primeiro. Mas foi só uma vez, tá?"
-    },
-    {
-      "id": "s13",
       "visual": "cta",
-      "text": "Você perdoaria o vizinho que te maltratou se ele te ajudasse uma vez só? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
+      "text": "Você deixaria um balde cheio na porta de quem sempre te ignorou? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
     }
   ]
 }

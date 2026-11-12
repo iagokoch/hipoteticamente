@@ -355,35 +355,43 @@ const Absurdo: React.FC = () => {
 };
 
 // s11
-const Final: React.FC = () => {
+const Secam: React.FC = () => {
   const frame = useCurrentFrame();
-  const open = interpolate(frame, [4, 24], [0, 0.9], {...clamp, easing: ease});
   return (
     <AbsoluteFill>
-      <DoorFrame open={open}>
-        <Person {...MEAN} x={310} y={810} scale={1.55} emotion={frame < 60 ? 'neutral' : 'worried'} lookX={-0.8} />
-      </DoorFrame>
-      <Person {...ME} x={190} y={1300} scale={1.4} emotion="shocked" lookX={1} />
-      {frame >= 30 ? <Bucket x={660} y={1190} s={1.1} fill={1} /> : null}
-      <Stamp x={540} y={230} text="O VIZINHO DA FRENTE" at={0} color="#b33939" size={54} rot={-3} />
-      {frame >= 80 ? <Stamp x={700} y={470} text="COM UM BALDE CHEIO?!" at={80} color="#0c63c9" size={52} rot={-4} /> : null}
-      <Pop at={30} /><Pop at={80} /><Sting at={30} volume={0.35} />
+      <Hall night />
+      <Stamp x={540} y={230} text="NOITE" at={0} color="#2f3542" size={70} rot={-3} />
+      {[190, 540, 890].map((x, i) => <TapView key={i} x={x} y={760} mode="dry" floorY={1250} s={1.0} />)}
+      {[190, 540, 890].map((x, i) => (frame >= 20 + i * 12 ? <div key={i} style={{position: 'absolute', left: x - 60, top: 880, fontSize: 120}}>❌</div> : null))}
+      <Stamp x={540} y={470} text="TUDO SECO" at={10} color="#ff4757" size={90} rot={-4} />
+      {frame >= 90 ? <Stamp x={540} y={1060} text="VIROU SHOW 📸" at={90} color="#fed330" size={64} rot={3} /> : null}
+      <Person {...ME} x={540} y={1650} scale={1.2} emotion={frame < 90 ? 'shocked' : 'worried'} lookY={-0.2} />
+      <Pop at={10} /><Pop at={90} /><Sting at={10} volume={0.35} />
     </AbsoluteFill>
   );
 };
 
 // s12
-const Gesto: React.FC = () => {
+const RosaNoite: React.FC = () => {
   const frame = useCurrentFrame();
+  const doors = [200, 540, 880];
+  const rx = interpolate(frame, [20, 70, 100, 150, 180, 230], [1000, 880, 540, 540, 200, 200], clamp);
+  const placed = [frame >= 62, frame >= 125, frame >= 190];
   return (
     <AbsoluteFill>
-      <Hall />
-      <TapView x={760} y={700} mode={frame > 60 ? 'fountain' : 'dry'} floorY={1250} s={1.3} />
-      <Person {...ME} x={230} y={1450} scale={1.4} emotion="happy" lookX={1} bob />
-      <Person {...MEAN} x={850} y={1450} scale={1.4} emotion={frame < 100 ? 'worried' : 'happy'} talking={frame < 100} lookX={-1} />
-      <Bubble x={700} y={520} w={560} size={44} text="MINHA TORNEIRA SÓ ABRE QUANDO EU AJUDO!" at={5} tail="right" />
-      {frame >= 100 ? <Stamp x={540} y={230} text="FOI SÓ UMA VEZ, TÁ?" at={100} color="#fed330" size={56} rot={-4} /> : null}
-      <Pop at={100} /><Sting at={60} volume={0.35} />
+      <Hall night />
+      {doors.map((x, i) => (
+        <div key={i} style={{position: 'absolute', left: x - 110, top: 700, width: 220, height: 500, background: '#57606f', border: `10px solid ${INK}`}}>
+          <div style={{position: 'absolute', right: 24, top: 230, width: 26, height: 26, borderRadius: 13, background: '#fed330', border: `5px solid ${INK}`}} />
+        </div>
+      ))}
+      {doors.map((x, i) => (placed[i] ? <Bucket key={i} x={x + 40} y={1260} s={0.95} fill={1} /> : null))}
+      <Person {...ROSA} x={rx} y={1480} scale={1.3} emotion="happy" lookX={-1} bob />
+      <Bucket x={rx + 90} y={1440} s={0.9} fill={1} />
+      {frame >= 160 ? <Stamp x={540} y={420} text="ATÉ NA DO QUE A IGNOROU" at={160} color="#0c63c9" size={46} rot={-3} /> : null}
+      <Stamp x={540} y={230} text="3 DA MANHÃ" at={0} color="#2f3542" size={66} rot={-3} />
+      <Person {...ME} x={150} y={1760} scale={0.9} emotion={frame > 100 ? 'happy' : 'shocked'} lookX={1} dim={0.1} />
+      <Pop at={62} /><Pop at={125} /><Pop at={190} />
     </AbsoluteFill>
   );
 };
@@ -392,11 +400,12 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ PERDOARIA O VIZINHO QUE TE MALTRATOU SE ELE TE AJUDASSE 1 VEZ?" color="#fff" top={110} size={58} />
+      <Title text="VOCÊ DEIXARIA UM BALDE NA PORTA DE QUEM SEMPRE TE IGNOROU?" color="#fff" top={110} size={58} />
       <div style={{position: 'absolute', left: 120, top: 560, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
       <div style={{position: 'absolute', left: 580, top: 560, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={320} y={1250} scale={1.5} emotion="worried" lookX={1} />
-      <Person {...MEAN} x={720} y={1250} scale={1.5} emotion="sad" lookX={-1} />
+      <Person {...ROSA} x={720} y={1250} scale={1.5} emotion="happy" lookX={-1} />
+      <Bucket x={540} y={1240} s={0.9} fill={1} />
       <Stamp x={540} y={480} text="PARTE 4?" at={20} color="#fed330" size={52} rot={-4} />
       <div style={{position: 'absolute', left: 140, right: 140, top: 1470, height: 110, borderRadius: 55, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 56, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
     </AbsoluteFill>
@@ -405,5 +414,5 @@ const Cta: React.FC = () => {
 
 export const SCENES: Record<string, React.FC> = {
   hook: Hook, fato: Fato, sindico: Sindico, fofoca: Fofoca, zelador: Zelador, teste: Teste, pista: Pista,
-  ajuda: Ajuda, rio: Rio, absurdo: Absurdo, final: Final, gesto: Gesto, cta: Cta,
+  ajuda: Ajuda, rio: Rio, absurdo: Absurdo, secam: Secam, rosa: RosaNoite, cta: Cta,
 };
