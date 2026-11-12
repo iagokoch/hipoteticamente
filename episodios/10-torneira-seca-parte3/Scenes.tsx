@@ -138,19 +138,49 @@ const Cap: React.FC<{text: string; top?: number; color?: string}> = ({text, top 
   <div style={{position: 'absolute', top, left: 60, right: 60, textAlign: 'center', fontFamily: 'Inter', fontWeight: 600, fontSize: 32, color}}>{text}</div>
 );
 
+const ZEL = {skin: '#8d5524', hair: 'short' as const, hairColor: '#1e1e1e', hat: 'cap' as const, hatColor: '#2d98da', shirt: '#2d98da', pants: '#0c63c9'};
+const MEAN = {skin: '#f2c29b', hair: 'spiky' as const, hairColor: '#2d3436', mustache: true, shirt: '#b33939', pants: '#2d3436'};
+
+type TapMode = 'dry' | 'drip' | 'thread' | 'mud' | 'fountain' | 'river';
+// torneira: cano + bico + jato até o chão (y do bico = y)
+const TapView: React.FC<{x: number; y: number; mode: TapMode; floorY: number; s?: number}> = ({x, y, mode, floorY, s = 1}) => {
+  const frame = useCurrentFrame();
+  const color = mode === 'mud' ? '#8d6e4a' : WATER;
+  const w = mode === 'thread' ? 8 : mode === 'fountain' ? 36 : mode === 'river' ? 110 : mode === 'mud' ? 30 : 0;
+  const len = floorY - y - 44 * s;
+  return (
+    <div style={{position: 'absolute', left: 0, top: 0}}>
+      <svg viewBox="0 0 200 130" width={200 * s} height={130 * s} style={{position: 'absolute', left: x - 120 * s, top: y - 90 * s, overflow: 'visible'}}>
+        <rect x={0} y={20} width={60} height={34} fill="#b2bec3" stroke={INK} strokeWidth={7} />
+        <path d="M40,37 L150,37 Q176,37 176,64 L176,86" fill="none" stroke={INK} strokeWidth={34} strokeLinecap="round" />
+        <path d="M40,37 L150,37 Q176,37 176,64 L176,86" fill="none" stroke="#b2bec3" strokeWidth={20} strokeLinecap="round" />
+        <rect x={100} y={0} width={30} height={14} rx={5} fill="#ff4757" stroke={INK} strokeWidth={5} />
+      </svg>
+      {w > 0 ? (
+        <>
+          <div style={{position: 'absolute', left: x - w / 2 + 56 * s, top: y - 4 * s, width: w, height: Math.min(len, interpolate(frame, [0, 10], [0, len], clamp)), background: color, border: `5px solid ${INK}`, borderTop: 'none', borderRadius: w > 60 ? 12 : 8, opacity: 0.95}} />
+          <div style={{position: 'absolute', left: x + 56 * s - Math.max(w, 60) * 1.3, top: floorY - 20, width: Math.max(w, 60) * 2.6, height: 40, borderRadius: 40, background: color, border: `5px solid ${INK}`}} />
+        </>
+      ) : mode === 'drip' ? <Drop x={x + 56 * s} y={y + 40 * s + ((frame * 9) % len)} s={0.7} /> : (
+        <div style={{position: 'absolute', left: x + 56 * s - 60, top: y + 120, width: 120, fontFamily: 'Inter', fontWeight: 900, fontSize: 40, color: INK, textAlign: 'center', opacity: 0.6}}>…</div>
+      )}
+    </div>
+  );
+};
+
 // s01
 const Hook: React.FC = () => {
   const frame = useCurrentFrame();
+  const mode: TapMode = frame < 60 ? 'drip' : 'thread';
   return (
     <AbsoluteFill>
-      <Hall />
+      <Kitchen />
       <DayBadge n="DIA 30" />
-      <Stamp x={540} y={420} text="BAIRRO SEM ÁGUA" at={30} color="#ff4757" size={62} rot={-3} />
-      <Person {...ME} x={230} y={1330} scale={1.4} emotion={frame < 90 ? 'scared' : 'worried'} lookX={1} bob />
-      <Person {...ROSA} x={850} y={1330} scale={1.4} emotion="neutral" lookX={-1} />
-      <Bucket x={540} y={1330} s={1.7 + Math.sin(frame / 6) * 0.03} fill={0.18} />
-      <Stamp x={540} y={700} text="SÓ UM BALDE" at={80} color="#0c63c9" size={70} rot={-5} />
-      <Pop at={30} /><Pop at={80} />
+      <TapView x={300} y={420} mode={mode} floorY={470} s={1.2} />
+      <Stamp x={540} y={700} text="A ÁGUA VOLTOU!" at={20} color="#20bf6b" size={74} rot={-3} />
+      <Stamp x={540} y={900} text="SÓ PRA QUEM É GENTIL" at={90} color="#ff4757" size={54} rot={3} />
+      <Person {...ME} x={560} y={1450} scale={1.6} emotion={frame < 60 ? 'shocked' : 'happy'} lookX={-1} bob />
+      <Pop at={20} /><Pop at={90} /><Sting at={20} volume={0.3} />
     </AbsoluteFill>
   );
 };
@@ -160,16 +190,12 @@ const Fato: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#2f3542'}}>
-      <Title text="ORGANIZAÇÃO MUNDIAL DA SAÚDE" color="#fed330" top={130} size={62} at={4} />
-      <Stamp x={540} y={430} text="BÁSICO: 50 A 100 L" at={30} color="#20bf6b" size={66} rot={-3} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 560, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 52, color: '#fff'}}>POR PESSOA, POR DIA</div>
-      {frame >= 110 ? <Bucket x={540} y={1000} s={1.6} fill={0.2} /> : null}
-      {frame >= 110 ? <Stamp x={540} y={1060} text="O BALDE: 20 L" at={110} color="#ff4757" size={70} rot={-4} /> : null}
-      {frame >= 150 ? (
-        <div style={{position: 'absolute', left: 0, right: 0, top: 1110, textAlign: 'center', fontSize: 90, letterSpacing: 6, opacity: Math.min(1, (frame - 150) / 10)}}>🧍🧍🧍🧍🧍🧍</div>
-      ) : null}
-      <Pop at={30} /><Pop at={110} /><Pop at={150} />
-      <Cap text="Fonte: OMS, Howard & Bartram (2003), Domestic Water Quantity, Service Level and Health" top={1500} />
+      <Title text="CIÊNCIA, 2007" color="#fed330" top={130} size={80} at={4} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 440, textAlign: 'center', fontSize: 300, transform: `scale(${1 + Math.sin(frame / 7) * 0.05})`}}>🧠</div>
+      {frame >= 40 ? <Stamp x={540} y={900} text="AJUDAR DE LIVRE VONTADE" at={40} color="#20bf6b" size={52} rot={-3} /> : null}
+      {frame >= 80 ? <Stamp x={540} y={1060} text="ATIVA O CENTRO DE PRAZER" at={80} color="#ff4757" size={50} rot={3} /> : null}
+      <Pop at={40} /><Pop at={80} />
+      <Cap text="Fonte: Harbaugh, Mayr & Burghart (2007), Science 316:1622–1625 (ressonância magnética)" top={1500} />
     </AbsoluteFill>
   );
 };
@@ -180,197 +206,152 @@ const Sindico: React.FC = () => {
   return (
     <AbsoluteFill>
       <Hall />
-      <Stamp x={540} y={220} text="ASSEMBLEIA DE EMERGÊNCIA" at={0} color="#2f3542" size={50} rot={-3} />
-      <Person {...ME} x={170} y={1300} scale={0.95} emotion="worried" lookX={1} dim={0.2} />
-      <Person {...ROSA} x={910} y={1300} scale={0.95} emotion="worried" lookX={-1} dim={0.2} />
-      <Person {...SIND} x={540} y={1350} scale={1.5} emotion="smirk" talking bob />
-      <Crown x={540} y={1350 - 340 * 1.5} s={1.5} at={50} />
-      <Bubble x={540} y={640} w={760} size={60} text="EU SOU O GUARDIÃO DO BALDE!" at={20} />
-      <Stamp x={540} y={1470} text="COROA DE PAPELÃO" at={100} color="#fed330" size={50} rot={-3} />
-      <Pop at={20} /><Pop at={100} />
-      <Sting at={50} volume={0.3} />
+      <TapView x={540} y={700} mode={frame < 40 ? 'dry' : 'mud'} floorY={1250} s={1.3} />
+      <Person {...SIND} x={250} y={1450} scale={1.5} emotion={frame < 40 ? 'happy' : 'smirk'} talking={frame < 40} bob />
+      <Person {...ME} x={880} y={1450} scale={1.2} emotion="shocked" lookX={-1} dim={0.15} />
+      {frame >= 40 ? <Stamp x={540} y={420} text="LAMA!" at={40} color="#8d6e4a" size={110} rot={-5} /> : null}
+      <Bubble x={250} y={880} w={380} size={46} text="SOU MUITO GENTIL!" at={5} tail="left" />
+      <Pop at={40} /><Sting at={40} volume={0.35} />
     </AbsoluteFill>
   );
 };
 
-const LawCard: React.FC<{n: string}> = ({n}) => <Stamp x={540} y={200} text={n} at={0} color="#ff4757" size={80} rot={-3} />;
-
 // s04
-const Banho: React.FC = () => {
+const Fofoca: React.FC = () => {
   const frame = useCurrentFrame();
   return (
-    <AbsoluteFill style={{background: '#74b9ff'}}>
-      <LawCard n="LEI Nº 1" />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 330, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 76, color: '#fff', WebkitTextStroke: `9px ${INK}`, paintOrder: 'stroke fill'}}>BANHO: 1 POR MÊS</div>
-      <Floor color="#a29bfe" y={1250} />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 560, textAlign: 'center', fontSize: 240, transform: `rotate(${Math.sin(frame / 6) * 5}deg)`}}>🚿</div>
-      <Person {...NEI} x={540} y={1560} scale={1.4} emotion={frame > 60 ? 'happy' : 'neutral'} bob />
-      {frame >= 60 ? <Stamp x={540} y={1000} text="SORTEADO!" at={60} color="#20bf6b" size={84} rot={-6} /> : null}
-      {frame >= 100 ? Array.from({length: 14}).map((_, i) => <div key={i} style={{position: 'absolute', left: (i * 83) % 1040, top: ((frame - 100) * (5 + (i % 4)) + i * 70) % 1700, fontSize: 44}}>🎉</div>) : null}
-      <Pop at={60} />
-      <Sting at={60} volume={0.4} />
+    <AbsoluteFill>
+      <Hall />
+      <TapView x={540} y={700} mode="dry" floorY={1250} s={1.3} />
+      <Person {...NEI2} x={300} y={1450} scale={1.5} emotion={frame < 90 ? 'smirk' : 'sad'} talking={frame < 90} bob />
+      <Bubble x={300} y={880} w={420} size={46} text={frame < 55 ? 'QUE ESPELHO LINDO!' : 'EU SOU LINDA!'} at={10} tail="left" />
+      <Stamp x={700} y={400} text="0 GOTAS" at={80} color="#ff4757" size={96} rot={-4} />
+      <div style={{position: 'absolute', left: 700, top: 1000, fontSize: 130}}>🪞</div>
+      <Pop at={80} />
     </AbsoluteFill>
   );
 };
 
 // s05
-const Mao: React.FC = () => {
+const Zelador: React.FC = () => {
   const frame = useCurrentFrame();
-  const days = ['SEG', 'TER', 'QUA', 'QUI', 'SEX'];
   return (
-    <AbsoluteFill style={{background: '#a29bfe'}}>
-      <LawCard n="LEI Nº 2" />
-      <div style={{position: 'absolute', left: 0, right: 0, top: 330, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 68, color: '#fff', WebkitTextStroke: `9px ${INK}`, paintOrder: 'stroke fill'}}>1 DEDO POR DIA</div>
-      <div style={{position: 'absolute', left: 60, right: 60, top: 560, display: 'flex', justifyContent: 'space-between'}}>
-        {days.map((d, i) => (
-          <div key={d} style={{width: 170, height: 170, borderRadius: 28, background: frame > 12 + i * 12 ? '#20bf6b' : '#fff', border: `8px solid ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, color: INK, fontSize: 38}}>
-            <div style={{fontSize: 60}}>☝️</div>{d}
-          </div>
-        ))}
-      </div>
-      <div style={{position: 'absolute', left: 280, top: 820, width: 520, height: 190, borderRadius: 28, background: frame > 80 ? '#fed330' : '#dfe6e9', border: `8px solid ${INK}`, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, color: INK, fontSize: 44}}>
-        <div style={{fontSize: 70}}>👍</div>DOMINGO: O DEDÃO
-      </div>
-      <Person {...ME} x={540} y={1560} scale={1.4} emotion={frame > 80 ? 'happy' : 'worried'} lookY={-0.2} />
-      <Pop at={20} /><Pop at={80} />
+    <AbsoluteFill>
+      <Hall />
+      <TapView x={540} y={700} mode={frame > 25 ? 'fountain' : 'dry'} floorY={1250} s={1.3} />
+      <Person {...ZEL} x={250} y={1450} scale={1.5} emotion="happy" bob />
+      <div style={{position: 'absolute', left: 350, top: 1170, fontSize: 110}}>🔧</div>
+      {frame >= 25 ? <Stamp x={540} y={420} text="CHAFARIZ!" at={25} color="#20bf6b" size={110} rot={-5} /> : null}
+      <Person {...MEAN} x={880} y={1450} scale={1.2} emotion="shocked" lookX={-1} dim={0.15} />
+      <Pop at={25} /><Sting at={25} volume={0.35} />
     </AbsoluteFill>
   );
 };
 
 // s06
-const Silencio: React.FC = () => {
+const Teste: React.FC = () => {
   const frame = useCurrentFrame();
-  const mime = Math.sin(frame * 0.7);
   return (
     <AbsoluteFill>
-      <Hall />
-      <LawCard n="LEI Nº 3" />
-      <Stamp x={540} y={380} text="🤫 SILÊNCIO" at={20} color="#2f3542" size={80} rot={-3} />
-      <Person {...NEI} x={230} y={1350} scale={1.35} emotion="shocked" lookX={1} />
-      <Person {...NEI2} x={850} y={1350} scale={1.35} emotion="smirk" lookX={-1} flip />
-      <div style={{position: 'absolute', left: 120 + mime * 14, top: 640, fontSize: 130}}>{frame % 40 < 20 ? '😤' : '🙄'}</div>
-      <div style={{position: 'absolute', left: 740, top: 640 - mime * 12, fontSize: 130}}>{frame % 50 < 25 ? '🫵' : '🤌'}</div>
-      <div style={{position: 'absolute', left: 0, right: 0, top: 780, textAlign: 'center', fontFamily: 'Inter', fontWeight: 900, color: INK, fontSize: 80, opacity: Math.min(1, Math.max(0, (frame - 70) / 10))}}>MÍMICA</div>
-      <Pop at={20} />
+      <Kitchen />
+      <TapView x={300} y={420} mode={frame < 70 ? 'dry' : 'thread'} floorY={470} s={1.2} />
+      <Person {...ME} x={360} y={1400} scale={1.4} emotion={frame > 70 ? 'neutral' : 'happy'} lookX={1} bob />
+      <Person {...ROSA} x={780} y={1400} scale={1.4} emotion="happy" lookX={-1} />
+      <div style={{position: 'absolute', left: 530, top: 1000, fontSize: 120, transform: `rotate(${Math.sin(frame / 6) * 8}deg)`}}>🛍️</div>
+      {frame >= 70 ? <Stamp x={540} y={780} text="SÓ UM FIO..." at={70} color="#0c63c9" size={72} rot={-4} /> : null}
+      {frame >= 110 ? <Stamp x={540} y={1650} text="FÁCIL DEMAIS" at={110} color="#ff4757" size={56} rot={3} /> : null}
+      <Pop at={70} /><Pop at={110} />
     </AbsoluteFill>
   );
 };
 
 // s07
-const Troca: React.FC = () => {
+const Pista: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = ease(Math.min(1, Math.max(0, (frame - 50) / 40)));
   return (
-    <AbsoluteFill style={{background: '#ffeaa7'}}>
-      <Title text="A ECONOMIA DO PRÉDIO" color="#e17055" top={130} size={70} at={0} />
-      <Floor color="#fab1a0" y={1250} />
-      <Person {...NEI} x={190} y={1500} scale={1.3} emotion={frame > 90 ? 'happy' : 'neutral'} />
-      <Person {...SIND} x={890} y={1500} scale={1.3} emotion="smirk" />
-      <div style={{position: 'absolute', left: 130 + t * 520, top: 700, fontSize: 230}}>🚗</div>
-      <div style={{position: 'absolute', left: 740 - t * 520, top: 860, fontSize: 190}}>🥛</div>
-      <Stamp x={540} y={560} text="TROCA JUSTA" at={20} color="#20bf6b" size={72} rot={-4} />
-      {frame >= 100 ? <Stamp x={540} y={1180} text="COPO VAZIO" at={100} color="#ff4757" size={64} rot={5} /> : null}
-      <Pop at={20} /><Pop at={100} />
+    <AbsoluteFill style={{background: '#273c75'}}>
+      <Title text="A TORNEIRA MEDE O QUANTO CUSTA" color="#fed330" top={130} size={62} at={4} />
+      {frame >= 25 ? (
+        <div style={{position: 'absolute', left: 80, right: 80, top: 440, height: 300, borderRadius: 40, background: '#dfe6e9', border: `9px solid ${INK}`, padding: 30, fontFamily: 'Inter', fontWeight: 900, color: INK, textAlign: 'center', fontSize: 52}}>
+          <div>AJUDAR QUEM TE AMA</div><div style={{color: '#20bf6b', fontSize: 70}}>FÁCIL → 💧 FIO</div>
+        </div>
+      ) : null}
+      {frame >= 100 ? (
+        <div style={{position: 'absolute', left: 80, right: 80, top: 800, height: 340, borderRadius: 40, background: '#dfe6e9', border: `9px solid ${INK}`, padding: 30, fontFamily: 'Inter', fontWeight: 900, color: INK, textAlign: 'center', fontSize: 50}}>
+          <div>AJUDAR QUEM TE TRATOU MAL</div><div style={{color: '#ff4757', fontSize: 70}}>DIFÍCIL → 🌊 JATO</div>
+        </div>
+      ) : null}
+      <Person {...ME} x={540} y={1650} scale={1.3} emotion={frame > 100 ? 'worried' : 'neutral'} lookY={-0.3} />
+      <Pop at={25} /><Pop at={100} />
     </AbsoluteFill>
   );
 };
 
 // s08
-const Ladrao: React.FC = () => {
+const Ajuda: React.FC = () => {
   const frame = useCurrentFrame();
-  const x = interpolate(frame, [10, 90], [-120, 440], {...clamp});
+  const ev = frame < 60 ? 0 : frame < 120 ? 1 : 2;
   return (
     <AbsoluteFill>
-      <Hall night />
-      <Person {...SIND} x={760} y={1430} scale={1.4} emotion="neutral" lookX={0} />
-      <Crown x={760} y={1430 - 340 * 1.4} s={1.4} />
-      <Bucket x={760} y={1380} s={1.2} fill={0.2} />
-      <div style={{position: 'absolute', left: 780, top: 800 - Math.sin(frame / 8) * 10, fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#dfe6e9'}}>Z z z</div>
-      <Person {...THIEF} x={x} y={1430} scale={1.3} emotion={frame > 90 ? 'shocked' : 'smirk'} lookX={1} bob={frame < 90} />
-      {frame >= 90 ? <Stamp x={400} y={800} text="OPA." at={90} color="#ff4757" size={80} rot={-6} /> : null}
-      <Pop at={90} />
-      <Sting at={90} volume={0.4} />
+      <Hall />
+      <Person {...ME} x={300} y={1450} scale={1.5} emotion="worried" bob lookX={1} />
+      <Person {...MEAN} x={820} y={1450} scale={1.4} emotion={ev === 0 ? 'smirk' : 'shocked'} lookX={-1} />
+      <div style={{position: 'absolute', left: 0, right: 0, top: 560, textAlign: 'center', fontSize: 200}}>{['🚪', '🛒', '🐕'][ev]}</div>
+      <Stamp x={540} y={330} text={['SEGURAR A PORTA', 'CARREGAR O CARRINHO', 'BOM DIA PRO CACHORRO'][ev]} at={ev === 0 ? 5 : ev === 1 ? 60 : 120} color="#20bf6b" size={52} rot={-3} />
+      <Pop at={5} /><Pop at={60} /><Pop at={120} />
     </AbsoluteFill>
   );
 };
 
 // s09
-const Voce: React.FC = () => {
+const Rio: React.FC = () => {
   const frame = useCurrentFrame();
-  const x = interpolate(frame, [20, 170], [180, 760], {...clamp});
   return (
     <AbsoluteFill>
       <Hall />
-      {[[120, 'NEI', 0], [540, 'NEI2', 1], [950, 'SIND', 2]].map(([px, k]) => (
-        <Person key={String(k)} {...(k === 'NEI' ? NEI : k === 'NEI2' ? NEI2 : SIND)} x={px as number} y={900} scale={0.9} emotion="scared" lookX={frame > 60 ? 0.6 : -0.3} dim={0.15} />
+      <TapView x={540} y={640} mode="river" floorY={1300} s={1.4} />
+      <Stamp x={540} y={380} text="UM RIO!" at={5} color="#0c63c9" size={120} rot={-5} />
+      {[[120, NEI], [300, NEI2], [800, ZEL], [960, SIND]].map(([px, p], i) => (
+        <Person key={i} {...(p as typeof NEI)} x={px as number} y={1500} scale={1.0} emotion="happy" bob={frame > 60} lookX={px as number < 540 ? 1 : -1} />
       ))}
-      <Person {...ME} x={x} y={1500} scale={1.5} emotion="scared" lookX={1} bob />
-      <Bucket x={x + 130} y={1470} s={1.0} fill={0.02} />
-      <Drop x={x + 130} y={1410 + Math.sin(frame / 5) * 4} s={0.6} />
-      <Stamp x={540} y={330} text="1 GOTA" at={30} color="#0c63c9" size={80} rot={-4} />
-      {frame >= 120 ? <Bubble x={540} y={640} w={640} size={56} text="NÃO RESPIRA!" at={120} /> : null}
-      <Pop at={30} />
+      <Person {...ME} x={540} y={1760} scale={1.1} emotion="happy" bob />
+      {frame >= 80 ? <Stamp x={540} y={1000} text="FILA PRO INIMIGO" at={80} color="#fed330" size={54} rot={3} /> : null}
+      <Pop at={5} /><Pop at={80} /><Sting at={5} volume={0.4} />
     </AbsoluteFill>
   );
 };
 
 // s10
-const Chuva: React.FC = () => {
+const Absurdo: React.FC = () => {
   const frame = useCurrentFrame();
-  const flash = frame > 20 && frame < 26;
   return (
-    <AbsoluteFill style={{background: '#576574'}}>
-      <div style={{position: 'absolute', left: 60, top: 120, width: 400, height: 160, borderRadius: 80, background: '#2f3542', border: `7px solid ${INK}`}} />
-      <div style={{position: 'absolute', left: 560, top: 180, width: 440, height: 170, borderRadius: 85, background: '#2f3542', border: `7px solid ${INK}`}} />
-      {frame > 20 ? <Stamp x={540} y={440} text="CHUVA!!!" at={22} color="#0c63c9" size={96} rot={-4} /> : null}
-      {frame > 50 ? Array.from({length: 18}).map((_, i) => <Drop key={i} x={(i * 61) % 1040 + 20} y={((frame - 50) * (9 + (i % 5)) + i * 90) % 1500 + 200} s={0.6} />) : frame > 30 ? <Drop x={540} y={((frame - 30) * 14) % 1300 + 300} s={0.9} /> : null}
-      <Floor color="#2d3436" y={1300} />
-      <Person {...ME} x={190} y={1560} scale={1.25} emotion="happy" lookY={-1} />
-      <Person {...NEI} x={540} y={1560} scale={1.25} emotion="happy" lookY={-1} />
-      <Person {...ROSA} x={890} y={1560} scale={1.25} emotion="happy" lookY={-1} />
-      {flash ? <AbsoluteFill style={{background: '#fff', opacity: 0.8}} /> : null}
-      <Pop at={22} />
-      <Sting at={20} volume={0.5} />
+    <AbsoluteFill style={{background: '#74b9ff'}}>
+      <Floor color="#b2bec3" y={1000} />
+      <Stamp x={540} y={200} text="GENTILEZA TOTAL" at={0} color="#20bf6b" size={64} rot={-3} />
+      <div style={{position: 'absolute', left: 260 + Math.sin(frame / 6) * 12, top: 760, fontSize: 200}}>🚗</div>
+      <Person {...SIND} x={150} y={1060} scale={1.1} emotion="scared" bob />
+      <Person {...MEAN} x={620} y={1060} scale={1.1} emotion="shocked" lookX={-1} />
+      <Person {...NEI2} x={820} y={1460} scale={1.2} emotion="smirk" talking bob />
+      {frame >= 70 ? <Bubble x={760} y={1180} w={420} size={44} text="QUE CABELO LINDO!" at={70} tail="center" /> : null}
+      <Person {...NEI} x={330} y={1460} scale={1.2} emotion="shocked" />
+      {frame >= 100 ? [0, 1, 2].map((i) => <div key={i} style={{position: 'absolute', left: 60 + i * 330, top: 1640, fontSize: 80}}>🚰😍</div>) : null}
+      <Pop at={70} /><Pop at={100} />
     </AbsoluteFill>
   );
 };
 
 // s11
-const Danca: React.FC = () => {
-  const frame = useCurrentFrame();
-  const fill = interpolate(frame, [10, 160], [0.02, 1], {...clamp});
-  const d = (k: number) => Math.sin(frame / 5 + k) * 18;
-  return (
-    <AbsoluteFill style={{background: '#3d6bb3'}}>
-      {Array.from({length: 22}).map((_, i) => <Drop key={i} x={(i * 53) % 1040 + 20} y={(frame * (10 + (i % 5)) + i * 80) % 1500 + 150} s={0.6} />)}
-      <Stamp x={540} y={230} text="30 SEGUNDOS" at={0} color="#2f3542" size={72} rot={-3} />
-      <Floor color="#2d3436" y={1300} />
-      <Bucket x={540} y={1330} s={1.8} fill={fill} />
-      <div style={{position: 'absolute', left: 0, top: d(0)}}><Person {...SIND} x={170} y={1560} scale={1.15} emotion="happy" bob /></div>
-      <div style={{position: 'absolute', left: 0, top: d(2)}}><Person {...ROSA} x={910} y={1560} scale={1.15} emotion="happy" bob /></div>
-      <div style={{position: 'absolute', left: 0, top: d(4)}}><Person {...ME} x={540} y={1760} scale={1.0} emotion="happy" bob /></div>
-      <Crown x={170} y={1560 - 340 * 1.15 + d(0)} s={1.15} />
-      {frame > 150 ? <Stamp x={540} y={560} text="BALDE CHEIO!" at={150} color="#20bf6b" size={86} rot={-4} /> : null}
-      <Pop at={150} /><Sting at={150} volume={0.4} />
-    </AbsoluteFill>
-  );
-};
-
-// s12
-const Gole: React.FC = () => {
+const Final: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
       <Hall />
-      <Person {...ME} x={230} y={1350} scale={1.4} emotion="happy" lookX={1} />
-      <Person {...ROSA} x={620} y={1350} scale={1.4} emotion="happy" lookX={-1} talking={frame < 70} />
-      <Bucket x={430} y={1250} s={1.1} fill={0.95} />
-      <div style={{position: 'absolute', left: 405, top: 1090, fontSize: 90}}>🥤</div>
-      <Person {...SIND} x={930} y={1350} scale={1.2} emotion="sad" lookX={-1} talking={frame > 80} />
-      {frame >= 80 ? <Bubble x={900} y={720} w={560} size={52} text="POSSO LAVAR SÓ UM DEDO?" at={80} tail="right" /> : null}
-      {frame >= 40 ? <div style={{position: 'absolute', left: 850, top: 980, fontSize: 110, transform: `rotate(${(frame - 40) * 0.8}deg)`}}>👑</div> : null}
-      <Stamp x={400} y={260} text="O 1º GOLE" at={10} color="#fed330" size={70} rot={-4} />
-      <Pop at={10} /><Pop at={80} />
+      <TapView x={760} y={700} mode={frame < 80 ? 'fountain' : 'dry'} floorY={1250} s={1.3} />
+      <Person {...ME} x={230} y={1450} scale={1.4} emotion="worried" lookX={1} />
+      <Person {...MEAN} x={850} y={1450} scale={1.4} emotion={frame < 80 ? 'happy' : 'sad'} lookX={-1} />
+      {frame >= 80 ? <Stamp x={540} y={380} text="SECOU DE NOVO" at={80} color="#ff4757" size={80} rot={-4} /> : null}
+      {frame >= 140 ? <Stamp x={540} y={1650} text="SÓ ABRE COM A SUA AJUDA" at={140} color="#fed330" size={50} rot={3} /> : null}
+      <Pop at={80} /><Pop at={140} /><Sting at={80} volume={0.35} />
     </AbsoluteFill>
   );
 };
@@ -379,19 +360,18 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ DARIA O 1º GOLE PRA DONA ROSA?" color="#fff" top={130} size={68} />
-      <div style={{position: 'absolute', left: 120, top: 520, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
-      <div style={{position: 'absolute', left: 580, top: 520, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
-      <Person {...ME} x={320} y={1200} scale={1.5} emotion="worried" lookX={1} />
-      <Bucket x={470} y={1190} s={0.9} fill={0.9} />
-      <Person {...ROSA} x={680} y={1200} scale={1.5} emotion="happy" lookX={-1} />
-      <Stamp x={540} y={440} text="PARTE 4?" at={20} color="#fed330" size={52} rot={-4} />
+      <Title text="VOCÊ AJUDARIA QUEM TE TRATOU MAL PRA ELE TER ÁGUA?" color="#fff" top={110} size={58} />
+      <div style={{position: 'absolute', left: 120, top: 560, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
+      <div style={{position: 'absolute', left: 580, top: 560, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
+      <Person {...ME} x={320} y={1250} scale={1.5} emotion="worried" lookX={1} />
+      <Person {...MEAN} x={720} y={1250} scale={1.5} emotion="sad" lookX={-1} />
+      <Stamp x={540} y={480} text="PARTE 4?" at={20} color="#fed330" size={52} rot={-4} />
       <div style={{position: 'absolute', left: 140, right: 140, top: 1470, height: 110, borderRadius: 55, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 56, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
     </AbsoluteFill>
   );
 };
 
 export const SCENES: Record<string, React.FC> = {
-  hook: Hook, fato: Fato, sindico: Sindico, banho: Banho, mao: Mao, silencio: Silencio, troca: Troca,
-  ladrao: Ladrao, voce: Voce, chuva: Chuva, danca: Danca, gole: Gole, cta: Cta,
+  hook: Hook, fato: Fato, sindico: Sindico, fofoca: Fofoca, zelador: Zelador, teste: Teste, pista: Pista,
+  ajuda: Ajuda, rio: Rio, absurdo: Absurdo, final: Final, cta: Cta,
 };

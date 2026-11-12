@@ -1,5 +1,5 @@
 {
-  "title": "E se a torneira secasse pra sempre? (Parte 3): o Guardião do Balde",
+  "title": "E se a torneira secasse pra sempre? (Parte 3): a torneira da gentileza",
   "voice": "pm_santa",
   "speed": 1.08,
   "pitch": 1.0,
@@ -7,67 +7,62 @@
     {
       "id": "s01",
       "visual": "hook",
-      "text": "Dia trinta. O bairro inteiro secou. Só o seu prédio ainda tem água: um balde. O balde da dona Rosa."
+      "text": "Dia trinta. A água volta! Mas cada torneira só abre pra quem é gentil de verdade."
     },
     {
       "id": "s02",
       "visual": "fato",
-      "text": "A OMS fala em cinquenta a cem litros por pessoa por dia pro básico. Esse balde tem vinte. Pro prédio inteiro."
+      "text": "Em dois mil e sete, uma ressonância mostrou: ajudar de livre vontade ativa o centro de prazer do cérebro."
     },
     {
       "id": "s03",
       "visual": "sindico",
-      "text": "O síndico chama uma assembleia e se coroa Guardião do Balde. A coroa é de papelão, mas ele leva muito a sério."
+      "text": "O síndico, o mais simpático do prédio, abre a torneira. Sai lama. Ele sorri pra todo mundo, mas a torneira não cai nessa."
     },
     {
       "id": "s04",
-      "visual": "banho",
-      "text": "Primeira lei, votada no grupo: banho só um por mês, por sorteio. Quem ganha vira celebridade do andar."
+      "visual": "fofoca",
+      "text": "A vizinha do quarto andar, a da fofoca, tenta de tudo. Elogia o espelho. Elogia a si mesma. Nem uma gota."
     },
     {
       "id": "s05",
-      "visual": "mao",
-      "text": "Segunda lei: lavar a mão, só um dedo por dia. O dedão fica pro domingo."
+      "visual": "zelador",
+      "text": "Já o zelador, que ninguém notava, abre a torneira e sai um chafariz. Ele só conserta tudo e nunca cobra."
     },
     {
       "id": "s06",
-      "visual": "silencio",
-      "text": "Terceira lei: ninguém fala alto, porque suar é desperdício. Briga de vizinho agora é por mímica."
+      "visual": "teste",
+      "text": "Sua vez. Você ajuda a dona Rosa com as sacolas. Um fiozinho de água. Foi fácil demais."
     },
     {
       "id": "s07",
-      "visual": "troca",
-      "text": "Aí nasce a economia. O vizinho do trezentos e dois troca o carro por um copo. Um copo vazio. Ele aceita."
+      "visual": "pista",
+      "text": "Aí você entende. A torneira mede quanto custa pra você. Ajudar quem te ama é fácil. O jato vem quando é difícil."
     },
     {
       "id": "s08",
-      "visual": "ladrao",
-      "text": "De madrugada, alguém tenta roubar o balde. Dá de cara com o Guardião dormindo abraçado nele."
+      "visual": "ajuda",
+      "text": "Você bate na porta de quem te ignorou no corredor. Segura a porta, carrega o carrinho e dá bom dia pro cachorro que sempre late pra você."
     },
     {
       "id": "s09",
-      "visual": "voce",
-      "text": "Sobrou uma gota. Você é escolhido pra carregar o balde até o pátio. O prédio prende a respiração, porque respirar também gasta."
+      "visual": "rio",
+      "text": "Sua torneira vira um rio! O prédio inteiro vê, e em cinco minutos o corredor vira fila de gente ajudando o inimigo."
     },
     {
       "id": "s10",
-      "visual": "chuva",
-      "text": "Um trovão. Alguém grita: chuva! Cai uma gota. Duas. O prédio inteiro põe a língua pra fora."
+      "visual": "absurdo",
+      "text": "O síndico empurra o carro do vizinho que ele odeia. A fofoqueira elogia a pessoa que ela mais difama. As torneiras gritam de alegria."
     },
     {
       "id": "s11",
-      "visual": "danca",
-      "text": "Trinta segundos de chuva viram festa. O síndico dança, a dona Rosa rodopia, e o balde finalmente enche."
+      "visual": "final",
+      "text": "No fim, todo mundo tem água. Só a do vizinho da frente seca de novo: o que mais te tratou mal. A torneira dele só abre se você ajudar."
     },
     {
       "id": "s12",
-      "visual": "gole",
-      "text": "A dona Rosa oferece o primeiro gole pra você. O síndico tira a coroa e pergunta: posso lavar só um dedo?"
-    },
-    {
-      "id": "s13",
       "visual": "cta",
-      "text": "Você daria o primeiro gole pra dona Rosa? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
+      "text": "Você ajudaria quem te tratou mal pra ele ter água? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
     }
   ]
 }

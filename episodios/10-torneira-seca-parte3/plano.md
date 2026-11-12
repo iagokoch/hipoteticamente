@@ -1,11 +1,9 @@
-# Ep. 10 – Torneira seca, Parte 3: o Guardião do Balde
+# Ep. 10 – Torneira seca, Parte 3: a torneira da gentileza (v2)
 
-Voz pm_santa 1.08/1.0 · 13 cenas · 80,7 s.
+Voz pm_santa 1.08/1.0 · 12 cenas · 82,2 s. (A v1, "Guardião do Balde", foi recusada pelo Iago: roteiro fraco e final contraditório.)
 
-**Fato (âncora):** OMS, Howard & Bartram (2003), "Domestic Water Quantity, Service Level and Health": 50 a 100 L por pessoa por dia cobrem as necessidades básicas. O balde da dona Rosa tem 20 L, pro prédio inteiro.
+**Fato (âncora):** Harbaugh, Mayr & Burghart (2007), Science 316:1622–1625: ajudar de livre vontade ativa o centro de recompensa/prazer do cérebro (fMRI).
 
-**Enredo:** dia 30, o bairro secou e só o balde da Rosa resta. O síndico se coroa Guardião do Balde e vota leis absurdas (1 banho por mês por sorteio, 1 dedo lavado por dia, silêncio e briga por mímica). Surge a economia (carro por copo vazio), tentativa de roubo (síndico dorme abraçado ao balde), Caio carrega a última gota, chuva de 30 s vira festa e o balde enche.
+**Enredo:** dia 30, a água volta, mas cada torneira só abre pra gentileza de verdade. Síndico simpático = lama; fofoqueira = nada; zelador = chafariz. A torneira do Caio mede o custo da ajuda: fácil (Rosa) = fio, difícil (quem o ignorou) = jato. Prédio vira fila de gentileza com inimigos. Final: a torneira do vizinho que mais maltratou o Caio seca e só abre com a ajuda dele.
 
-**Cenas:** hook, fato, sindico, banho, mao, silencio, troca, ladrao, voce, chuva, danca, gole, cta.
-
-**Pergunta final:** "Você daria o primeiro gole pra dona Rosa? Sim ou não." + gancho Parte 4 ("ainda mais molhada").
+**Pergunta final:** "Você ajudaria quem te tratou mal pra ele ter água? Sim ou não." + gancho Parte 4.
