@@ -10,6 +10,7 @@ Temas modelados de vídeos "What if / If…" que já viralizaram lá fora. Model
 Já usado pelo canal: Ep. 01–02 "E se você visse o saldo bancário de todo mundo?" (números flutuando sobre a cabeça das pessoas).
 Ep. 03 = tema #1 (ninguém mente, cadeado na boca); Ep. 04 = tema #9 (torneira seca, contagem de dias); Ep. 05 = tema #3 (tudo por R$ 1: etiqueta de preço, cronômetro de 24 h e visor de caixa em LED; vitrine de eletro, concessionária, loja de roupa).
 Ep. 06 = Parte 2 do ep. 04 (tema #9), caminho em que o Caio não divide a água: vizinhança descobre a caixa, clima muda no condomínio, a caixa do vô racha e o Caio pede ajuda à dona Rosa; fato novo da Cidade do Cabo, 2018.
+Ep. 07 = Parte 2 do ep. 03 (tema #1): Léo, Bia e as flores; fecha com "Você perdoaria um melhor amigo que mentiu pra você?" (fato: ~54% das mentiras são descobertas, Bond & DePaulo 2006). Ep. 08 = tema #15 (ouvir o pensamento de todo mundo, Parte 1; fato: ~6.200 pensamentos/dia, Queen's University). Os dois foram reconstruídos das legendas.
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.
 
@@ -169,14 +170,14 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Não.
 
 ### 15. E se você pudesse ouvir o pensamento de todo mundo por um dia?
-- **Status:** pendente
+- **Status:** usado (ep08 = Parte 1; Parte 2 pendente)
 - **Referência:** "If Teachers Could Hear Our Thoughts Part - 2" — FilterCopy — https://www.youtube.com/watch?v=aJ_pGVPwtpY — 14,0 mi views — 2023 (live-action)
 - **Saturação BR:** em alta (TikTok até 30,6 mil curtidas em 01/11; muitos vídeos novos).
 - **Fato real (verificar).**
 - **Série?** Sim.
 
 ### 16. E se você pudesse ler mentes?
-- **Status:** pendente
+- **Status:** pendente (juntado ao #15, ep08)
 - **Referência:** "If Humans Can Read Minds" — im_siowei — https://www.youtube.com/watch?v=dkFBsz6T19A — 4,1 mi views — 2026
 - **Saturação BR:** em alta (YouTube PT: 200 mil em 2 semanas; TikTok cheio). Juntar com o #15 se usar.
 - **Série?** Sim.

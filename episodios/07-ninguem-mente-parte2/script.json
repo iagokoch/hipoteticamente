@@ -1,0 +1,73 @@
+{
+  "title": "A mentira (Parte 2): Léo, Bia e as flores",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "recap",
+      "text": "Na parte um, você mentiu pro Léo sobre a Bia. Meia-noite, o efeito acabou, e ela respondeu: eu também conseguia."
+    },
+    {
+      "id": "s02",
+      "visual": "poste",
+      "text": "Antes de você responder, chega outra mensagem: desce, tô na frente da sua casa."
+    },
+    {
+      "id": "s03",
+      "visual": "poste2",
+      "text": "Debaixo do poste, a Bia confessa: o Léo perguntou se eu gostava de alguém. Eu disse que não. Mentira."
+    },
+    {
+      "id": "s04",
+      "visual": "duas",
+      "text": "Duas mentiras no mesmo dia, pro mesmo amigo, sobre a mesma coisa."
+    },
+    {
+      "id": "s05",
+      "visual": "fato",
+      "text": "Juntando os estudos, quem tenta descobrir uma mentira acerta só cinquenta e quatro por cento. Quase cara ou coroa."
+    },
+    {
+      "id": "s06",
+      "visual": "decisao",
+      "text": "Então vocês podem ficar calados, e ele nunca vai saber. Ou contar a verdade antes dele se declarar. Vocês decidem."
+    },
+    {
+      "id": "s07",
+      "visual": "lanchonete",
+      "text": "Meio-dia, na lanchonete. O Léo chega suando de nervoso, com flores. E vocês dois já estão sentados na mesa."
+    },
+    {
+      "id": "s08",
+      "visual": "lanchonete2",
+      "text": "Ele respira fundo: Bia, eu preciso te falar uma coisa."
+    },
+    {
+      "id": "s09",
+      "visual": "confissao",
+      "text": "Você não aguenta. A verdade sai de uma vez: eu menti. Eu gosto da Bia desde o primeiro dia de aula."
+    },
+    {
+      "id": "s10",
+      "visual": "flores",
+      "text": "O Léo fica olhando pras flores por seis segundos que parecem uma vida."
+    },
+    {
+      "id": "s11",
+      "visual": "perdao",
+      "text": "Depois ele diz que acreditou porque queria acreditar."
+    },
+    {
+      "id": "s12",
+      "visual": "mensagem",
+      "text": "Horas depois, o celular vibra. É o Léo: amanhã, sete horas, na quadra. Será que é um convite pra um jogo?"
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Você perdoaria um melhor amigo que mentiu pra você? Comenta aí."
+    }
+  ]
+}
