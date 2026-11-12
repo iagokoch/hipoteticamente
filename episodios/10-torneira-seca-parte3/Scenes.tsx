@@ -113,6 +113,20 @@ const Roof: React.FC<{night?: boolean; children: React.ReactNode}> = ({night, ch
 );
 
 
+const DoorFrame: React.FC<{open: number; children?: React.ReactNode; shake?: number}> = ({open, children, shake = 0}) => (
+  <AbsoluteFill style={{background: '#3d3d6b'}}>
+    <Floor color="#2c2c54" y={1180} />
+    <div style={{position: 'absolute', left: 230, top: 360, width: 620, height: 830, background: '#57606f', border: `12px solid ${INK}`}}>
+      {children}
+    </div>
+    <div style={{position: 'absolute', left: 242 + shake, top: 372, width: 596 * (1 - open * 0.85), height: 806, background: '#b33939', borderRight: `10px solid ${INK}`, transformOrigin: '0 50%'}}>
+      <div style={{position: 'absolute', right: 40, top: 400, width: 40, height: 40, borderRadius: 20, background: '#fed330', border: `6px solid ${INK}`, opacity: open < 0.5 ? 1 : 0}} />
+      <div style={{position: 'absolute', left: 60, right: 60, top: 80, height: 260, border: `8px solid ${INK}`, borderRadius: 12, opacity: open < 0.5 ? 0.4 : 0}} />
+    </div>
+  </AbsoluteFill>
+);
+
+
 // ---------- elenco novo ----------
 const SIND = {skin: '#f2c29b', hair: 'bald' as const, mustache: true, shirt: '#6c5ce7', pants: '#2d3436'};
 const NEI = {skin: '#c68642', hair: 'spiky' as const, hairColor: '#1e1e1e', shirt: '#fd9644', pants: '#2d3436'};
@@ -343,15 +357,33 @@ const Absurdo: React.FC = () => {
 // s11
 const Final: React.FC = () => {
   const frame = useCurrentFrame();
+  const open = interpolate(frame, [4, 24], [0, 0.9], {...clamp, easing: ease});
+  return (
+    <AbsoluteFill>
+      <DoorFrame open={open}>
+        <Person {...MEAN} x={310} y={810} scale={1.55} emotion={frame < 60 ? 'neutral' : 'worried'} lookX={-0.8} />
+      </DoorFrame>
+      <Person {...ME} x={190} y={1300} scale={1.4} emotion="shocked" lookX={1} />
+      {frame >= 30 ? <Bucket x={660} y={1190} s={1.1} fill={1} /> : null}
+      <Stamp x={540} y={230} text="O VIZINHO DA FRENTE" at={0} color="#b33939" size={54} rot={-3} />
+      {frame >= 80 ? <Stamp x={700} y={470} text="COM UM BALDE CHEIO?!" at={80} color="#0c63c9" size={52} rot={-4} /> : null}
+      <Pop at={30} /><Pop at={80} /><Sting at={30} volume={0.35} />
+    </AbsoluteFill>
+  );
+};
+
+// s12
+const Gesto: React.FC = () => {
+  const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
       <Hall />
-      <TapView x={760} y={700} mode={frame < 80 ? 'fountain' : 'dry'} floorY={1250} s={1.3} />
-      <Person {...ME} x={230} y={1450} scale={1.4} emotion="worried" lookX={1} />
-      <Person {...MEAN} x={850} y={1450} scale={1.4} emotion={frame < 80 ? 'happy' : 'sad'} lookX={-1} />
-      {frame >= 80 ? <Stamp x={540} y={380} text="SECOU DE NOVO" at={80} color="#ff4757" size={80} rot={-4} /> : null}
-      {frame >= 140 ? <Stamp x={540} y={1650} text="SÓ ABRE COM A SUA AJUDA" at={140} color="#fed330" size={50} rot={3} /> : null}
-      <Pop at={80} /><Pop at={140} /><Sting at={80} volume={0.35} />
+      <TapView x={760} y={700} mode={frame > 60 ? 'fountain' : 'dry'} floorY={1250} s={1.3} />
+      <Person {...ME} x={230} y={1450} scale={1.4} emotion="happy" lookX={1} bob />
+      <Person {...MEAN} x={850} y={1450} scale={1.4} emotion={frame < 100 ? 'worried' : 'happy'} talking={frame < 100} lookX={-1} />
+      <Bubble x={700} y={520} w={560} size={44} text="MINHA TORNEIRA SÓ ABRE QUANDO EU AJUDO!" at={5} tail="right" />
+      {frame >= 100 ? <Stamp x={540} y={230} text="FOI SÓ UMA VEZ, TÁ?" at={100} color="#fed330" size={56} rot={-4} /> : null}
+      <Pop at={100} /><Sting at={60} volume={0.35} />
     </AbsoluteFill>
   );
 };
@@ -360,7 +392,7 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#273c75'}}>
-      <Title text="VOCÊ AJUDARIA QUEM TE TRATOU MAL PRA ELE TER ÁGUA?" color="#fff" top={110} size={58} />
+      <Title text="VOCÊ PERDOARIA O VIZINHO QUE TE MALTRATOU SE ELE TE AJUDASSE 1 VEZ?" color="#fff" top={110} size={58} />
       <div style={{position: 'absolute', left: 120, top: 560, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
       <div style={{position: 'absolute', left: 580, top: 560, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'Inter', fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={320} y={1250} scale={1.5} emotion="worried" lookX={1} />
@@ -373,5 +405,5 @@ const Cta: React.FC = () => {
 
 export const SCENES: Record<string, React.FC> = {
   hook: Hook, fato: Fato, sindico: Sindico, fofoca: Fofoca, zelador: Zelador, teste: Teste, pista: Pista,
-  ajuda: Ajuda, rio: Rio, absurdo: Absurdo, final: Final, cta: Cta,
+  ajuda: Ajuda, rio: Rio, absurdo: Absurdo, final: Final, gesto: Gesto, cta: Cta,
 };

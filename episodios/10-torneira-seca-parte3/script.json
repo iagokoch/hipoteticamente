@@ -57,12 +57,17 @@
     {
       "id": "s11",
       "visual": "final",
-      "text": "No fim, todo mundo tem água. Só a do vizinho da frente seca de novo: o que mais te tratou mal. A torneira dele só abre se você ajudar."
+      "text": "Na manhã seguinte, batem na sua porta. É o vizinho da frente, o que mais te tratou mal. Ele segura um balde cheio."
     },
     {
       "id": "s12",
+      "visual": "gesto",
+      "text": "Sem graça, ele diz: minha torneira só abre quando eu ajudo alguém. Você foi o primeiro. Mas foi só uma vez, tá?"
+    },
+    {
+      "id": "s13",
       "visual": "cta",
-      "text": "Você ajudaria quem te tratou mal pra ele ter água? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
+      "text": "Você perdoaria o vizinho que te maltratou se ele te ajudasse uma vez só? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
     }
   ]
 }
