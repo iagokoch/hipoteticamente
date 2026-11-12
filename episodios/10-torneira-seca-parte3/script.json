@@ -1,0 +1,73 @@
+{
+  "title": "E se a torneira secasse pra sempre? (Parte 3): o Guardião do Balde",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Dia trinta. O bairro inteiro secou. Só o seu prédio ainda tem água: um balde. O balde da dona Rosa."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "A OMS fala em cinquenta a cem litros por pessoa por dia pro básico. Esse balde tem vinte. Pro prédio inteiro."
+    },
+    {
+      "id": "s03",
+      "visual": "sindico",
+      "text": "O síndico chama uma assembleia e se coroa Guardião do Balde. A coroa é de papelão, mas ele leva muito a sério."
+    },
+    {
+      "id": "s04",
+      "visual": "banho",
+      "text": "Primeira lei, votada no grupo: banho só um por mês, por sorteio. Quem ganha vira celebridade do andar."
+    },
+    {
+      "id": "s05",
+      "visual": "mao",
+      "text": "Segunda lei: lavar a mão, só um dedo por dia. O dedão fica pro domingo."
+    },
+    {
+      "id": "s06",
+      "visual": "silencio",
+      "text": "Terceira lei: ninguém fala alto, porque suar é desperdício. Briga de vizinho agora é por mímica."
+    },
+    {
+      "id": "s07",
+      "visual": "troca",
+      "text": "Aí nasce a economia. O vizinho do trezentos e dois troca o carro por um copo. Um copo vazio. Ele aceita."
+    },
+    {
+      "id": "s08",
+      "visual": "ladrao",
+      "text": "De madrugada, alguém tenta roubar o balde. Dá de cara com o Guardião dormindo abraçado nele."
+    },
+    {
+      "id": "s09",
+      "visual": "voce",
+      "text": "Sobrou uma gota. Você é escolhido pra carregar o balde até o pátio. O prédio prende a respiração, porque respirar também gasta."
+    },
+    {
+      "id": "s10",
+      "visual": "chuva",
+      "text": "Um trovão. Alguém grita: chuva! Cai uma gota. Duas. O prédio inteiro põe a língua pra fora."
+    },
+    {
+      "id": "s11",
+      "visual": "danca",
+      "text": "Trinta segundos de chuva viram festa. O síndico dança, a dona Rosa rodopia, e o balde finalmente enche."
+    },
+    {
+      "id": "s12",
+      "visual": "gole",
+      "text": "A dona Rosa oferece o primeiro gole pra você. O síndico tira a coroa e pergunta: posso lavar só um dedo?"
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Você daria o primeiro gole pra dona Rosa? Comenta sim ou não. A parte quatro vai ser ainda mais molhada."
+    }
+  ]
+}
