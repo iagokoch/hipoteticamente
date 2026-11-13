@@ -284,12 +284,12 @@ const Cta: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill style={{background: '#192a56'}}>
-      <Title text="VOCÊ DEIXARIA TODO MUNDO OUVIR SEUS PENSAMENTOS POR UM DIA?" color="#fff" top={100} size={58} />
+      <Title text="VOCÊ GOSTARIA DE OUVIR O QUE SEU CHEFE PENSA DE VOCÊ?" color="#fff" top={100} size={58} />
       <div style={{position: 'absolute', left: 120, top: 620, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
       <div style={{position: 'absolute', left: 580, top: 620, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
       <Person {...ME} x={300} y={1300} scale={1.5} emotion="worried" lookX={1} />
-      <Person {...MOM} x={780} y={1300} scale={1.5} emotion="happy" lookX={-1} flip />
-      <Stamp x={540} y={540} text="PARTE 3?" at={20} color="#fed330" size={48} rot={-4} />
+      <Person {...BOSS} x={780} y={1300} scale={1.5} emotion="neutral" lookX={-1} />
+      <Stamp x={540} y={540} text="PARTE 3: O CHEFE" at={20} color="#fed330" size={44} rot={-4} />
       <div style={{position: 'absolute', left: 140, right: 140, top: 1470, height: 110, borderRadius: 55, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 56, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
     </AbsoluteFill>
   );
