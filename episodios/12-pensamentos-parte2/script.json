@@ -1,0 +1,68 @@
+{
+  "title": "E se você ouvisse o pensamento de todo mundo? (Parte 2): agora eles ouvem você",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Dia seguinte. O poder inverteu: agora todo mundo escuta o seu pensamento. E você não escuta mais ninguém."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "Em dois mil, estudantes de camiseta constrangedora achavam que metade da sala ia notar. Só um quarto notou. Agora é diferente: todo mundo escuta."
+    },
+    {
+      "id": "s03",
+      "visual": "mae",
+      "text": "Na cozinha, você pensa: que mãe linda. Ela sorri. Aí você pensa: o café tá horrível. O sorriso some."
+    },
+    {
+      "id": "s04",
+      "visual": "onibus",
+      "text": "No ônibus, você pensa no jingle do colchão. Quarenta pessoas começam a cantar. O motorista erra duas paradas."
+    },
+    {
+      "id": "s05",
+      "visual": "chefe",
+      "text": "No trabalho, você pensa: meu chefe nem sabe meu nome. Ele levanta a mão e grita: eu sei, Caio!"
+    },
+    {
+      "id": "s06",
+      "visual": "nada",
+      "text": "Você tenta pensar em nada. Pensa: nada. Pensa: nada. Pensa: será que pensar em nada já é pensar em alguma coisa? O escritório inteiro trava."
+    },
+    {
+      "id": "s07",
+      "visual": "pombo",
+      "text": "Na praça, o pombo escuta você. Agora ele sabe que você sabe do sanduíche. Ele te encara. Você tenta pensar em outra coisa. Pensa em sanduíche."
+    },
+    {
+      "id": "s08",
+      "visual": "truque",
+      "text": "Aí você descobre o truque: se pensa só coisa boa, ninguém olha torto. Você passa a tarde elogiando todo mundo por dentro."
+    },
+    {
+      "id": "s09",
+      "visual": "absurdo",
+      "text": "O chefe sorri. O motorista te dá carona de graça. O pombo devolve um farelo. Até o cachorro do vizinho para de latir."
+    },
+    {
+      "id": "s10",
+      "visual": "noite",
+      "text": "Meia-noite. Silêncio. Sua mãe espera na cozinha, de pijama. Ela diz: hoje cedo, eu ouvi você pensar que eu sou linda."
+    },
+    {
+      "id": "s11",
+      "visual": "mae2",
+      "text": "Guardei isso o dia inteiro, ela diz. Você pensa: eu te amo. E dessa vez ela sorri chorando."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você deixaria todo mundo ouvir seus pensamentos por um dia? Comenta sim ou não. A parte três vai ser ainda mais maluca."
+    }
+  ]
+}

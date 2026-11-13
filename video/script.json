@@ -1,21 +1,68 @@
 {
-  "title": "E se você não dividisse a água? (Parte 2)",
-  "voice": "pm_alex",
+  "title": "E se você ouvisse o pensamento de todo mundo? (Parte 2): agora eles ouvem você",
+  "voice": "pm_santa",
   "speed": 1.08,
-  "pitch": 0.89,
+  "pitch": 1.0,
   "scenes": [
-    {"id": "s01", "visual": "vote", "text": "Vocês votaram: a maioria não dividiria. Dona Rosa pede o balde... e você diz não."},
-    {"id": "s02", "visual": "closed", "text": "Ela não insiste. Abaixa a cabeça, e a porta se fecha. Você acha que acabou."},
-    {"id": "s03", "visual": "roof", "text": "No dia seguinte, um vizinho sobe na laje pra pegar sinal... e dá de cara com a caixa d'água. Cheia."},
-    {"id": "s04", "visual": "group", "text": "A foto cai no grupo do condomínio. Em um minuto, o prédio inteiro sabe."},
-    {"id": "s05", "visual": "climate", "text": "Dia sete. O elevador fica mudo quando você entra. No corredor, só cochicho."},
-    {"id": "s06", "visual": "fact", "text": "Na vida real, não é muito diferente. Na Cidade do Cabo, em dois mil e dezoito, seis em cada dez moradores gastavam mais que o limite de oitenta e sete litros por dia. A cidade cortou pra cinquenta."},
-    {"id": "s07", "visual": "plan", "text": "Dia oito. Seu pai nem liga pro bilhete. Faz a conta no papel: sobram sete dias de água."},
-    {"id": "s08", "visual": "crack", "text": "Madrugada do dia nove. Um estalo. A caixa do seu avô rachou no fundo, e a água que sobrava virou poça."},
-    {"id": "s09", "visual": "counter", "text": "Pelas contas do seu pai, dava até o dia quinze. Acabou no nove."},
-    {"id": "s10", "visual": "refuse", "text": "Seu pai diz que não vai pedir nada pra quem a gente mandou embora. Sua mãe só põe o balde na sua mão."},
-    {"id": "s11", "visual": "walk", "text": "Você atravessa o corredor com o balde vazio. Todo mundo olha. Você bate na porta da dona Rosa."},
-    {"id": "s12", "visual": "answer", "text": "A porta abre. Ela olha pro seu balde vazio e não diz nada. Só te entrega o dela, cheio. Igualzinho ao que ela te pediu."},
-    {"id": "s13", "visual": "cta", "text": "Agora é com você: se fosse a dona Rosa, você teria aberto a porta? Comenta aí."}
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Dia seguinte. O poder inverteu: agora todo mundo escuta o seu pensamento. E você não escuta mais ninguém."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "Em dois mil, estudantes de camiseta constrangedora achavam que metade da sala ia notar. Só um quarto notou. Agora é diferente: todo mundo escuta."
+    },
+    {
+      "id": "s03",
+      "visual": "mae",
+      "text": "Na cozinha, você pensa: que mãe linda. Ela sorri. Aí você pensa: o café tá horrível. O sorriso some."
+    },
+    {
+      "id": "s04",
+      "visual": "onibus",
+      "text": "No ônibus, você pensa no jingle do colchão. Quarenta pessoas começam a cantar. O motorista erra duas paradas."
+    },
+    {
+      "id": "s05",
+      "visual": "chefe",
+      "text": "No trabalho, você pensa: meu chefe nem sabe meu nome. Ele levanta a mão e grita: eu sei, Caio!"
+    },
+    {
+      "id": "s06",
+      "visual": "nada",
+      "text": "Você tenta pensar em nada. Pensa: nada. Pensa: nada. Pensa: será que pensar em nada já é pensar em alguma coisa? O escritório inteiro trava."
+    },
+    {
+      "id": "s07",
+      "visual": "pombo",
+      "text": "Na praça, o pombo escuta você. Agora ele sabe que você sabe do sanduíche. Ele te encara. Você tenta pensar em outra coisa. Pensa em sanduíche."
+    },
+    {
+      "id": "s08",
+      "visual": "truque",
+      "text": "Aí você descobre o truque: se pensa só coisa boa, ninguém olha torto. Você passa a tarde elogiando todo mundo por dentro."
+    },
+    {
+      "id": "s09",
+      "visual": "absurdo",
+      "text": "O chefe sorri. O motorista te dá carona de graça. O pombo devolve um farelo. Até o cachorro do vizinho para de latir."
+    },
+    {
+      "id": "s10",
+      "visual": "noite",
+      "text": "Meia-noite. Silêncio. Sua mãe espera na cozinha, de pijama. Ela diz: hoje cedo, eu ouvi você pensar que eu sou linda."
+    },
+    {
+      "id": "s11",
+      "visual": "mae2",
+      "text": "Guardei isso o dia inteiro, ela diz. Você pensa: eu te amo. E dessa vez ela sorri chorando."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você deixaria todo mundo ouvir seus pensamentos por um dia? Comenta sim ou não. A parte três vai ser ainda mais maluca."
+    }
   ]
 }
