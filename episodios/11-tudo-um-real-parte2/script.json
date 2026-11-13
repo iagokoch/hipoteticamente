@@ -1,0 +1,73 @@
+{
+  "title": "E se, por 24 horas, tudo custasse um real? (Parte 2): tudo por mil",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Meia-noite e um minuto. Os preços voltaram, mas você ainda tem um carro e uma TV que pagou um real. E faltam quatro mil pra loja da sua mãe fechar o mês."
+    },
+    {
+      "id": "s02",
+      "visual": "alerta",
+      "text": "O celular apita de novo: por vinte e quatro horas, tudo custa mil reais. Tudo. Até pão de queijo."
+    },
+    {
+      "id": "s03",
+      "visual": "fato",
+      "text": "No Brasil de mil novecentos e noventa e três, a inflação chegou a dois mil quatrocentos e setenta e sete por cento. Preço mudava o tempo todo."
+    },
+    {
+      "id": "s04",
+      "visual": "pao",
+      "text": "Na padaria, um pão de queijo custa mil reais. Uma moça paga e diz: que barato!"
+    },
+    {
+      "id": "s05",
+      "visual": "mansao",
+      "text": "Aí você pensa: se tudo custa mil, uma mansão também. Você abre o app e vê: mansão com piscina, mil reais."
+    },
+    {
+      "id": "s06",
+      "visual": "cidade",
+      "text": "Em dez minutos, a cidade inteira pensa igual. Tem fila pra comprar prédio e gente brigando por um castelo."
+    },
+    {
+      "id": "s07",
+      "visual": "loja",
+      "text": "Na loja da sua mãe, a camiseta custa mil reais. Nenhum cliente. Todo mundo tá na fila do castelo."
+    },
+    {
+      "id": "s08",
+      "visual": "conta",
+      "text": "Você faz a conta. A TV, o notebook e o tênis valem mil cada: três mil. Falta mil."
+    },
+    {
+      "id": "s09",
+      "visual": "carro",
+      "text": "Só sobra o carro zero. Noventa mil na tabela, mil hoje. Você olha pro carro. O carro olha de volta."
+    },
+    {
+      "id": "s10",
+      "visual": "venda",
+      "text": "O vizinho de pijama aparece com a escritura de uma ilha. Paga mil e sai dirigindo feliz."
+    },
+    {
+      "id": "s11",
+      "visual": "pagar",
+      "text": "Você corre pra loja e paga o que faltava. Sua mãe te abraça e chora. Você volta pra casa a pé."
+    },
+    {
+      "id": "s12",
+      "visual": "meianoite",
+      "text": "Meia-noite. Os preços voltam. A ilha do vizinho vale milhões e seu carro nunca mais volta. Mas a loja da sua mãe tá salva."
+    },
+    {
+      "id": "s13",
+      "visual": "cta",
+      "text": "Você venderia seu carro zero por mil reais pra salvar a loja da sua mãe? Comenta sim ou não. A parte três vai ser ainda mais maluca."
+    }
+  ]
+}
