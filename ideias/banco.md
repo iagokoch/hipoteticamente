@@ -12,6 +12,9 @@ Ep. 03 = tema #1 (ninguém mente, cadeado na boca); Ep. 04 = tema #9 (torneira s
 Ep. 06 = Parte 2 do ep. 04 (tema #9), caminho em que o Caio não divide a água: vizinhança descobre a caixa, clima muda no condomínio, a caixa do vô racha e o Caio pede ajuda à dona Rosa; fato novo da Cidade do Cabo, 2018.
 Ep. 07 = Parte 2 do ep. 03 (tema #1): Léo, Bia e as flores; fecha com "Você perdoaria um melhor amigo que mentiu pra você?" (fato: ~54% das mentiras são descobertas, Bond & DePaulo 2006). Ep. 08 = tema #15 (ouvir o pensamento de todo mundo, Parte 1; fato: ~6.200 pensamentos/dia, Queen's University). Os dois foram reconstruídos das legendas.
 Ep. 09 = Parte 3 do ep. 03/07 (A mentira): a quadra às 7 h vira "grande final da verdade" com pombo juiz; Léo confessa que também mentiu e paga o mico; fato novo: Talwar & Lee 2008 (64% das crianças que espiaram mentiram).
+Ep. 13 = tema #2 (sorte vira azar do melhor amigo Dudu: Mega-Sena, placar sorte x azar, raspadinha rasgada antes da entrevista, pombo premiado; fato: Caixa, 1 em 50.063.860; pergunta: "Você abriria mão da sua sorte por alguém?"; Parte 2: o Dudu descobre de onde vem o azar e o pombo quer o prêmio).
+Ep. 14 = tema #5 (celular proibido em todo lugar: ônibus calado, fila do banco, mapa de papel, orelhão com 300 pessoas, pai e dominó, vizinhos fazendo seta humana; fato: Lei 15.100, 13/01/2025; pergunta: "Você aguentaria uma semana sem celular?"; Parte 2: proibiram outra coisa).
+Ep. 15 = tema #4 (acordar sem medo: aumento, Marina do RH, montanha-russa, jiboia, irmã Duda atravessando; fato: paciente S.M., Urbach-Wiethe, Feinstein et al. 2010; pergunta: "Você apagaria todos os seus medos por um dia?"; Parte 2: medo de tudo).
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.
 
@@ -31,7 +34,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Sim — Parte 2: as mentiras voltam e todo mundo lembra do que disse.
 
 ### 2. E se você tivesse sorte em tudo… mas cada vitória sua virasse o azar de alguém perto?
-- **Status:** pendente
+- **Status:** usado (ep13)
 - **Referência:** "When LUCK becomes a CURSE" — im_siowei — https://www.youtube.com/watch?v=xnzCuemNP3o — 31,7 mi views — 2024
 - **Saturação BR:** livre — no TikTok BR "sorte vira azar" só traz música; no YouTube PT há só vídeos novos com poucas views.
 - **Esqueleto:** ganância → euforia → custo escondido; a pessoa percebe o padrão tarde demais.
@@ -53,7 +56,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Sim — Parte 2: o dia seguinte, quando a conta chega.
 
 ### 4. E se você acordasse sem sentir medo nenhum?
-- **Status:** pendente
+- **Status:** usado (ep15)
 - **Referência:** "If Humans Had NO Fear" — im_siowei — https://www.youtube.com/watch?v=RiclsSMfAy0 — 3,6 mi views — 2025
 - **Saturação BR:** moderado — no TikTok o tema aparece como motivacional ("o que você faria se não tivesse medo"); hipotético narrado só com ~9 mil curtidas. YouTube PT: maior tem 308 mil (2 anos).
 - **Esqueleto:** superpoder que parece vantagem → imprudência → percebe que o medo protegia.
@@ -64,7 +67,7 @@ Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais p
 - **Série?** Talvez.
 
 ### 5. E se o celular fosse proibido em todo lugar, não só na escola?
-- **Status:** pendente
+- **Status:** usado (ep14)
 - **Referência:** "If Normal Things Were BANNED!" — Jessica Kaylee — https://www.youtube.com/watch?v=wcG01zJD2M4 — 10,6 mi views — 2024
 - **Saturação BR:** livre — no TikTok só listas de "coisas proibidas em outros países"; nenhum hipotético narrado.
 - **Esqueleto:** algo banal vira crime → absurdo cotidiano → as pessoas reaprendem a viver.

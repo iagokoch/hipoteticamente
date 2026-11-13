@@ -1,0 +1,68 @@
+{
+  "title": "E se o celular fosse proibido em todo lugar, não só na escola?",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "A lei saiu hoje: celular, só dentro de casa. Meia-noite, todo mundo guarda o aparelho na gaveta."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "Em dois mil e vinte e cinco, o Brasil proibiu celular nas escolas, até no recreio. Agora imagina a mesma lei pra todo mundo."
+    },
+    {
+      "id": "s03",
+      "visual": "onibus",
+      "text": "No ônibus, ninguém fala. Alguém pergunta que horas são. Só o tio do relógio sabe, e vira celebridade."
+    },
+    {
+      "id": "s04",
+      "visual": "banco",
+      "text": "Na fila do banco, a tia puxa assunto. Em dez minutos: receita de bolo, fofoca e um casamento marcado."
+    },
+    {
+      "id": "s05",
+      "visual": "mapa",
+      "text": "Você abre o mapa de papel. Ele não fecha mais. Você pede ajuda a um pombo. Ele aponta pro lado errado, com muita confiança."
+    },
+    {
+      "id": "s06",
+      "visual": "orelhao",
+      "text": "Pra ligar, só orelhão. A fila dá a volta no quarteirão: trezentas pessoas, uma ficha. O vendedor de ficha vira milionário."
+    },
+    {
+      "id": "s07",
+      "visual": "pai",
+      "text": "À noite, seu pai tira o dominó do armário e conta como conheceu sua mãe. Você nunca tinha ouvido. Foram três horas."
+    },
+    {
+      "id": "s08",
+      "visual": "emergencia",
+      "text": "De madrugada, seu pai escorrega na cozinha e não consegue levantar. Você corre pro orelhão. Fila de trezentas pessoas."
+    },
+    {
+      "id": "s09",
+      "visual": "fila",
+      "text": "Você grita: emergência! Pela primeira vez em dez anos, ninguém olha pra tela. Todo mundo ouve. A fila abre caminho em dois segundos."
+    },
+    {
+      "id": "s10",
+      "visual": "seta",
+      "text": "A ambulância não acha a rua. Cinquenta vizinhos saem de pijama e apontam o caminho. A rua vira uma seta humana gigante."
+    },
+    {
+      "id": "s11",
+      "visual": "dia7",
+      "text": "Seu pai tá bem. No sétimo dia, a lei acaba. Todo mundo pega o celular. Silêncio por três segundos. Aí o Brasil posta: fiquei uma semana sem celular."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você aguentaria uma semana sem celular? Comenta sim ou não. Na parte dois, proibiram outra coisa que você usa todo dia."
+    }
+  ]
+}

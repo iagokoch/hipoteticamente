@@ -1,0 +1,68 @@
+{
+  "title": "E se você tivesse sorte em tudo… mas cada vitória sua virasse o azar de alguém perto?",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Você acertou as seis dezenas da Mega-Sena. No mesmo segundo, o celular do seu melhor amigo, o Dudu, toca: seu carro foi guinchado."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "Chance de acertar a Mega-Sena numa aposta simples: uma em cinquenta milhões. Você acertou. E alguém ali perto pagou a conta."
+    },
+    {
+      "id": "s03",
+      "visual": "azar",
+      "text": "O Dudu derruba a pizza de cabeça pra baixo. O celular cai na privada. E uma nuvem de chuva aparece só em cima dele."
+    },
+    {
+      "id": "s04",
+      "visual": "testes",
+      "text": "Você acha dez reais na calça: o Dudu pisa em cocô de pombo. Você ganha a rifa do bolo: o Dudu leva o bolo na cara."
+    },
+    {
+      "id": "s05",
+      "visual": "absurdo",
+      "text": "Você ganha uma TV nova: o Dudu ganha um sofá que não passa na porta. Você pega a melhor vaga: o Dudu ganha um buraco na rua."
+    },
+    {
+      "id": "s06",
+      "visual": "padrao",
+      "text": "O Dudu desabafa: tô num azar desde segunda. Você vê um raio pulando da sua sorte direto pra cabeça dele."
+    },
+    {
+      "id": "s07",
+      "visual": "entrevista",
+      "text": "Hoje o Dudu tem a entrevista do emprego dos sonhos. E você tem uma raspadinha no bolso. Você sabe que ela é premiada."
+    },
+    {
+      "id": "s08",
+      "visual": "dilema",
+      "text": "A nuvem já está na sala de espera. Se você raspar, ganha quinhentos mil. E o Dudu encara a entrevista debaixo do pior azar da vida."
+    },
+    {
+      "id": "s09",
+      "visual": "rasga",
+      "text": "Você rasga a raspadinha. Sem sorte pra cobrar, a nuvem fica sem rumo. Olha pra você. Olha pro Dudu. E vai embora."
+    },
+    {
+      "id": "s10",
+      "visual": "passa",
+      "text": "O Dudu entra tranquilo, sem azar nenhum, e arrasa. Sai contratado. Ele diz: acho que hoje o universo tava do meu lado."
+    },
+    {
+      "id": "s11",
+      "visual": "pombo",
+      "text": "A sorte sem dono vai embora. No dia seguinte, um pombo aparece na lotérica. Ele acertou as seis dezenas. Ninguém sabe como."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você abriria mão da sua sorte por alguém? Comenta sim ou não. Na parte dois, o Dudu descobre de onde vem o azar. E o pombo quer o prêmio."
+    }
+  ]
+}

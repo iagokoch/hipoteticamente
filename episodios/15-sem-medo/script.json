@@ -1,0 +1,68 @@
+{
+  "title": "E se você acordasse sem sentir medo nenhum?",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Você acordou sem medo nenhum. Atravessou a rua sem olhar, os carros desviaram, e seu coração nem acelerou."
+    },
+    {
+      "id": "s02",
+      "visual": "fato",
+      "text": "A paciente S.M. existe de verdade. Uma doença rara destruiu a parte do cérebro que sente medo. Cobra, aranha, casa mal-assombrada: nada assustou ela."
+    },
+    {
+      "id": "s03",
+      "visual": "chefe",
+      "text": "No trabalho, você pede aumento ao chefe. O dobro. Olhando nos olhos. É o chefe quem fica com medo. E aceita."
+    },
+    {
+      "id": "s04",
+      "visual": "crush",
+      "text": "Você convida a Marina do RH pra jantar. E pro casamento. E pra escolher o nome do filho. Ela pede um copo d'água."
+    },
+    {
+      "id": "s05",
+      "visual": "parque",
+      "text": "No parque, você dorme na montanha-russa. Doze voltas seguidas. O operador pede, por favor, que você desça."
+    },
+    {
+      "id": "s06",
+      "visual": "cobra",
+      "text": "No zoológico, você faz carinho numa jiboia. Ela se assusta tanto que pede transferência pro setor dos tigres."
+    },
+    {
+      "id": "s07",
+      "visual": "alarme",
+      "text": "Mas sem medo, você esquece o fogão ligado, o portão aberto, a água fervendo. O medo também era um alarme, e o seu tá sem pilha."
+    },
+    {
+      "id": "s08",
+      "visual": "irma",
+      "text": "Sua irmã de seis anos vê você atravessar sem olhar. Ela solta a sua mão e faz igual. E um medo volta. Só um."
+    },
+    {
+      "id": "s09",
+      "visual": "corre",
+      "text": "Você corre, puxa ela pra trás, e o carro passa raspando. Seu coração dispara. É o único medo que voltou: perder quem você ama."
+    },
+    {
+      "id": "s10",
+      "visual": "abraco",
+      "text": "Você abraça ela e promete olhar os dois lados. Ela promete olhar três. Você entende: o medo é o amor avisando."
+    },
+    {
+      "id": "s11",
+      "visual": "volta",
+      "text": "No dia seguinte, o medo volta. Todos de uma vez: da barata, do dentista, da própria meia. E dessa vez, você agradece."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você apagaria todos os seus medos por um dia? Comenta sim ou não. Na parte dois, é o contrário: medo de tudo. Até do próprio pé."
+    }
+  ]
+}

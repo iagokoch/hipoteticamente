@@ -1,97 +1,44 @@
 import React from 'react';
-import {AbsoluteFill, interpolate, spring, useCurrentFrame, useVideoConfig} from 'remotion';
+import {AbsoluteFill, interpolate, useCurrentFrame} from 'remotion';
 import {Person, PersonProps} from './Person';
-import {INK, ME, MOM, Pop, Sting, Floor, Title, Room, Street} from './lib';
+import {INK, ME, Pop, Sting, Floor, Title, Room, Street, Flash} from './lib';
+import {Stamp, Bubble, Thought, Big, DayTag, Cap, SimNao, Handle, FONT, clamp, ease} from './ui';
 
-// Ep. 12 = Parte 2 de "ouvir o pensamento de todo mundo": agora eles ouvem VOCÊ.
-const FONT = 'Inter';
-const clamp = {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'} as const;
-const ease = (t: number) => 1 - Math.pow(1 - t, 3);
-
+// Ep. 15 = tema #4 do banco: acordar sem medo. Fato: paciente S.M. (Urbach-Wiethe), Feinstein et al., Current Biology, 2010.
 const BOSS: Partial<PersonProps> = {skin: '#f5cba7', hair: 'bald', mustache: true, suit: true, tie: '#e84118', shirt: '#2f3542'};
-const P1: Partial<PersonProps> = {skin: '#f2c29b', hair: 'spiky', hairColor: '#2d3436', shirt: '#6c5ce7', pants: '#2d3436'};
-const P2: Partial<PersonProps> = {skin: '#8d5524', hair: 'short', hairColor: '#1e1e1e', shirt: '#0984e3', pants: '#636e72', hat: 'cap', hatColor: '#fdcb6e'};
-const P3: Partial<PersonProps> = {skin: '#d1a074', hair: 'long', hairColor: '#6c3b2a', shirt: '#00b894', pants: '#2d3436'};
-const P5: Partial<PersonProps> = {skin: '#c68642', hair: 'bun', hairColor: '#2d3436', shirt: '#a29bfe', pants: '#2d3436'};
-const DRV: Partial<PersonProps> = {skin: '#d1a074', hair: 'short', hairColor: '#2d3436', hat: 'cap', hatColor: '#2d98da', shirt: '#2d98da', pants: '#2d3436'};
+const MARINA: Partial<PersonProps> = {skin: '#d1a074', hair: 'long', hairColor: '#6c3b2a', shirt: '#e84393', pants: '#2d3436'};
+const OPER: Partial<PersonProps> = {skin: '#8d5524', hair: 'short', hairColor: '#1e1e1e', hat: 'cap', hatColor: '#0984e3', shirt: '#0984e3', pants: '#2d3436'};
+const DUDA: Partial<PersonProps> = {skin: '#f2c29b', hair: 'bun', hairColor: '#5d4037', shirt: '#fd79a8', pants: '#6c5ce7'};
+const TRATADOR: Partial<PersonProps> = {skin: '#d1a074', hair: 'short', hairColor: '#2d3436', hat: 'cap', hatColor: '#6ab04c', shirt: '#6ab04c', pants: '#2d3436'};
 
-const Stamp: React.FC<{x: number; y: number; text: string; at: number; color?: string; size?: number; rot?: number}> = ({x, y, text, at, color = '#ff4757', size = 54, rot = -8}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 9, stiffness: 260}});
-  return (
-    <div style={{position: 'absolute', left: x, top: y, transform: `translate(-50%,-50%) rotate(${rot}deg) scale(${2.2 - 1.2 * p})`, opacity: Math.min(1, p * 1.5), fontFamily: FONT, fontWeight: 900, fontSize: size, color: '#fff', background: color, border: `7px solid ${INK}`, borderRadius: 14, padding: '6px 22px', whiteSpace: 'nowrap', boxShadow: `0 8px 0 ${INK}`}}>
-      {text}
-    </div>
-  );
-};
-
-const Bubble: React.FC<{x: number; y: number; text: string; at: number; w?: number; size?: number; tail?: 'left' | 'right' | 'center'}> = ({x, y, text, at, w = 520, size = 58, tail = 'center'}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 11, stiffness: 200}});
-  const tx = tail === 'left' ? w * 0.22 : tail === 'right' ? w * 0.78 : w / 2;
-  return (
-    <div style={{position: 'absolute', left: x - tx, top: y, width: w, transform: `scale(${p})`, transformOrigin: `${tx}px 100%`}}>
-      <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, background: '#fff', border: `8px solid ${INK}`, borderRadius: 40, padding: '22px 30px', fontFamily: FONT, fontWeight: 900, fontSize: size, lineHeight: 1.08, color: INK, textAlign: 'center', boxShadow: `0 10px 0 ${INK}`}}>
-        {text}
-        <div style={{position: 'absolute', left: tx - 22, bottom: -42, width: 0, height: 0, borderLeft: '22px solid transparent', borderRight: '22px solid transparent', borderTop: `40px solid ${INK}`}} />
-        <div style={{position: 'absolute', left: tx - 13, bottom: -26, width: 0, height: 0, borderLeft: '13px solid transparent', borderRight: '13px solid transparent', borderTop: '26px solid #fff'}} />
-      </div>
-    </div>
-  );
-};
-
-// balão de pensamento (nuvem + bolinhas descendo até a cabeça)
-const Thought: React.FC<{x: number; y: number; text: string; at: number; w?: number; size?: number; color?: string}> = ({x, y, text, at, w = 560, size = 52, color = '#e8f4ff'}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < at) return null;
-  const p = spring({frame: frame - at, fps, config: {damping: 11, stiffness: 190}});
-  return (
-    <div style={{position: 'absolute', left: x - w / 2, top: y, width: w, transform: `scale(${p})`, transformOrigin: '50% 100%'}}>
-      <div style={{position: 'absolute', bottom: 0, left: 0, right: 0, background: color, border: `8px solid ${INK}`, borderRadius: 70, padding: '24px 34px', fontFamily: FONT, fontWeight: 900, fontSize: size, lineHeight: 1.08, color: INK, textAlign: 'center', boxShadow: `0 10px 0 ${INK}`}}>
-        {text}
-        <div style={{position: 'absolute', left: w / 2 - 20, bottom: -52, width: 40, height: 40, borderRadius: 20, background: color, border: `7px solid ${INK}`}} />
-        <div style={{position: 'absolute', left: w / 2 - 6, bottom: -86, width: 20, height: 20, borderRadius: 10, background: color, border: `6px solid ${INK}`}} />
-      </div>
-    </div>
-  );
-};
-
-const Big: React.FC<{x: number; y: number; e: string; s?: number; rot?: number}> = ({x, y, e, s = 1, rot = 0}) => (
-  <div style={{position: 'absolute', left: x, top: y, transform: `translate(-50%,0) rotate(${rot}deg)`, fontSize: 200 * s, lineHeight: 1, filter: 'drop-shadow(0 8px 0 rgba(27,27,47,0.5))'}}>{e}</div>
-);
-const DayTag: React.FC<{text: string; y?: number}> = ({text, y = 150}) => <Stamp x={540} y={y} text={text} at={0} color="#2f3542" size={62} rot={-3} />;
-const Cap: React.FC<{text: string; top?: number}> = ({text, top = 1680}) => (
-  <div style={{position: 'absolute', top, left: 60, right: 60, textAlign: 'center', fontFamily: FONT, fontWeight: 600, fontSize: 32, color: '#a4b0be'}}>{text}</div>
-);
-const Kitchen: React.FC<{night?: boolean}> = ({night}) => (
-  <AbsoluteFill>
-    <Room wall={night ? '#3d3d6b' : '#ffeaa7'} floor={night ? '#2c2c54' : '#cc8e35'} />
-    <div style={{position: 'absolute', left: 620, top: 260, width: 340, height: 300, background: night ? '#1e2a4a' : '#7ed6df', border: `9px solid ${INK}`, borderRadius: 14}}>
-      <div style={{position: 'absolute', left: 156, top: 0, bottom: 0, width: 9, background: INK}} />
-    </div>
-    <div style={{position: 'absolute', left: 60, top: 300, width: 460, height: 160, background: night ? '#57577a' : '#f5f6fa', border: `9px solid ${INK}`, borderRadius: 14}} />
-  </AbsoluteFill>
+const Crosswalk: React.FC = () => (
+  <>
+    {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => <div key={i} style={{position: 'absolute', left: i * 150 - 20, top: 1290, width: 100, height: 120, background: '#f5f6fa', border: `5px solid ${INK}`, transform: 'skewX(-20deg)'}} />)}
+  </>
 );
 
 // s01
 const Hook: React.FC = () => {
   const frame = useCurrentFrame();
+  const walk = interpolate(frame, [10, 170], [160, 900], clamp);
+  const car = (start: number, y: number, e: string, dir: number) => {
+    const x = interpolate(frame, [start, start + 40], [dir > 0 ? -300 : 1380, dir > 0 ? 1380 : -300], clamp);
+    const dodge = Math.abs(x - walk) < 260 ? -30 : 0;
+    return <div style={{position: 'absolute', left: x, top: y + dodge, fontSize: 170, transform: dir > 0 ? 'scaleX(-1)' : undefined}}>{e}</div>;
+  };
   return (
     <AbsoluteFill>
-      <Room wall="#a29bfe" floor="#6c5ce7" />
-      <DayTag text="DIA 2" />
-      <Person {...ME} x={540} y={1450} scale={1.7} emotion={frame < 60 ? 'shocked' : 'worried'} lookY={-0.3} bob />
-      {[0, 1, 2].map((i) => (
-        <div key={i} style={{position: 'absolute', left: 540, top: 780, width: 260 + ((frame * 3 + i * 40) % 120) * 5, height: 260 + ((frame * 3 + i * 40) % 120) * 5, transform: 'translate(-50%,-50%)', borderRadius: '50%', border: `8px solid rgba(255,255,255,${1 - ((frame * 3 + i * 40) % 120) / 120})`}} />
-      ))}
-      {[[140, 560], [940, 560], [140, 1000], [940, 1000]].map(([x, y], i) => <Big key={i} x={x} y={y} e="👂" s={0.7} rot={Math.sin(frame / 7 + i) * 10} />)}
-      <Stamp x={540} y={380} text="ELES OUVEM VOCÊ" at={50} color="#ff4757" size={64} rot={-3} />
-      <Pop at={50} /><Sting at={50} volume={0.4} />
+      <Street />
+      <Crosswalk />
+      {frame >= 90 ? car(90, 1050, '🚗', 1) : null}
+      {frame >= 135 ? car(135, 1050, '🚌', -1) : null}
+      <Person {...ME} x={walk} y={1500} scale={1.5} emotion="neutral" lookX={1} bob />
+      {frame >= 100 ? <Bubble x={780} y={820} w={380} size={60} text="BIIIII!" at={100} tail="center" /> : null}
+      <div style={{position: 'absolute', left: 60, top: 150, width: 420, height: 160, background: '#1e272e', border: `8px solid ${INK}`, borderRadius: 20, padding: '10px 20px', fontFamily: FONT, fontWeight: 900, fontSize: 44, color: '#20bf6b'}}>
+        MEDO: 0%
+        <svg viewBox="0 0 380 50" width={380} height={50}><polyline points="0,25 380,25" stroke="#20bf6b" strokeWidth={6} fill="none" /></svg>
+      </div>
+      <Pop at={100} />
     </AbsoluteFill>
   );
 };
@@ -99,203 +46,218 @@ const Hook: React.FC = () => {
 // s02
 const Fato: React.FC = () => {
   const frame = useCurrentFrame();
-  const a = interpolate(frame, [30, 80], [0, 50], {...clamp, easing: ease});
-  const b = interpolate(frame, [110, 160], [0, 23], {...clamp, easing: ease});
-  const bar = (y: number, label: string, v: number, color: string, at: number) => frame >= at ? (
-    <div style={{position: 'absolute', left: 80, right: 80, top: y}}>
-      <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 44, color: '#fff', marginBottom: 14}}>{label}</div>
-      <div style={{height: 120, borderRadius: 30, background: '#2f3542', border: `8px solid ${INK}`, overflow: 'hidden'}}>
-        <div style={{width: `${v * 1.9}%`, height: '100%', background: color, display: 'flex', alignItems: 'center', justifyContent: 'flex-end', paddingRight: 24, fontFamily: FONT, fontWeight: 900, fontSize: 64, color: '#fff'}}>{Math.round(v)}%</div>
-      </div>
-    </div>
-  ) : null;
+  const items: [string, string, number][] = [['🐍', 'COBRAS', 195], ['🕷️', 'ARANHAS', 215], ['🏚️', 'CASA MAL-ASSOMBRADA', 235]];
   return (
     <AbsoluteFill style={{background: '#1e272e'}}>
-      <Title text="UNIVERSIDADE CORNELL, 2000" color="#fed330" top={120} size={62} at={4} />
-      <Big x={540} y={290} e="👕" s={0.9} />
-      {bar(640, 'ACHAVAM QUE NOTARIAM A CAMISETA', a, '#ff6b6b', 30)}
-      {bar(960, 'NOTARAM DE VERDADE', b, '#20bf6b', 110)}
-      {frame >= 180 ? <Stamp x={540} y={1500} text="AGORA ELES OUVEM" at={180} color="#ff4757" size={60} rot={-3} /> : null}
-      <Cap text="Fonte: Gilovich, Medvec & Savitsky (2000), J. Personality and Social Psychology" />
-      <Pop at={30} /><Pop at={110} /><Pop at={180} />
+      <Title text="PACIENTE S.M." color="#fed330" top={110} size={96} at={2} />
+      <Big x={540} y={290} e="🧠" s={1.2} at={8} />
+      <div style={{position: 'absolute', left: 560, top: 400, width: 70, height: 44, borderRadius: '50%', background: '#e17055', border: `6px solid ${INK}`, transform: 'rotate(-30deg)', opacity: frame > 90 ? 1 : 0}} />
+      {frame >= 120 ? <Stamp x={800} y={500} text="SEM MEDO" at={120} color="#ff4757" size={40} rot={5} /> : null}
+      {items.map(([e, t, at], i) => frame >= at ? (
+        <div key={t} style={{position: 'absolute', left: 120, right: 120, top: 740 + i * 150, height: 120, background: '#2f3542', border: `8px solid ${INK}`, borderRadius: 24, display: 'flex', alignItems: 'center', padding: '0 30px', gap: 30}}>
+          <div style={{fontSize: 80}}>{e}</div>
+          <div style={{flex: 1, fontFamily: FONT, fontWeight: 900, fontSize: 40, color: '#fff'}}>{t}</div>
+          <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 44, color: '#20bf6b'}}>0 MEDO</div>
+        </div>
+      ) : null)}
+      <Cap text="Fonte: Feinstein et al., Current Biology (2010), doença de Urbach-Wiethe" />
+      <Pop at={120} /><Pop at={195} /><Pop at={215} /><Pop at={235} />
     </AbsoluteFill>
   );
 };
 
 // s03
-const Mae: React.FC = () => {
-  const frame = useCurrentFrame();
-  const bad = frame >= 90;
-  return (
-    <AbsoluteFill>
-      <Kitchen />
-      <Person {...ME} x={230} y={1350} scale={1.45} emotion={bad ? 'worried' : 'happy'} lookX={1} />
-      <Person {...MOM} x={840} y={1350} scale={1.45} emotion={bad ? 'sad' : 'happy'} lookX={-1} />
-      {frame < 85 ? <Thought x={300} y={760} text="QUE MÃE LINDA" at={8} w={520} /> : <Thought x={300} y={760} text="O CAFÉ TÁ HORRÍVEL" at={90} w={560} color="#ffd6d6" />}
-      {bad ? <Stamp x={820} y={760} text="SORRISO SUMIU" at={105} color="#ff4757" size={44} rot={4} /> : <Big x={840} y={780} e="😊" s={0.6} />}
-      <Pop at={8} /><Pop at={90} /><Sting at={90} volume={0.35} />
-    </AbsoluteFill>
-  );
-};
-
-// s04
-const Onibus: React.FC = () => {
-  const frame = useCurrentFrame();
-  const sway = Math.sin(frame / 5) * 6;
-  return (
-    <AbsoluteFill>
-      <Room wall="#dfe6e9" floor="#636e72" />
-      {[80, 400, 720].map((x, i) => <div key={i} style={{position: 'absolute', left: x, top: 260, width: 260, height: 200, background: '#74b9ff', border: `9px solid ${INK}`, borderRadius: 16}} />)}
-      <Thought x={300} y={560} text="JINGLE DO COLCHÃO" at={6} w={560} />
-      {[P1, P2, P3, P5].map((p, i) => (
-        <div key={i} style={{position: 'absolute', left: 0, top: sway * (i % 2 ? 1 : -1)}}>
-          <Person {...p} x={440 + i * 190} y={1420} scale={1.05} emotion="happy" talking={frame > 40} bob />
-        </div>
-      ))}
-      <Person {...ME} x={150} y={1420} scale={1.2} emotion="shocked" lookX={1} />
-      {frame >= 40 ? [0, 1, 2, 3, 4].map((i) => <div key={i} style={{position: 'absolute', left: 340 + i * 150, top: 900 - ((frame * 3 + i * 40) % 160), fontSize: 80}}>🎵</div>) : null}
-      <Person {...DRV} x={900} y={1000} scale={0.9} emotion="scared" lookX={-1} />
-      {frame >= 100 ? <Stamp x={540} y={190} text="PARADA ERRADA ×2" at={100} color="#ff4757" size={54} rot={-3} /> : null}
-      <Pop at={6} /><Pop at={100} />
-    </AbsoluteFill>
-  );
-};
-
-// s05
 const Chefe: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
       <Room wall="#dfe6e9" floor="#b2967d" />
       <div style={{position: 'absolute', left: 60, top: 760, width: 960, height: 40, background: '#6f4e37', border: `8px solid ${INK}`}} />
-      <Person {...ME} x={230} y={1400} scale={1.4} emotion={frame < 50 ? 'worried' : 'shocked'} lookX={1} />
-      <Person {...BOSS} x={830} y={1400} scale={1.4} emotion={frame < 50 ? 'neutral' : 'shocked'} lookX={-1} talking={frame >= 50} />
-      <Thought x={300} y={760} text="MEU CHEFE NEM SABE MEU NOME" at={4} w={600} size={46} />
-      {frame >= 50 ? <Bubble x={780} y={620} w={420} size={50} text="EU SEI, CAIO!" at={50} tail="center" /> : null}
-      <Pop at={4} /><Pop at={50} /><Sting at={50} volume={0.35} />
+      <Person {...ME} x={250} y={1400} scale={1.5} emotion="smirk" lookX={1} talking={frame < 70} bob />
+      <Person {...BOSS} x={830} y={1400} scale={1.5} emotion={frame < 95 ? 'neutral' : 'scared'} lookX={-1} talking={frame >= 150} bob />
+      <Bubble x={300} y={560} w={540} size={52} text="QUERO O DOBRO." at={6} tail="center" />
+      {frame >= 150 ? <Bubble x={800} y={600} w={400} size={56} text="ACEITO!" at={150} tail="center" /> : null}
+      {frame >= 95 ? <Big x={960} y={880} e="💦" s={0.6} at={98} /> : null}
+      <Stamp x={540} y={210} text="AUMENTO: O DOBRO" at={160} color="#20bf6b" size={64} rot={-3} />
+      <Pop at={6} /><Pop at={150} /><Sting at={150} volume={0.35} />
+    </AbsoluteFill>
+  );
+};
+
+// s04
+const Crush: React.FC = () => {
+  const frame = useCurrentFrame();
+  const asks: [string, number][] = [['JANTAR?', 40], ['CASAMENTO?', 80], ['NOME DO FILHO?', 120]];
+  const cur = asks.filter(([, at]) => frame >= at).length - 1;
+  return (
+    <AbsoluteFill>
+      <Room wall="#ffeaa7" floor="#cc8e35" />
+      <div style={{position: 'absolute', left: 60, top: 300, width: 460, height: 140, background: '#fff', border: `8px solid ${INK}`, borderRadius: 14, textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 60, color: INK, lineHeight: '124px'}}>RH</div>
+      <Person {...ME} x={250} y={1400} scale={1.5} emotion="happy" lookX={1} talking bob />
+      <Person {...MARINA} x={830} y={1400} scale={1.5} emotion={frame < 120 ? 'worried' : 'scared'} lookX={-1} bob />
+      {cur >= 0 ? <Bubble x={300} y={580 - cur * 10} w={560} size={56} text={asks[cur][0]} at={asks[cur][1]} tail="center" /> : null}
+      {frame >= 80 ? <Big x={540} y={900} e="💍" s={0.8} at={84} /> : null}
+      {frame >= 165 ? <Big x={900} y={900} e="🥤" s={0.8} at={165} /> : null}
+      {frame >= 165 ? <Stamp x={830} y={640} text="UM COPO D'ÁGUA" at={165} color="#0984e3" size={40} rot={4} /> : null}
+      <Pop at={40} /><Pop at={80} /><Pop at={120} /><Pop at={165} />
+    </AbsoluteFill>
+  );
+};
+
+// s05
+const Parque: React.FC = () => {
+  const frame = useCurrentFrame();
+  const lap = Math.min(12, 1 + Math.floor(frame / 8));
+  const t = (frame % 40) / 40;
+  const cx = 120 + t * 840;
+  const cy = 700 - Math.sin(t * Math.PI * 2) * 140 + Math.sin(t * Math.PI) * 60;
+  return (
+    <AbsoluteFill>
+      <Room wall="#74b9ff" floor="#6ab04c" />
+      <svg viewBox="0 0 1080 1920" width={1080} height={1920} style={{position: 'absolute', left: 0, top: 0}}>
+        <path d="M60,900 Q200,420 360,800 T660,780 T1020,700" fill="none" stroke={INK} strokeWidth={26} strokeLinecap="round" />
+        <path d="M60,900 Q200,420 360,800 T660,780 T1020,700" fill="none" stroke="#e17055" strokeWidth={12} strokeLinecap="round" />
+      </svg>
+      <div style={{position: 'absolute', left: cx - 70, top: cy - 100, width: 140, height: 120}}>
+        <div style={{fontSize: 130}}>🎢</div>
+      </div>
+      <Person {...ME} x={540} y={1450} scale={1.4} emotion="neutral" lookY={0.5} bob={false} />
+      {[0, 1, 2].map((i) => <div key={i} style={{position: 'absolute', left: 640 + i * 60, top: 1010 - i * 70 - ((frame * 2 + i * 20) % 60), fontFamily: FONT, fontWeight: 900, fontSize: 70 - i * 10, color: '#fff', WebkitTextStroke: `6px ${INK}`, paintOrder: 'stroke fill'}}>Z</div>)}
+      <Person {...OPER} x={900} y={1450} scale={1.2} emotion="worried" lookX={-1} bob />
+      <div style={{position: 'absolute', left: 60, top: 150, padding: '8px 36px', background: '#2f3542', border: `8px solid ${INK}`, borderRadius: 20, fontFamily: FONT, fontWeight: 900, fontSize: 78, color: '#fff'}}>VOLTA {lap}</div>
+      {frame >= 120 ? <Bubble x={800} y={960} w={400} size={34} text="POR FAVOR, DESCE!" at={120} tail="center" /> : null}
+      <Pop at={120} />
     </AbsoluteFill>
   );
 };
 
 // s06
-const Nada: React.FC = () => {
+const Cobra: React.FC = () => {
   const frame = useCurrentFrame();
-  const t = frame < 40 ? 'NADA.' : frame < 80 ? 'NADA. NADA.' : 'PENSAR EM NADA JÁ É PENSAR EM ALGUMA COISA?';
   return (
     <AbsoluteFill>
-      <Room wall="#dfe6e9" floor="#b2967d" />
-      <Person {...ME} x={540} y={1720} scale={1.3} emotion={frame < 110 ? 'worried' : 'scared'} lookY={-0.4} />
-      <Thought x={540} y={760} text={t} at={4} w={700} size={frame >= 80 ? 44 : 64} />
-      {frame >= 110 ? [P1, P2, P3].map((p, i) => <Person key={i} {...p} x={170 + i * 370} y={1150} scale={0.7} emotion="shocked" dim={0.1} />) : null}
-      {frame >= 110 ? <Stamp x={540} y={330} text="O ESCRITÓRIO TRAVOU" at={110} color="#ff4757" size={58} rot={-3} /> : null}
-      <Pop at={40} /><Pop at={80} /><Pop at={110} />
+      <Room wall="#b8e994" floor="#6ab04c" />
+      <div style={{position: 'absolute', right: 40, top: 270, width: 480, height: 130, background: '#e17055', border: `8px solid ${INK}`, borderRadius: 14, textAlign: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 42, color: '#fff', lineHeight: '120px'}}>SETOR DOS TIGRES 🐯</div>
+      <Person {...ME} x={280} y={1400} scale={1.5} emotion="happy" lookX={1} bob />
+      <Big x={640} y={900} e="🐍" s={1.9} at={4} rot={Math.sin(frame / 5) * 5} />
+      <Big x={620} y={790} e="😱" s={0.5} at={95} rot={Math.sin(frame / 3) * 12} />
+      <Big x={470} y={1000} e="🤚" s={0.7} at={40} rot={20} />
+      {frame >= 120 ? <Bubble x={780} y={700} w={520} size={38} text="QUERO TRANSFERÊNCIA!" at={120} tail="center" /> : null}
+      <Person {...TRATADOR} x={940} y={1400} scale={1.0} emotion="shocked" lookX={-1} />
+      <Pop at={40} /><Pop at={120} />
     </AbsoluteFill>
   );
 };
 
 // s07
-const Pombo: React.FC = () => {
+const Alarme: React.FC = () => {
   const frame = useCurrentFrame();
+  const items: [string, string, number][] = [['🔥', 'FOGÃO LIGADO', 45], ['🚪', 'PORTÃO ABERTO', 95], ['♨️', 'ÁGUA FERVENDO', 130]];
   return (
     <AbsoluteFill>
-      <Street />
-      <Big x={800} y={720} e="🐦" s={1.7} rot={Math.sin(frame / 9) * 4} />
-      <Big x={300} y={900} e="🥪" s={0.8} rot={-8} />
-      <Person {...ME} x={300} y={1450} scale={1.4} emotion="scared" lookX={1} bob />
-      <Thought x={330} y={1020} text="PENSA EM OUTRA COISA..." at={6} w={560} size={44} />
-      {frame >= 90 ? <Stamp x={540} y={380} text="PENSOU EM SANDUÍCHE" at={90} color="#ff4757" size={54} rot={3} /> : null}
-      <Pop at={6} /><Pop at={90} />
+      <Room wall="#ffeaa7" floor="#cc8e35" />
+      {items.map(([e, t, at], i) => frame >= at ? (
+        <div key={t} style={{position: 'absolute', left: 60, top: 260 + i * 170, width: 560, height: 140, background: '#fff', border: `8px solid ${INK}`, borderRadius: 24, display: 'flex', alignItems: 'center', gap: 20, padding: '0 24px', boxShadow: `0 8px 0 ${INK}`}}>
+          <div style={{fontSize: 80}}>{e}</div>
+          <div style={{fontFamily: FONT, fontWeight: 900, fontSize: 40, color: INK}}>{t}</div>
+        </div>
+      ) : null)}
+      <Person {...ME} x={820} y={1400} scale={1.6} emotion="happy" lookX={-1} bob />
+      {frame >= 190 ? <Big x={800} y={620} e="🪫" s={1.5} at={190} rot={Math.sin(frame / 6) * 6} /> : null}
+      {frame >= 195 ? <Stamp x={380} y={1000} text="ALARME SEM PILHA" at={198} color="#ff4757" size={56} rot={-3} /> : null}
+      <Pop at={45} /><Pop at={95} /><Pop at={130} /><Sting at={195} volume={0.4} />
     </AbsoluteFill>
   );
 };
 
 // s08
-const Truque: React.FC = () => {
+const Irma: React.FC = () => {
   const frame = useCurrentFrame();
-  const lines = ['VOCÊ É ÓTIMO!', 'QUE SORRISO LINDO!', 'ADORO ESSE LUGAR!'];
-  const i = Math.min(2, Math.floor(frame / 60));
+  const heart = 1 + Math.sin(frame / 3) * 0.12;
+  const car = interpolate(frame, [150, 195], [-300, 700], clamp);
   return (
-    <AbsoluteFill style={{background: '#55efc4'}}>
-      <Floor color="#00b894" y={1180} />
-      <Stamp x={540} y={200} text="SÓ COISA BOA" at={0} color="#20bf6b" size={70} rot={-3} />
-      <Thought x={540} y={760} text={lines[i]} at={0} w={640} size={56} color="#fff" />
-      <Person {...ME} x={540} y={1750} scale={1.3} emotion="happy" lookY={-0.3} bob />
-      {[P1, P2, P3].map((p, k) => <Person key={k} {...p} x={170 + k * 370} y={1150} scale={0.65} emotion="happy" dim={0.1} bob />)}
-      {[0, 1, 2, 3].map((k) => <div key={k} style={{position: 'absolute', left: 150 + k * 250, top: 520 - ((frame * 2 + k * 30) % 140), fontSize: 80}}>❤️</div>)}
-      <Pop at={0} />
+    <AbsoluteFill>
+      <Street />
+      <Crosswalk />
+      <Person {...ME} x={330} y={1480} scale={1.5} emotion={frame < 150 ? 'neutral' : 'scared'} lookX={1} bob />
+      <Person {...DUDA} x={frame < 100 ? 470 : 640} y={frame < 100 ? 1480 : 1500} scale={1.0} emotion="happy" lookX={1} bob />
+      {frame >= 150 ? <div style={{position: 'absolute', left: car, top: 1120, fontSize: 170}}>🚗</div> : null}
+      {frame >= 150 ? <Big x={330} y={800} e="💓" s={1.2} at={150} rot={0} /> : null}
+      {frame >= 150 ? <Stamp x={540} y={420} text="UM MEDO VOLTOU" at={150} color="#ff4757" size={64} rot={-3} /> : null}
+      {frame >= 100 ? <Stamp x={700} y={1160} text="ELA FAZ IGUAL" at={100} color="#e84393" size={42} rot={4} /> : null}
+      <Pop at={100} /><Sting at={150} volume={0.4} />
     </AbsoluteFill>
   );
 };
 
 // s09
-const Absurdo: React.FC = () => {
+const Corre: React.FC = () => {
   const frame = useCurrentFrame();
-  const cell = (x: number, y: number, e: string, label: string, at: number, color: string) => frame >= at ? (
-    <div style={{position: 'absolute', left: x, top: y, width: 450, height: 430, background: '#fff', border: `9px solid ${INK}`, borderRadius: 30, textAlign: 'center', boxShadow: `0 10px 0 ${INK}`}}>
-      <div style={{fontSize: 170, marginTop: 30}}>{e}</div>
-      <div style={{margin: '0 20px', padding: '10px 14px', background: color, border: `6px solid ${INK}`, borderRadius: 16, fontFamily: FONT, fontWeight: 900, fontSize: 42, color: '#fff'}}>{label}</div>
-    </div>
-  ) : null;
+  const car = interpolate(frame, [80, 118], [-400, 1500], clamp);
+  const pull = interpolate(frame, [30, 75], [0, 1], clamp);
   return (
-    <AbsoluteFill style={{background: '#74b9ff'}}>
-      <DayTag text="RESULTADO" y={150} />
-      {cell(60, 240, '😁', 'CHEFE SORRI', 10, '#20bf6b')}
-      {cell(570, 240, '🚌', 'CARONA GRÁTIS', 50, '#0984e3')}
-      {cell(60, 700, '🐦', 'POMBO DEVOLVE UM FARELO', 90, '#e17055')}
-      {cell(570, 700, '🐕', 'CACHORRO PAROU DE LATIR', 130, '#6c5ce7')}
-      <Person {...ME} x={540} y={1800} scale={0.85} emotion="happy" bob />
-      <Pop at={10} /><Pop at={50} /><Pop at={90} /><Pop at={130} />
+    <AbsoluteFill>
+      <Street />
+      <Crosswalk />
+      {[0, 1, 2, 3].map((i) => <div key={i} style={{position: 'absolute', left: car - 200 - i * 90, top: 1160 + i * 30, width: 160, height: 10, background: '#fff', opacity: frame >= 80 && frame < 130 ? 0.7 : 0}} />)}
+      <div style={{position: 'absolute', left: car, top: 1110, fontSize: 190}}>🚗</div>
+      <Person {...ME} x={340 + pull * 70} y={1500} scale={1.6} emotion="scared" lookX={1} />
+      <Person {...DUDA} x={720 - pull * 150} y={1500} scale={1.0} emotion="shocked" lookX={-1} />
+      {frame >= 125 ? <Big x={540} y={470} e="💓" s={1.6} at={125} rot={Math.sin(frame / 4) * 6} /> : null}
+      {frame >= 155 ? <Stamp x={540} y={330} text="O MEDO DE PERDER ELA" at={155} color="#ff4757" size={52} rot={-3} /> : null}
+      <Flash at={84} len={5} />
+      <Pop at={30} /><Sting at={84} volume={0.5} /><Pop at={155} />
     </AbsoluteFill>
   );
 };
 
 // s10
-const Noite: React.FC = () => {
+const Abraco: React.FC = () => {
   const frame = useCurrentFrame();
   return (
     <AbsoluteFill>
-      <Kitchen night />
-      <DayTag text="MEIA-NOITE" />
-      <Person {...ME} x={230} y={1350} scale={1.45} emotion="neutral" lookX={1} />
-      <Person {...MOM} x={840} y={1350} scale={1.45} emotion="happy" lookX={-1} talking={frame < 120} />
-      <Bubble x={740} y={760} w={560} size={44} text="HOJE CEDO, EU OUVI VOCÊ PENSAR QUE EU SOU LINDA" at={10} tail="center" />
-      <Pop at={10} />
+      <Room wall="#ffeaa7" floor="#cc8e35" />
+      <Person {...ME} x={430} y={1450} scale={1.6} emotion="happy" lookX={1} bob />
+      <Person {...DUDA} x={640} y={1470} scale={1.2} emotion="happy" lookX={-1} bob />
+      <Big x={540} y={760} e="❤️" s={0.8} at={4} rot={Math.sin(frame / 6) * 8} />
+      {frame >= 35 ? <Bubble x={300} y={620} w={460} size={40} text="OLHA OS DOIS LADOS" at={35} tail="center" /> : null}
+      {frame >= 100 ? <Bubble x={800} y={620} w={420} size={40} text="EU OLHO TRÊS!" at={100} tail="center" /> : null}
+      {frame >= 150 ? <Stamp x={540} y={260} text="MEDO = AMOR AVISANDO" at={150} color="#e84393" size={50} rot={-3} /> : null}
+      <Pop at={35} /><Pop at={100} /><Pop at={150} />
     </AbsoluteFill>
   );
 };
 
 // s11
-const Mae2: React.FC = () => {
+const Volta: React.FC = () => {
   const frame = useCurrentFrame();
+  const fears: [string, string, number, number][] = [['🪳', 'BARATA', 165, 380], ['🦷', 'DENTISTA', 200, 380], ['🧦', 'MEIA', 235, 250]];
   return (
     <AbsoluteFill>
-      <Kitchen night />
-      <Person {...ME} x={230} y={1350} scale={1.45} emotion={frame < 60 ? 'neutral' : 'happy'} lookX={1} />
-      <Person {...MOM} x={840} y={1350} scale={1.45} emotion="happy" lookX={-1} talking={frame < 50} />
-      {frame < 55 ? <Bubble x={740} y={760} w={520} size={46} text="GUARDEI ISSO O DIA INTEIRO" at={4} tail="center" /> : <Thought x={300} y={760} text="EU TE AMO" at={55} w={460} size={64} color="#ffd6e7" />}
-      {frame >= 80 ? <Big x={560} y={880} e="❤️" s={1.0} rot={Math.sin(frame / 6) * 8} /> : null}
-      {frame >= 80 ? <Big x={880} y={720} e="😭" s={0.5} /> : null}
-      <Pop at={55} /><Sting at={55} volume={0.35} />
+      <Room wall="#a29bfe" floor="#6c5ce7" />
+      <DayTag text="DIA SEGUINTE" y={150} />
+      <div style={{position: 'absolute', left: 150, top: 1150, width: 780, height: 260, background: '#74b9ff', border: `9px solid ${INK}`, borderRadius: 30, boxShadow: `0 10px 0 ${INK}`}} />
+      <Person {...ME} x={540} y={1330} scale={1.5} emotion={frame < 60 ? 'neutral' : 'scared'} lookY={-0.3} bob />
+      {fears.map(([e, t, at, y], i) => frame >= at - 100 ? <Thought key={t} x={200 + i * 340} y={y + 130} text={`${e} ${t}`} at={at - 100} w={300} size={40} color="#ffd6d6" /> : null)}
+      {frame >= 60 ? <Stamp x={540} y={560} text="MEDO: 100%" at={60} color="#ff4757" size={72} rot={-3} /> : null}
+      {frame >= 160 ? <Stamp x={540} y={700} text="OBRIGADO" at={160} color="#20bf6b" size={72} rot={3} /> : null}
+      <Pop at={60} /><Sting at={60} volume={0.4} /><Pop at={160} />
     </AbsoluteFill>
   );
 };
 
-const Cta: React.FC = () => {
-  const frame = useCurrentFrame();
-  return (
-    <AbsoluteFill style={{background: '#192a56'}}>
-      <Title text="VOCÊ GOSTARIA DE OUVIR O QUE SEU CHEFE PENSA DE VOCÊ?" color="#fff" top={100} size={58} />
-      <div style={{position: 'absolute', left: 120, top: 620, width: 380, height: 130, borderRadius: 40, background: '#20bf6b', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 70, color: '#fff'}}>SIM</div>
-      <div style={{position: 'absolute', left: 580, top: 620, width: 380, height: 130, borderRadius: 40, background: '#ff4757', border: `9px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 70, color: '#fff'}}>NÃO</div>
-      <Person {...ME} x={300} y={1300} scale={1.5} emotion="worried" lookX={1} />
-      <Person {...BOSS} x={780} y={1300} scale={1.5} emotion="neutral" lookX={-1} />
-      <Stamp x={540} y={540} text="PARTE 3: O CHEFE" at={20} color="#fed330" size={44} rot={-4} />
-      <div style={{position: 'absolute', left: 140, right: 140, top: 1470, height: 110, borderRadius: 55, background: '#fed330', border: `8px solid ${INK}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: FONT, fontWeight: 900, fontSize: 56, color: INK, transform: `scale(${1 + Math.sin(frame / 5) * 0.03})`}}>@hipoteticamente.br</div>
-    </AbsoluteFill>
-  );
-};
+const Cta: React.FC = () => (
+  <AbsoluteFill style={{background: '#192a56'}}>
+    <Title text="VOCÊ APAGARIA TODOS OS SEUS MEDOS POR UM DIA?" color="#fff" top={100} size={60} />
+    <SimNao top={620} />
+    <Person {...ME} x={300} y={1300} scale={1.5} emotion="worried" lookX={1} />
+    <Person {...DUDA} x={780} y={1300} scale={1.2} emotion="happy" lookX={-1} />
+    <Stamp x={540} y={540} text="PARTE 2: MEDO DE TUDO" at={20} color="#fed330" size={44} rot={-4} />
+    <Handle top={1470} />
+  </AbsoluteFill>
+);
 
 export const SCENES: Record<string, React.FC> = {
-  hook: Hook, fato: Fato, mae: Mae, onibus: Onibus, chefe: Chefe, nada: Nada, pombo: Pombo, truque: Truque,
-  absurdo: Absurdo, noite: Noite, mae2: Mae2, cta: Cta,
+  hook: Hook, fato: Fato, chefe: Chefe, crush: Crush, parque: Parque, cobra: Cobra, alarme: Alarme, irma: Irma,
+  corre: Corre, abraco: Abraco, volta: Volta, cta: Cta,
 };

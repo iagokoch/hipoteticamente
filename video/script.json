@@ -1,5 +1,5 @@
 {
-  "title": "E se você ouvisse o pensamento de todo mundo? (Parte 2): agora eles ouvem você",
+  "title": "E se você acordasse sem sentir medo nenhum?",
   "voice": "pm_santa",
   "speed": 1.08,
   "pitch": 1.0,
@@ -7,62 +7,62 @@
     {
       "id": "s01",
       "visual": "hook",
-      "text": "Dia seguinte. O poder inverteu: agora todo mundo escuta o seu pensamento. E você não escuta mais ninguém."
+      "text": "Você acordou sem medo nenhum. Atravessou a rua sem olhar, os carros desviaram, e seu coração nem acelerou."
     },
     {
       "id": "s02",
       "visual": "fato",
-      "text": "Em dois mil, estudantes de camiseta constrangedora achavam que metade da sala ia notar. Só um quarto notou. Agora é diferente: todo mundo escuta."
+      "text": "A paciente S.M. existe de verdade. Uma doença rara destruiu a parte do cérebro que sente medo. Cobra, aranha, casa mal-assombrada: nada assustou ela."
     },
     {
       "id": "s03",
-      "visual": "mae",
-      "text": "Na cozinha, você pensa: que mãe linda. Ela sorri. Aí você pensa: o café tá horrível. O sorriso some."
+      "visual": "chefe",
+      "text": "No trabalho, você pede aumento ao chefe. O dobro. Olhando nos olhos. É o chefe quem fica com medo. E aceita."
     },
     {
       "id": "s04",
-      "visual": "onibus",
-      "text": "No ônibus, você pensa no jingle do colchão. Quarenta pessoas começam a cantar. O motorista erra duas paradas."
+      "visual": "crush",
+      "text": "Você convida a Marina do RH pra jantar. E pro casamento. E pra escolher o nome do filho. Ela pede um copo d'água."
     },
     {
       "id": "s05",
-      "visual": "chefe",
-      "text": "No trabalho, você pensa: meu chefe nem sabe meu nome. Ele levanta a mão e grita: eu sei, Caio!"
+      "visual": "parque",
+      "text": "No parque, você dorme na montanha-russa. Doze voltas seguidas. O operador pede, por favor, que você desça."
     },
     {
       "id": "s06",
-      "visual": "nada",
-      "text": "Você tenta pensar em nada. Pensa: nada. Pensa: nada. Pensa: será que pensar em nada já é pensar em alguma coisa? O escritório inteiro trava."
+      "visual": "cobra",
+      "text": "No zoológico, você faz carinho numa jiboia. Ela se assusta tanto que pede transferência pro setor dos tigres."
     },
     {
       "id": "s07",
-      "visual": "pombo",
-      "text": "Na praça, o pombo escuta você. Agora ele sabe que você sabe do sanduíche. Ele te encara. Você tenta pensar em outra coisa. Pensa em sanduíche."
+      "visual": "alarme",
+      "text": "Mas sem medo, você esquece o fogão ligado, o portão aberto, a água fervendo. O medo também era um alarme, e o seu tá sem pilha."
     },
     {
       "id": "s08",
-      "visual": "truque",
-      "text": "Aí você descobre o truque: se pensa só coisa boa, ninguém olha torto. Você passa a tarde elogiando todo mundo por dentro."
+      "visual": "irma",
+      "text": "Sua irmã de seis anos vê você atravessar sem olhar. Ela solta a sua mão e faz igual. E um medo volta. Só um."
     },
     {
       "id": "s09",
-      "visual": "absurdo",
-      "text": "O chefe sorri. O motorista te dá carona de graça. O pombo devolve um farelo. Até o cachorro do vizinho para de latir."
+      "visual": "corre",
+      "text": "Você corre, puxa ela pra trás, e o carro passa raspando. Seu coração dispara. É o único medo que voltou: perder quem você ama."
     },
     {
       "id": "s10",
-      "visual": "noite",
-      "text": "Meia-noite. Silêncio. Sua mãe espera na cozinha, de pijama. Ela diz: hoje cedo, eu ouvi você pensar que eu sou linda."
+      "visual": "abraco",
+      "text": "Você abraça ela e promete olhar os dois lados. Ela promete olhar três. Você entende: o medo é o amor avisando."
     },
     {
       "id": "s11",
-      "visual": "mae2",
-      "text": "Guardei isso o dia inteiro, ela diz. Você pensa: eu te amo. E dessa vez ela sorri chorando."
+      "visual": "volta",
+      "text": "No dia seguinte, o medo volta. Todos de uma vez: da barata, do dentista, da própria meia. E dessa vez, você agradece."
     },
     {
       "id": "s12",
       "visual": "cta",
-      "text": "Você gostaria de ouvir o que seu chefe pensa de você? Comenta sim ou não. Na parte três, é o chefe quem não consegue esconder nada."
+      "text": "Você apagaria todos os seus medos por um dia? Comenta sim ou não. Na parte dois, é o contrário: medo de tudo. Até do próprio pé."
     }
   ]
 }
