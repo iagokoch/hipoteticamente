@@ -16,6 +16,10 @@ Ep. 13 = tema #2 (sorte vira azar do melhor amigo Dudu: Mega-Sena, placar sorte 
 Ep. 14 = tema #5 (celular proibido em todo lugar: ônibus calado, fila do banco, mapa de papel, orelhão com 300 pessoas, pai e dominó, vizinhos fazendo seta humana; fato: Lei 15.100, 13/01/2025; pergunta: "Você aguentaria uma semana sem celular?"; Parte 2: proibiram outra coisa).
 Ep. 15 = tema #4 (acordar sem medo: aumento, Marina do RH, montanha-russa, jiboia, irmã Duda atravessando; fato: paciente S.M., Urbach-Wiethe, Feinstein et al. 2010; pergunta: "Você apagaria todos os seus medos por um dia?"; Parte 2: medo de tudo).
 
+Ep. 16 = Parte 3 do tema #15 (Pensamentos: o chefe não consegue esconder nada; Doutor Bigode, gravata do cliente, aquário com a verba do aumento; pergunta: "Você teria coragem de dizer tudo que pensa pro seu chefe?"; Parte 4: o poder cai no pombo).
+
+**Regra de 16/11/2026:** os episódios não trazem mais fato real nem fonte na tela; o foco é só a história. Os campos "Fato real" abaixo ficam apenas como referência histórica.
+
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.
 
 ---

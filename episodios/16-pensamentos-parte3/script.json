@@ -1,0 +1,68 @@
+{
+  "title": "E se você ouvisse o pensamento de todo mundo? (Parte 3): o chefe não consegue esconder nada",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {
+      "id": "s01",
+      "visual": "hook",
+      "text": "Parte três. O poder mudou de novo: agora só o seu chefe não consegue esconder nada. Tudo que ele pensa, ele fala em voz alta."
+    },
+    {
+      "id": "s02",
+      "visual": "reuniao",
+      "text": "Segunda, nove horas. Ele abre a reunião: bom dia, equipe. Quero ir embora. Será que ainda tem pão de queijo?"
+    },
+    {
+      "id": "s03",
+      "visual": "diretor",
+      "text": "O diretor entra na sala. O chefe pensa alto: eu não faço ideia do que essa empresa faz. A sala inteira congela."
+    },
+    {
+      "id": "s04",
+      "visual": "armario",
+      "text": "Em pânico, ele se tranca no armário de limpeza. Não adianta. O prédio inteiro ouve: meu peixe se chama Doutor Bigode."
+    },
+    {
+      "id": "s05",
+      "visual": "cliente",
+      "text": "Chega o cliente. O chefe pensa: que homem chato. Você, rápido, traduz: ele quis dizer que adorou a sua gravata."
+    },
+    {
+      "id": "s06",
+      "visual": "gravata",
+      "text": "O cliente ama a gravata. Fecha o contrato, pede desculpa e ainda te dá a gravata dele de presente. Está tudo salvo."
+    },
+    {
+      "id": "s07",
+      "visual": "elogio",
+      "text": "Aí o chefe pensa em você. Alto: o Caio é o melhor da empresa, mas eu tenho vergonha de falar. O escritório inteiro vira."
+    },
+    {
+      "id": "s08",
+      "visual": "aplauso",
+      "text": "Alguém começa a aplaudir. Depois a copeira. Depois o segurança. Depois o pombo, que entrou pela janela. O chefe fica vermelho."
+    },
+    {
+      "id": "s09",
+      "visual": "aquario",
+      "text": "Mas ele não consegue parar de pensar. E pensa: e eu gastei a verba do seu aumento num aquário novo. Silêncio total."
+    },
+    {
+      "id": "s10",
+      "visual": "pagar",
+      "text": "Em pânico, ele grita os pensamentos: pago o dobro, pago o triplo, e você ainda batiza o peixe! Você aceita. O peixe vira Caio."
+    },
+    {
+      "id": "s11",
+      "visual": "noite",
+      "text": "Fim do dia. Sozinho na sala, ele pensa a última coisa: pela primeira vez em anos, eu não preciso fingir. E sorri aliviado."
+    },
+    {
+      "id": "s12",
+      "visual": "cta",
+      "text": "Você teria coragem de dizer tudo que pensa pro seu chefe? Comenta sim ou não. Na parte quatro, o poder cai no pombo."
+    }
+  ]
+}
