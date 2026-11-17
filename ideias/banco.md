@@ -18,6 +18,8 @@ Ep. 15 = tema #4 (acordar sem medo: aumento, Marina do RH, montanha-russa, jiboi
 
 Ep. 16 = Parte 3 do tema #15 (Pensamentos: o chefe não consegue esconder nada; Doutor Bigode, gravata do cliente, aquário com a verba do aumento; pergunta: "Você teria coragem de dizer tudo que pensa pro seu chefe?"; Parte 4: o poder cai no pombo).
 
+Ep. 17 = tema #12 (objetos vivos por 1 minuto; fecha no relógio do avô; Parte 2: o espelho). Ep. 18 = tema #8, versão mundo (7 dias sem luz no prédio, seu Aurélio, pombo candidato; Parte 2: a luz volta só no prédio ao lado).
+
 **Regra de 16/11/2026:** os episódios não trazem mais fato real nem fonte na tela; o foco é só a história. Os campos "Fato real" abaixo ficam apenas como referência histórica.
 
 Observação geral: o nicho "E se você…" no TikTok BR está cheio de canais pequenos de IA postando as mesmas premissas (dezenas de vídeos de 10–3.000 curtidas por tema). O diferencial do canal é a novelinha com o Caio, alguém próximo em jogo e o fato real na tela.

@@ -1,0 +1,19 @@
+{
+  "title": "E se o mundo ficasse 7 dias sem luz?",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {"id": "s01", "visual": "hook", "text": "Você aperta o interruptor. Nada. Olha pela janela: o bairro apagou. Depois a cidade. Depois o mundo. Sete dias sem luz."},
+    {"id": "s02", "visual": "dia1", "text": "Dia um. As geladeiras derretem. O prédio inteiro faz churrasco no estacionamento. Ninguém sabe o nome de ninguém."},
+    {"id": "s03", "visual": "elevador", "text": "Dia dois. O celular morre. O elevador para com você e o síndico dentro. Ele explica a taxa do condomínio por uma hora."},
+    {"id": "s04", "visual": "batata", "text": "Dia três. Alguém tenta carregar o celular numa batata. Alguém liga a TV na fé. O pombo muda pro seu fogão."},
+    {"id": "s05", "visual": "aurelio", "text": "Dia quatro. Seu Aurélio, de oitenta e dois anos, aparece com uma lamparina e cria as leis: vela é pra dividir e dominó é sagrado."},
+    {"id": "s06", "visual": "festa", "text": "Dia cinco. O corredor vira festa. Violão, dominó, história de assombração. A dona do trezentos e dois canta ópera."},
+    {"id": "s07", "visual": "eleicao", "text": "Dia seis. O síndico faz eleição à luz de vela. O pombo é candidato. Ele ganha por três votos e uma lamparina."},
+    {"id": "s08", "visual": "acende", "text": "Dia sete. Às seis da tarde, tudo acende. O prédio grita de alegria. E em um minuto cada um corre pro seu apartamento."},
+    {"id": "s09", "visual": "vazio", "text": "O corredor fica vazio de novo. As vozes somem. Só sobra o zumbido da geladeira e o silêncio de todo mundo trancado."},
+    {"id": "s10", "visual": "bate", "text": "Você olha pra porta do seu Aurélio. Pega o dominó, respira fundo e bate. Ele abre e diz: demorou."},
+    {"id": "s11", "visual": "cta", "text": "Se a luz voltasse hoje, você ficaria mais uma noite no escuro com seus vizinhos? Comenta sim ou não. Na parte dois, a luz volta só no prédio ao lado."}
+  ]
+}

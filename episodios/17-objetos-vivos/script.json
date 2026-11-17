@@ -1,0 +1,20 @@
+{
+  "title": "E se tudo que você tocasse ganhasse vida por 1 minuto?",
+  "voice": "pm_santa",
+  "speed": 1.08,
+  "pitch": 1.0,
+  "scenes": [
+    {"id": "s01", "visual": "hook", "text": "Você encosta no despertador. Ele abre os olhos e pede: só mais cinco minutinhos. Por um minuto, tudo que você tocar ganha vida."},
+    {"id": "s02", "visual": "cozinha", "text": "Você toca na torradeira. Ela chora: eu nunca fiz um pão dourado. A geladeira grita: fecha a porta, tá frio!"},
+    {"id": "s03", "visual": "banheiro", "text": "No banheiro, o chuveiro reclama da sua cantoria. A escova de dentes jura que sabe o que você fez ontem."},
+    {"id": "s04", "visual": "onibus", "text": "Você encosta no ônibus. Ele para no meio da rua e diz: hoje eu não vou pro centro. Os passageiros ficam lá dentro."},
+    {"id": "s05", "visual": "rua", "text": "O poste te conta a fofoca do bairro inteiro. O semáforo cansou do vermelho e agora só fica verde. Você corre."},
+    {"id": "s06", "visual": "casa", "text": "Faltam vinte segundos. Você chega na casa do seu avô, que quase nunca fala, e encosta no relógio da parede."},
+    {"id": "s07", "visual": "relogio", "text": "O relógio respira fundo e diz: toda tarde, às seis, seu avô para tudo e olha pra porta. Ele espera você chegar."},
+    {"id": "s08", "visual": "avo", "text": "O avô, que só queria ver o jornal, escuta tudo. Fica vermelho. Tenta disfarçar: é só o vento!"},
+    {"id": "s09", "visual": "bala", "text": "E tem mais, diz o relógio. Ele troca a bala de coco do armário todo mês, pra ela nunca vencer. Você nem sabia que ele lembrava."},
+    {"id": "s10", "visual": "fim", "text": "O minuto acaba. O relógio volta a ser só relógio. Você e seu avô se olham em silêncio. Ele pergunta: quer bala de coco?"},
+    {"id": "s11", "visual": "sofa", "text": "Você senta do lado dele. Ele liga o jornal. Nenhum dos dois fala nada. Mas, pela primeira vez, você ouviu tudo."},
+    {"id": "s12", "visual": "cta", "text": "Você tocaria no relógio do seu avô pra descobrir o que ele nunca disse? Comenta sim ou não. Na parte dois, você encosta no espelho."}
+  ]
+}
